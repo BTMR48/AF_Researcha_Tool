@@ -1,19 +1,19 @@
 import React,{useState} from "react";
 import { useHistory} from 'react-router-dom';
 import { OutlinedInput } from "@material-ui/core";
-import Chip from '@material-ui/core/Chip';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+// import Chip from '@material-ui/core/Chip';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import Input from '@material-ui/core/Input';
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
 import Button from "@material-ui/core/Button";
 import 'date-fns';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import './CosupervisorSignUp.css';
+import './PanelmemberSignUp.css';
 import axios from "axios";
 
 
-function CosupervisorSignUp(){
+function PanelmemberSignUp(){
 
     
     const [password, setPassword]= useState("");
@@ -21,7 +21,6 @@ function CosupervisorSignUp(){
     const [name,setName]=useState("");
     const [title,setTitle]=useState("");
     const [email,setEmail]=useState("");
-    const [fields,setFields]=useState([]);
     const [phoneno,setPhone]=useState("");
     const [previewSource, setPreviewSource] = useState();
     const history =useHistory();
@@ -59,7 +58,7 @@ function CosupervisorSignUp(){
         if(previewSource){
             const formData = new FormData();
             formData.append("file", selectedFile)
-            formData.append("upload_preset", "cosupervisor")
+            formData.append("upload_preset", "panelmember")
 
             try {
                 await axios.post("https://api.cloudinary.com/v1_1/tbrmy/image/upload", formData).then((res) =>{
@@ -73,13 +72,13 @@ function CosupervisorSignUp(){
       
 
         if(password===confirmPassword){
-            const newCosupervisor= { title, name, email, fields, phoneno, password, imgUrl }
+            const newPanelmember= { title, name, email, phoneno, password, imgUrl }
             
             try{
             
-                await axios.post("http://localhost:8070/cosupervisor/signup",newCosupervisor,config);
-                alert("Co-Supervisor added successfully")
-                history.push(`/cosupervisor/signin`)
+                await axios.post("http://localhost:8070/panelmember/signup",newPanelmember,config);
+                alert("Panel Member added successfully")
+                history.push(`/panelmember/signin`)
             } catch(error){
                 alert("Registration failed!");
                 
@@ -89,20 +88,9 @@ function CosupervisorSignUp(){
         }
        
     }
-
-
-    const field = [
-        'Internet of Things', 'Blockchain', 'Artificial Intelligence'
-    ]
-
-    
+  
     //handling the image uploading
     
-
-    const handleFieldChange = (event) => {
-        setFields(event.target.value);
-    };
- 
     return(   
         <div className="container" align="center">
             <div className="row">
@@ -112,7 +100,7 @@ function CosupervisorSignUp(){
                     </div>
                 </div>
             </div>
-            <form  onSubmit={add} className="cosupervisorSignUp" >
+            <form  onSubmit={add} className="panelmemberSignUp" >
                 <div className="row"> 
                     
                     <div className="col-8">
@@ -180,29 +168,6 @@ function CosupervisorSignUp(){
                         
                             <br/>
                 
-                            <div className="col-xl-6 mb-3">
-                                <InputLabel id="demo-mutiple-chip-label">Research Field</InputLabel>
-                                    <Select
-                                        id="demo-mutiple-chip"
-                                        multiple fullWidth
-                                        value={fields}
-                                        onChange={handleFieldChange}
-                                        input={<Input id="select-multiple-chip"/>}
-                                        renderValue={(selected) => (
-                                            <div >
-                                                {selected.map((value) => (
-                                                    <Chip key={value} label={value}  />
-                                                ))}
-                                            </div>
-                                        )}
-                                    >
-                                    {field.map((field) => (
-                                        <MenuItem key={field} value={field} >
-                                            {field}
-                                        </MenuItem>
-                                    ))}
-                                    </Select>
-                            </div>
 
                             <br/>
                 
@@ -285,4 +250,4 @@ function CosupervisorSignUp(){
 
     );
 }; 
-export default CosupervisorSignUp;
+export default PanelmemberSignUp;

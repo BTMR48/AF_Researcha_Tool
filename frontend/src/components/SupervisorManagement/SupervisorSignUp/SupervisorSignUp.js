@@ -9,11 +9,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from "@material-ui/core/Button";
 import 'date-fns';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import './CosupervisorSignUp.css';
+import './SupervisorSignUp.css';
 import axios from "axios";
 
 
-function CosupervisorSignUp(){
+function SupervisorSignUp(){
 
     
     const [password, setPassword]= useState("");
@@ -59,7 +59,7 @@ function CosupervisorSignUp(){
         if(previewSource){
             const formData = new FormData();
             formData.append("file", selectedFile)
-            formData.append("upload_preset", "cosupervisor")
+            formData.append("upload_preset", "supervisor")
 
             try {
                 await axios.post("https://api.cloudinary.com/v1_1/tbrmy/image/upload", formData).then((res) =>{
@@ -73,13 +73,13 @@ function CosupervisorSignUp(){
       
 
         if(password===confirmPassword){
-            const newCosupervisor= { title, name, email, fields, phoneno, password, imgUrl }
+            const newSupervisor= { title, name, email, fields, phoneno, password, imgUrl }
             
             try{
             
-                await axios.post("http://localhost:8070/cosupervisor/signup",newCosupervisor,config);
-                alert("Co-Supervisor added successfully")
-                history.push(`/cosupervisor/signin`)
+                await axios.post("http://localhost:8070/supervisor/signup",newSupervisor,config);
+                alert("Supervisor added successfully")
+                history.push(`/supervisor/signin`)
             } catch(error){
                 alert("Registration failed!");
                 
@@ -112,7 +112,7 @@ function CosupervisorSignUp(){
                     </div>
                 </div>
             </div>
-            <form  onSubmit={add} className="cosupervisorSignUp" >
+            <form  onSubmit={add} className="supervisorSignUp" >
                 <div className="row"> 
                     
                     <div className="col-8">
@@ -285,4 +285,4 @@ function CosupervisorSignUp(){
 
     );
 }; 
-export default CosupervisorSignUp;
+export default SupervisorSignUp;
