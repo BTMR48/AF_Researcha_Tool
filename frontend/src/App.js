@@ -22,6 +22,7 @@ import UpdateProgress from './components/ProgressManagement/UpdateProgress/Updat
 import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmission';
 
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
+import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
 
 
 
@@ -48,6 +49,7 @@ function App() {
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
             <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
+            <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
   
         </div>
       </Router>
