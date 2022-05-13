@@ -20,6 +20,7 @@ import Levels from './components/ProgressManagement/Levels/Levels';
 import SingleLevel from './components/ProgressManagement/SingleLevel/SingleLevel';
 import UpdateProgress from './components/ProgressManagement/UpdateProgress/UpdateProgress';
 import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmission';
+import Footer from './components/Footer/Footer';
 
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
@@ -44,6 +45,7 @@ function App() {
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
+
             <Route path="/evolution/addProgress"exact component={AddProgress}/>
             <Route path="/evolution/levels" exact component={Levels}/>
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
@@ -51,6 +53,7 @@ function App() {
             <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
   
+            <Footer/>
         </div>
       </Router>
     </div>

@@ -10,7 +10,7 @@ import { Button } from '@material-ui/core';
 //import GetAppIcon from '@material-ui/icons/GetApp'
 
 function ProgressLevel() {
-  const [isAdmin,setIsAdmin]= useState(true)
+  const [isAdmin,setIsAdmin]= useState(false)
   const [progresses, setProgresses] = useState([])
   const history = useHistory()
   const location = useLocation()
@@ -85,7 +85,7 @@ function ProgressLevel() {
           <div className="row">
               <div className="col-4">
                 <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                    <h2>SLIIT</h2>
+                    <h2>Progress Levels </h2>
                 </div>
               </div>
               <div className="col-3">
@@ -125,13 +125,12 @@ function ProgressLevel() {
           }
           {progresses.map((Progress,key)=>( 
                 <div key={key}> 
-                    <div className="productCard" >
-                        <div className="imgBx">
-                            <img  src={`${Progress.imgUrl}`} alt="progress" className="levelProgress"/>
-                        </div>
+                    <div className="progressCard" >
+                        
                         <div className="p-3">
-                            <h7>{Progress.name}</h7>
-                            <h6>{Progress.date}</h6>
+                            <h2>{Progress.name}</h2>
+                            <h6>{Progress.description}</h6>
+                            &nbsp; <h6>{Progress.date}</h6>
                             <div align="right">
                               <span> 
                                   {/* <button className="progressBtn" style={{backgroundColor:orange[600]}}
@@ -141,7 +140,7 @@ function ProgressLevel() {
                                     <ShoppingCartIcon/> 
                                   </button> */}
                                   &nbsp;&nbsp;&nbsp;
-                                  <button className="progressBtn" style={{backgroundColor:red[400]}} onClick={()=>view(Progress._id)}> View Item </button>
+                                  <button className="progressBtn" style={{backgroundColor:red[400]}} onClick={()=>view(Progress._id)}> View submission </button>
                               </span> 
                             </div>
                         </div>
