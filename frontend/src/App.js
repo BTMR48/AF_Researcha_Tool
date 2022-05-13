@@ -34,7 +34,7 @@ function App() {
             
             <Route path="/admin/signin" exact component={AdminSignIn} />
 
-            <Route path="/student/signin" exact component = {StudentSignIn}/>
+            <Route path="/" exact component = {StudentSignIn}/>
             <Route path="/student/signup" exact component = {StudentSignUp}/>
             <Route path="/supervisor/signin" exact component = {SupervisorSignIn}/>
             <Route path="/supervisor/signup" exact component = {SupervisorSignUp}/>
