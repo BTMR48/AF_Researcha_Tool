@@ -5,12 +5,8 @@ const crypto = require("crypto");
 const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema({
-    firstname: {
-        type: String,
-        require: true
-    },
-
-    lastname: {
+    
+    groupname: {
         type: String,
         require: true
     },
@@ -21,38 +17,59 @@ const StudentSchema = new Schema({
         unique: true,
         match: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     },
-
-    dob: {
-        type: Date,
-        required: true
-    },
-
-    age: {
-        type: Number,
-        required: true
-    },
-
-    gender: {
-        type: String,
-        required: true,
-    },
-
-    nic: {
-        type: String,
-        required: true,
-        unique: true,
-        match: /^([0-9]{9}[x|X|v|V]|[0-9]{12})$/
-    },
-
+    
     phone: {
         type: String,
         required: true,
         match: /^(?:7|0|(?:\+94))[0-9]{9,10}$/
     },
 
-    address: {
+    member1name: {
+        type: String,
+        require: true
+    },
+    
+    member2name: {
+        type: String,
+        require: true
+    },
+    
+    member3name: {
+        type: String,
+        require: true
+    },
+
+    member4name: {
+        type: String,
+        require: true
+    },
+
+    member1reg: {
         type: String,
         required: true,
+        unique: true,
+        match: /^([a-z|A-Z]{2}[0-9]{8})$/
+    },
+
+    member2reg: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /^([a-z|A-Z]{2}[0-9]{8})$/
+    },
+
+    member3reg: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /^([a-z|A-Z]{2}[0-9]{8})$/
+    },
+
+    member4reg: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /^([a-z|A-Z]{2}[0-9]{8})$/
     },
 
     password: {
@@ -62,43 +79,12 @@ const StudentSchema = new Schema({
         //select set to false so password doesn't come when querying automatically
         select: false
     },
-    weight: {
-        type: Number,
-        required: false,
-        default: 0
-    },
 
-    height: {
-        type: Number,
-        required: false,
-        default: 0
-    },
-
-    bmi: {
-        type: Number,
-        required: false,
-        default: 0
-    },
-
-    bloodGroup: {
+    panelmember: {
         type: String,
-        required: false,
-        default: 'null'
+        require: false
     },
 
-    bloodPressure: {
-        type: Number,
-        required: false,
-        default: 0
-    },
-
-    sugarLevel: {
-        type: Number,
-        required: false,
-        default: 0
-    },
-
-    
 })
 
 //this function run before saving data to database
