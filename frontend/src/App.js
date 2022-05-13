@@ -43,10 +43,10 @@ function App() {
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
-            <Route  path="/evolution/addProgress"exact component={AddProgress}/>
-            <Route  path="/evolution/levels" exact component={Levels}/>
-            <Route  path="/evolution/level/:id" exact component={SingleLevel}/>
-            <Route  path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
+            <Route path="/evolution/addProgress"exact component={AddProgress}/>
+            <Route path="/evolution/levels" exact component={Levels}/>
+            <Route path="/evolution/level/:id" exact component={SingleLevel}/>
+            <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
             <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
   
         </div>
