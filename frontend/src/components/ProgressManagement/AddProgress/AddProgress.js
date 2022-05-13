@@ -67,7 +67,7 @@ function AddProgress() {
         
         try {
             await axios.post("http://localhost:8070/progress/add", newProgress , config)
-            alert("Product Added Successfully")  
+            alert("Progress Added Successfully")  
             event.target.reset(); 
         }catch (error) {         
             alert("Progress can't be Added");

@@ -16,8 +16,8 @@ const AdminRouter = require("./routes/adminrouter.js");
 const StudentRouter = require("./routes/studentrouter.js");
 const ProgressRouter = require("./routes/progressrouter.js");
 const SupervisorRouter = require("./routes/supervisorrouter");
-// const PanelmemberRouter = require("./routes/panelmemberrouter");
-// const Supervisorrouter = require("./routes/supervisorrouter");
+const PanelmemberRouter = require("./routes/panelmemberrouter");
+const CoSupervisorrouter = require("./routes/cosupervisorrouter");
 
 
 //getting the database url
@@ -46,10 +46,10 @@ app.use("/admin",AdminRouter);
  app.use("/progress",ProgressRouter);
 //when http://localhost:8070/supervisor ran it will execute supervisorrouter.js file
 app.use("/supervisor",SupervisorRouter);
-// //when http://localhost:8070/panelmember ran it will execute panelmemberrouter.js file
-// app.use("/panelmember",PanelmemberRouter);
-// //when http://localhost:8070/supervisor ran it will execute supervisorrouter.js file
-// app.use("/supervisor",Supervisorrouter);
+//when http://localhost:8070/panelmember ran it will execute panelmemberrouter.js file
+app.use("/panelmember",PanelmemberRouter);
+//when http://localhost:8070/supervisor ran it will execute supervisorrouter.js file
+app.use("/cosupervisor",CoSupervisorrouter);
 
 
 //defining a port to run the application
