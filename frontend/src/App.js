@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/Header/Header'
+// import PrivateRoute from './Routes/PrivateRoute';
+// import StudentPrivateRoute from './Routes/StudentPrivateRoute';
+
 
 import AdminSignIn from './components/AdminManagement/AdminLogin';
-
 import StudentSignIn from './components/StudentManagement/StudentSignIn/StudentSignIn'; 
 import StudentSignUp from './components/StudentManagement/StudentSignUp/StudentSignUp'; 
 import SupervisorSignIn from './components/SupervisorManagement/SupervisorSignIn/SupervisorSignIn'; 
@@ -30,9 +32,7 @@ function App() {
         <div>
             <Header/>
             
-            
             <Route path="/admin/signin" exact component={AdminSignIn} />
-
 
             <Route path="/student/signin" exact component = {StudentSignIn}/>
             <Route path="/student/signup" exact component = {StudentSignUp}/>
@@ -48,7 +48,7 @@ function App() {
             <Route  path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route  path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
             <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
-           
+  
         </div>
       </Router>
     </div>
