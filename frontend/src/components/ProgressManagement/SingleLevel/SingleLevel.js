@@ -11,7 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 
 function ProgressDetails(props) { 
-    const [isAdmin,setIsAdmin]=useState(true)
+    const [isAdmin,setIsAdmin]=useState(false)
     const[id,setId]=useState("");
     const[name,setName]=useState("");
     const[description,setDescription]=useState("");
