@@ -2,12 +2,10 @@ import React,{useEffect, useState} from 'react'
 import { useHistory  } from 'react-router';
 import axios from 'axios';
 import './UpdateProgress.css'
-import Button from "@mui/material/Button";
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { OutlinedInput } from '@mui/material';
-import { TextField } from '@mui/material';
-
-
+import Button from "@material-ui/core/Button";
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import { TextField } from '@material-ui/core';
 
 function UpdateProgress(props){
    

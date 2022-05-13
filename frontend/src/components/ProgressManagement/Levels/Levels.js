@@ -4,10 +4,10 @@ import './Levels.css'
 import axios from 'axios'
 import { red,blue } from '@mui/material/colors';
 //import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
+import AddIcon from '@material-ui/icons/Add';
+import { Button } from '@material-ui/core';
 //import {AddToCart} from './../../../Utils/CartUtils'
-//import GetAppIcon from '@material-ui/icons/GetApp';
+//import GetAppIcon from '@material-ui/icons/GetApp'
 
 function ProgressLevel() {
   const [isAdmin,setIsAdmin]= useState(true)

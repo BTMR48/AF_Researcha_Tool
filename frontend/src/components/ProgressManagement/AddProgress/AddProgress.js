@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './AddProgress.css'
-import Button from '@mui/material/Button';
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { OutlinedInput } from '@mui/material';
-import { TextField } from '@mui/material';
+import Button from '@material-ui/core/Button';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import { TextField } from '@material-ui/core';
+
 
 
 function AddProgress() {

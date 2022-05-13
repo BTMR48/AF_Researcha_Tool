@@ -1,13 +1,13 @@
-import React,{useEffect, useState} from 'react'
-import { useHistory, useParams  } from 'react-router';
+import React,{useEffect, useState} from 'react';
+import { useHistory  } from 'react-router';
 import '../Levels/Levels.css'
 import './SingleLevel.css'
 import axios from 'axios'
-import {orange,blue,red } from '@mui/material/colors';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
-//import {AddSubmission} from '../../../Utils/SubmissionUtils'
+import {orange,blue,red } from '@material-ui/core/colors';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import EditIcon from '@material-ui/icons/Edit';
+//import {AddToCart} from './../../../Utils/CartUtils'
 
 
 function ProgressDetails(props) { 
