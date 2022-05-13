@@ -36,7 +36,7 @@ function AdminLogin() {
             //setting user
             localStorage.setItem("user", JSON.stringify(data.result))
             
-            history.push('/')
+            history.push('/evolution/levels')
         } catch (error) {
             if(error.response.status === 404){
                 alert("Invalid Email")

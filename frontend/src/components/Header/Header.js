@@ -14,6 +14,7 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import onClickOutside from "react-onclickoutside";
+import ForumIcon from '@mui/icons-material/Forum'
 import { blue } from '@material-ui/core/colors';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
@@ -32,7 +33,7 @@ function Header() {
     const SidebarItem = [
         {
           title: 'Home',
-          path: '/',
+          path: '/evolution/levels',
           icon: <HomeIcon/>,
           cName: 'nav-text'
         },
@@ -43,39 +44,21 @@ function Header() {
           cName: 'nav-text'
         },
         {
-            title: 'Pharmacy',
-            path: '/pharmacy/items',
-            icon: <LocalHospitalIcon/>,
-            cName: 'nav-text'
-        },
-        {
-          title: 'Appointments',
-          path: `/Appointment/${user._id}`,
+          title: 'Topic Registration',
+          path: `/Registration/${user._id}`,
           icon: <EventAvailableIcon/>,
           cName: 'nav-text'
         },
         {
-          title: 'Prescriptions',
-          path: `/prescription/history/${user._id}`,
+          title: 'Marking Schema',
+          path: `/marking`,
           icon: <AssignmentIcon/>,
           cName: 'nav-text'
         },
         {
-          title: 'Cart',
-          path: `/cart/${user._id}/shopping`,
-          icon: <ShoppingCartIcon />,
-          cName: 'nav-text'
-        },
-        {
-            title: 'Payment',
-            path: `/patient/payment/${user._id}`,
-            icon: <MonetizationOnIcon />,
-            cName: 'nav-text'
-        },
-        {
-            title: 'Feedback',
-            path: `/patient/review/${user._id}`,
-            icon: <FeedbackIcon />,
+            title: 'Chat',
+            path: `/student/chat/${user._id}`,
+            icon: <ForumIcon />,
             cName: 'nav-text'
         }
     ];
@@ -90,22 +73,23 @@ function Header() {
                 setUser(JSON.parse(localStorage.getItem('user')))
             }
             
-            async function getCartCount() {
-                await axios.get(`http://localhost:8070/cart/${user._id}&shopping`).then((res) => {
-                    let result = res.data.result;
-                    setCartCount(result.length) 
-                }).catch((error) => {
-                    console.log(error)
-                })
-            }
-            getCartCount();
+            // async function getCartCount() {
+            //     await axios.get(`http://localhost:8070/cart/${user._id}&shopping`).then((res) => {
+            //         let result = res.data.result;
+            //         setCartCount(result.length) 
+            //     }).catch((error) => {
+            //         console.log(error)
+            //     })
+            // }
+            // getCartCount();
 
+        
             if(localStorage.getItem("studentAuthToken")){
-                setURL(`/patient`)
+                setURL(`/student`)
             }
 
             if(localStorage.getItem("supervisorAuthToken")){
-                setURL(`/doctor`)
+                setURL(`/supervisor`)
             }
         }else{
             setIsSignedIn(false)
@@ -116,16 +100,13 @@ function Header() {
         history.push(`${URL}/profile/`)
     }
 
-    function cart() {
-        history.push(`/cart/${user._id}/shopping`)
-    }
 
     function signin() {
-        history.push('/patient/signin')
+        history.push('/')
     }
 
     function signup() {
-        history.push('/patient/signup')
+        history.push('/student/signup')
     }
     
     //logout
@@ -155,16 +136,11 @@ function Header() {
                             }      
                         </ul>
                         <div className="header-title">
-                            <h3 onClick={home}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aspirus &nbsp; Health &nbsp; Care</h3>
+                            <h3 onClick={home}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SLIIT&nbsp;Research&nbsp;Management Tool </h3>
                         </div>
                         <ul className="mx-3">
                             {isSignedIn ?
                                 <div>
-                                    <IconButton onClick={cart}>
-                                        <Badge badgeContent={cartCount} color="error">
-                                            <ShoppingCartIcon fontSize="large"/>
-                                        </Badge>
-                                    </IconButton>
                                     <IconButton onClick={profile}>
                                         <Avatar alt="user" src={`${user.imgUrl}`} />
                                     </IconButton> 
@@ -185,7 +161,9 @@ function Header() {
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSidebar}>
                         <li className='mb-4 mt-3' align="center">
-                            <img src="/images/Logo.png" width="150px" alt="logo"/>
+                            {/* <img src="/images/Logo.png" width="150px"  height="90px" alt="logo"/> */}
+                            {/* <img src="/images/sliit-web-logo.png" width="150px" alt="logo"/> */}
+                            <img src="/images/SLIIT_Logo.png" width="100px" height="120px" alt="logo"/>
                         </li>
                         {SidebarItem.map((item, index) => {
                         return (
