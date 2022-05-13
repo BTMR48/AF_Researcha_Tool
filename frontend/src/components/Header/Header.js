@@ -82,7 +82,7 @@ function Header() {
 
     useEffect(() => {
         //check whether user has signed in
-        if(localStorage.getItem("patientAuthToken") || localStorage.getItem("doctorAuthToken") || localStorage.getItem("adminAuthToken") ){
+        if(localStorage.getItem("studentAuthToken") || localStorage.getItem("supervisorAuthToken") || localStorage.getItem("adminAuthToken") ){
             setIsSignedIn(true)
 
             //get user data
@@ -100,11 +100,12 @@ function Header() {
             }
             getCartCount();
 
-            if(localStorage.getItem("patientAuthToken")){
+        
+            if(localStorage.getItem("studentAuthToken")){
                 setURL(`/patient`)
             }
 
-            if(localStorage.getItem("doctorAuthToken")){
+            if(localStorage.getItem("supervisorAuthToken")){
                 setURL(`/doctor`)
             }
         }else{
