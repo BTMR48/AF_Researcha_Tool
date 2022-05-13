@@ -7,7 +7,6 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import { TextField } from '@material-ui/core';
 
-
 function UpdateProgress(props){
    
     const [name,setName]= useState("");

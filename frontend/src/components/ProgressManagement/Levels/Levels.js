@@ -9,7 +9,6 @@ import { Button } from '@material-ui/core';
 //import {AddToCart} from './../../../Utils/CartUtils'
 //import GetAppIcon from '@material-ui/icons/GetApp'
 
-
 function ProgressLevel() {
   const [isAdmin,setIsAdmin]= useState(true)
   const [progresses, setProgresses] = useState([])
