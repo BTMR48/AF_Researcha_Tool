@@ -3,28 +3,28 @@ const studentauth = require('../middleware/studentauth');
 const { studentsignup, studentsignin, updateStudent, deleteStudent} = require('../controllers/studentcontroller.js');
 const { forgotPassword, resetPassword, fetchAll, fetchOne} = require('../controllers/studentcontroller.js')
 
-//patient sign up
+//student sign up
 router.post('/signup', studentsignup);
 
-//patient sign in
+//student sign in
 router.post('/signin', studentsignin);
 
-//patient update profile
+//student update profile
 router.put('/updategroup/:id', studentauth, updateStudent);
 
-//patient delete profile
+//student delete profile
 router.delete('/deletegroup/:id',studentauth, deleteStudent);
 
-//patient forgotPassword
+//student forgotPassword
 router.post('/forgotpassword', forgotPassword);
 
-//patient resetPassword
+//student resetPassword
 router.put('/resetpassword/:resetPasswordToken', resetPassword);
 
-//find all patients
+//find all students
 router.get('/', fetchAll);
 
-//find one patient
+//find one student
 router.get('/:id', fetchOne);
 
 
