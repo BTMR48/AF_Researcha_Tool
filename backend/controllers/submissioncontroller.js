@@ -1,5 +1,5 @@
+
 const Submission = require("../models/submission");
-const Payment = require("../models/submission");
 
 // //Add a submission
 // exports.addSubmission = async(req,res) => {
@@ -67,3 +67,4 @@ exports.addSubmission = async (req, res) => {
 //         res.status(500).json({message: "can't added", error: error.message})
 //     }
 // }
+

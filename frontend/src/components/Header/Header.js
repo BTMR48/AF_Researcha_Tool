@@ -83,6 +83,7 @@ function Header() {
             // }
             // getCartCount();
 
+        
             if(localStorage.getItem("studentAuthToken")){
                 setURL(`/student`)
             }
