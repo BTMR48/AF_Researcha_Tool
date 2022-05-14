@@ -1,30 +1,43 @@
-const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const mongoose=require('mongoose');
 
-const SubmissionSchema = new Schema({
-    projectid : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'progress',
-        required : true
+const Schema =mongoose.Schema;
 
-    },
+const SubmissionSchema=new Schema({
     
-    studentID : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'student',
-        required : true
+    studentID:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'student',
+        // type:String,
+        required:true
     },
+    // progressID:{
+    //     // type: mongoose.Schema.Types.ObjectId,
+    //     // ref:'progress',
+    //     type:String,
+    //     required:true
+    // },
 
-    //should change to pdf
-    imgUrl: {
-        type: String,
-        required: false
+    name:{
+        type:String,
+        required: true
     },
-    
-
+    groupID :{
+        type:String,
+        required:true,
+       
+    },
+    date:{
+        type:String,
+        required:true, 
+    },
+    imgUrl:{
+        type:String,
+        required:false, 
+    }
 
 })
 
-const Submission = mongoose.model("submission",SubmissionSchema)
-module.exports = Submission
+const Submission=mongoose.model("stdsubmission",SubmissionSchema);
+module.exports=Submission;
+

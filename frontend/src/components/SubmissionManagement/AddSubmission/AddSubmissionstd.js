@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import './AddProgress.css'
+import './AddSubmission.css'
 import Button from '@material-ui/core/Button';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -10,11 +10,12 @@ import { Document, Page } from 'react-pdf';
 
 
 
-function AddProgress() {
+function Submit() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    //const progressID = props.match.params.progressID
+    const studentID = user._id;
     const[name,setName]=useState(""); 
-    const[description,setDescription]=useState("");
-    const[type,setType]=useState("");
-    const[date,setDate]=useState("");
+    const[groupID,setGroupID]=useState("");
 
     const [previewSource, setPreviewSource] = useState();
     const [selectedFile, setSelectedFile] = useState();
@@ -41,11 +42,7 @@ function AddProgress() {
 
     async function add(event){
         event.preventDefault();
-        const config = {
-            headers: {
-                "content-Type": "application/json"
-            }
-        };
+        
         
         let imgUrl
         
@@ -53,7 +50,7 @@ function AddProgress() {
         if(previewSource){
             const formData = new FormData();
             formData.append("file", selectedFile) 
-            formData.append("upload_preset", "progress_pdfs")
+            formData.append("upload_preset", "submission_pdfs")
 
            
             try {
@@ -65,15 +62,29 @@ function AddProgress() {
             }
         }
 
-        const newProgress = {name,description,type,date,imgUrl}
+       
+        const newSubmission = {studentID, name, groupID, imgUrl}
         
-        try {
-            await axios.post("http://localhost:8070/progress/add", newProgress , config)
-            alert("Progress Added Successfully")  
-            event.target.reset(); 
-        }catch (error) {         
-            alert("Progress can't be Added");
-        }
+        const config = {
+            headers: {
+                "content-Type": "application/json",
+                Authorization: `${localStorage.getItem("studentAuthToken")}`
+            }
+        };
+
+        axios.post("http://localhost:8070/submission/add", newSubmission , config).then((res)=>{
+            alert("Submission Added")
+        }).catch((error)=>{         
+            if(error.response.status === 409){
+                alert("Submission already exists")
+            }else if(error.response.status === 401){
+                alert("Please login")
+            }
+            else{
+                alert("Submission can't be Added")
+                console.log(error)     
+            }        
+        })
     }
     
     return (
@@ -81,7 +92,7 @@ function AddProgress() {
         <div className="row">
             <div className="col-12">
                 <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                    <h2>&nbsp;Add New Progress Level</h2>
+                    <h2>&nbsp;Add Submission</h2>
                 </div>
             </div>
         </div>
@@ -100,57 +111,19 @@ function AddProgress() {
                                         inputProps={{style: {padding: 12}}} 
                                     />
                                 </div>
-                            </div>
-                            <div> 
-                                <div className="col-md-8 mb-4">
-                                    <div className="form-date">
-                                        <OutlinedInput 
-                                            type="date" id="date" placeholder="Progress Date" required fullWidth
-                                            onChange={(e)=>setDate(e.target.value)}
-                                            inputProps={{style: {padding: 12}}}
-                                        />
-                                    </div>
-                                </div>
-                            </div>                       
-                            <div className="col-md-10 mb-4">
-                                <div className="form-description">
-                                    <TextField
-                                        multiline rows={3}
-                                        id="description" placeholder="Progress Description" 
-                                        required fullWidth variant="outlined" 
-                                        onChange={(e)=>setDescription(e.target.value)}
-                                        inputProps={{style: {padding: 12}}}
+                            </div>         
+                            <div className="col-md-8 mb-4">
+                                <div className="form-name">
+                                    <OutlinedInput
+                                        type="text" id="name" placeholder="Progress Name" 
+                                        required fullWidth
+                                        onChange={(e)=>setGroupID(e.target.value)}
+                                        inputProps={{style: {padding: 12}}} 
                                     />
                                 </div>
-                            </div>
+                            </div>     
                         </div>
-                        <div className="row">
-                            <div className="col-md-12 mb-4">
-                                <div className="form-group">
-                                 <div>
-                                    <label><h6>Type</h6></label> &nbsp;
-                                </div>
-                                    <div className="form-check form-check-inline">
-                                            <input 
-                                                className="form-check-input" type="radio" name="Type" id="PUBLISH" value="PUBLISH" required
-                                                onChange={(e)=>setType(e.target.value)}
-                                            />
-                                            <label className="form-check-label" for="PUBLISH">
-                                            PUBLISH
-                                            </label>
-                                    </div>
-                                    <div className="form-check form-check-inline">
-                                            <input 
-                                                className="form-check-input" type="radio" name="Type" id="UNPUBLISH" value="UNPUBLISH" required
-                                                onChange={(e)=>setType(e.target.value)}
-                                            />
-                                            <label className="form-check-label" for="UNPUBLISH">
-                                            UNPUBLISH
-                                            </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div className="col-4 d-flex justify-content-center">
                         <div>
@@ -194,4 +167,4 @@ function AddProgress() {
     )
 }
 
-export default AddProgress
+export default Submit

@@ -1,4 +1,6 @@
 import React,{useEffect, useState} from 'react';
+import { Document, Page } from 'react-pdf';
+
 import { useHistory  } from 'react-router';
 import '../Levels/Levels.css'
 import './SingleLevel.css'
@@ -7,7 +9,7 @@ import {orange,blue,red } from '@material-ui/core/colors';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
-//import {AddToCart} from './../../../Utils/CartUtils'
+//import {Submit} from './../../SubmissionManagement/AddSubmission/AddSubmissionstd'
 
 
 function ProgressDetails(props) { 
@@ -44,7 +46,7 @@ function ProgressDetails(props) {
           setDate(res.data.progress.date)   
           setImgUrl(res.data.progress.imgUrl)
         }).catch((err) => {
-          alert("Failed to Fetch Progress1")
+          alert("Failed to Fetch Progress")
         })
       }
       getProgressDetails();
@@ -70,7 +72,7 @@ function ProgressDetails(props) {
     
     function submit(){
         // navigate(`/patient/buyPayment/${id}/${date}`)
-        history.push(`/Submission/AddSubmission/${id}/${name}`)
+        history.push(`/submission/addSubmission/${id}`)
     }
     
    
@@ -100,11 +102,10 @@ function ProgressDetails(props) {
                             </div>
                             : 
                             <div>
-                                 <button className="mx-2 progressBtn" style={{backgroundColor:orange[500]}} 
-                                onClick={()=>submit(id, user._id)}>
-                                    Submit Project <ShoppingCartIcon/>
-                                </button>  
-                                   
+                                <button className="mx-2 progressBtn" style={{backgroundColor:red[500]}} 
+                                            onClick={()=>submit()}>
+                                            Submit Project
+                                        </button> 
                             </div>  
                         }
                     </div>
