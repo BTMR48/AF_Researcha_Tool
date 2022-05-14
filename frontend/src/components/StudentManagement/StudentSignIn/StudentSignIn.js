@@ -4,9 +4,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import axios from 'axios';
-import './SignIn.css';
+import './StudentSignIn.css';
 
-function AdminLogin() {
+function Login() {
 
     const [showPassword, setShowPassword] = useState()
     const [email, setEmail] = useState("");
@@ -29,12 +29,12 @@ function AdminLogin() {
         
         try {
             //getting data from backend
-            const {data} = await axios.post("http://localhost:8070/admin/signin", {email, password}, config);
+            const {data} = await axios.post("http://localhost:8070/student/signin", {email, password}, config);
 
-            //setting the patient authorization token
-            localStorage.setItem("adminAuthToken", `Admin ${data.token}`)
+            //setting the student authorization token
+            localStorage.setItem("studentAuthToken", `Student ${data.token}`)
             //setting user
-            localStorage.setItem("user", JSON.stringify(data.result))
+            localStorage.setItem("user", JSON.stringify(data.result)) // ?????????????????????????????????????????
             
             history.push('/evolution/levels')
         } catch (error) {
@@ -50,12 +50,14 @@ function AdminLogin() {
         }
     }
 
+  
+
     return (
         <div className="container" align="center">
             <div className="card-form">
                 <form className="boxSignIn" onSubmit={signIn}>
-                    <h1 className="form-h1">Admin Login</h1>
-                    <p className="text-muted"> All your health needs at one place!</p> 
+                    <h1 className="form-h1">Student Login</h1>
+                    {/* <p className="text-muted"> All your health needs at one place!</p>  */}
                     <input 
                         type="email" 
                         name="email" 
@@ -80,11 +82,14 @@ function AdminLogin() {
                         </IconButton>
                     </span>
 
+                    <Link className="forgot" to="/student/forgotpassword">Forgot password?</Link> 
                     <input className="form-submit-btn" type="submit" value="Sign In" />
 
-                    <br></br><br></br>
+                    {/* <p className="text-muted">or</p> */}
+
+                    <br></br><br></br><br></br>
                     <div className="text-muted">
-                        <p>Are you a Patient? <Link to="/patient/signin">Click here</Link></p>
+                        <p>Don't have an account? <Link to="/student/signup">Sign Up</Link></p>
                         <p>Are you a doctor? <Link to="/doctor/signin"> Click here</Link></p>
                     </div>
                 </form>
@@ -93,4 +98,4 @@ function AdminLogin() {
     )
 }
 
-export default AdminLogin
+export default Login

@@ -40,26 +40,21 @@ exports.studentsignin = async(req, res) => {
 
 //student sign up controller
 exports.studentsignup = async(req,res) => {
-    const {firstname, lastname, email, gender, nic, phone, address, password} = req.body;
-    const dob = new Date(req.body.dob)
-
-    const today = new Date().getFullYear()
-    const year = dob.getFullYear()
-    const age = today - year
+    const {groupname, email, phone, member1name, member2name, member3name, member4name, member1reg, member2reg, member3reg, member4reg, password} = req.body;
 
     try {
         //checking email already exists
         const checkEmail = await Student.findOne({email})
-        const checkNIC = await Student.findOne({nic})
+        const checkName = await Student.findOne({groupname})
 
         if(checkEmail)
-            return res.status(409).json({message: "User with this email already exists"})
+            return res.status(409).json({message: "Group with this email already exists"})
         
-        if(checkNIC)
-            return res.status(409).json({message: "User with this NIC already exists"})
+        if(checkName)
+            return res.status(409).json({message: "Group with this name already exists"})
 
         //creating a new student
-        const student = await Student.create({firstname, lastname, email, dob, age, gender, nic, phone, address, password});
+        const student = await Student.create({groupname, email, phone, member1name, member2name, member3name, member4name, member1reg, member2reg, member3reg, member4reg, password});
 
         //creating a token
         const token = jwt.sign({email: student.email, id: student._id}, process.env.JWT_SECRET, {expiresIn: "1h"})
@@ -75,22 +70,12 @@ exports.studentsignup = async(req,res) => {
 exports.updateStudent = async(req,res) => {
     let studentID = req.params.id;
 
-    const {firstname, lastname, email, phone, address, bloodGroup} = req.body;
-    const weight = Number(req.body.weight)
-    const height = Number(req.body.height)
-    const bloodPressure = Number(req.body.bloodPressure)
-    const sugarLevel = Number(req.body.sugarLevel)
-    let bmi
-
-    if(weight != undefined && height != undefined){
-        bmi = weight / (height * height)
-        bmi = bmi.toFixed(2);
-    }
+    const {groupname, email, phone, member1name, member2name, member3name, member4name, member1reg, member2reg, member3reg, member4reg, password} = req.body;
+    const panelmember = String(req.body.panelmember)
 
     //object with provided data
     const updateStudent = {
-        firstname, lastname, email, phone, address,
-        weight, height, bloodPressure, bloodGroup, sugarLevel, bmi
+        groupname, email, phone, member1name, member2name, member3name, member4name, member1reg, member2reg, member3reg, member4reg, panelmember
     }
 
     try {
