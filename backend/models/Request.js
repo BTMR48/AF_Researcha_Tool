@@ -21,6 +21,12 @@ const RequestSchema = new Schema({
         required: true
     },
 
+    topic:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'field',
+        required: true
+    },
+
     time: {
         type: String,
         required: true

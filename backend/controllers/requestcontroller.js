@@ -22,6 +22,7 @@ exports.addRequest = async (req, res) =>{
         studentID,
         supervisorID,
         field,
+        topic,
         time,
         date
     })
