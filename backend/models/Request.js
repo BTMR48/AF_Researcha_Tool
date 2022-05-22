@@ -15,28 +15,17 @@ const RequestSchema = new Schema({
         required: true
     },
 
-    field:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'field',
-        required: true
-    },
-
     topic:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'field',
+        type: String,
         required: true
     },
 
-    time: {
+    batchgroup:{
         type: String,
         required: true
-      },
-    
-    date: {
-        type: String,
-        required: true
-      }
+    },
+
 });
 
-const Request = mongoose.model("request", RequestSchema)
+const Request = mongoose.model("supervisorrequest", RequestSchema)
 module.exports = Request

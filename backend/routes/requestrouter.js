@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const{addRequest, updateRequest, viewRequest, deleteRequest} = require('../controllers/requestcontroller.js')
+const{addRequest, viewAllRequest, deleteRequest} = require('../controllers/requestcontroller.js')
 const { viewOneRequest } = require('../controllers/requestcontroller.js')
 
 //add new request
 router.post('/add', addRequest);
 
 //update existing request
-router.put('/update/:id', updateRequest);
+// router.put('/update/:id', updateRequest);
 
-//view request
-router.get('/:id', viewRequest);
+// view request
+router.get('/', viewAllRequest);
 
 //view one request
-router.get('/view/:id',viewOneRequest);
+// router.get('/view/:id',viewOneRequest);
 
 //delete request
 router.delete('/delete/:id', deleteRequest);
