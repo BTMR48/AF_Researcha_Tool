@@ -1,9 +1,6 @@
 const router = require("express").Router();
-const { viewCart, viewOneCart} = require('../controllers/submissioncontroller.js')
-const patientauth = require('../middleware/patientauth');
+const { viewSubmission} = require('../controllers/submissioncontroller.js')
 
-router.get('/:id&:type', viewCart);
-
-router.get('/:id', viewOneCart);
+router.get('/:id', viewSubmission);
 
 module.exports = router;

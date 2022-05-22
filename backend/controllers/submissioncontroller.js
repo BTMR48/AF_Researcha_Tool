@@ -1,17 +1,20 @@
-const Cart = require('../models/submission');
+const Submission = require('../models/submission');
 
 exports.viewSubmission= async(req,res) => {
-    //get patient id
-    let patientID = req.params.id;
-    //get cart type( Shopping or prescription )
-    let type = req.params.type;
-
+    let supervisorid = req.params.id;
+    console.log(supervisorid);
     try {
-        //find cart by patient id and cart
-        const cart = await Cart.find({patientID,type}).populate(
-            {path:'itemid', select:['name','price','description','total','imgUrl']});
+        console.log("element");
+        const studentList = await Submission.find({supervisorid}).populate({path:'supervisorid', select:['studentID']});
+        studentList.forEach(element =>{
+            console.log(element);
+            const submissionList = Submission.find({element,progressName}).select('groupName','imgUrl');
+                }
+              );
+              
+        
         //success message
-        res.status(200).json({success: true,result:cart})
+        res.status(200).json({success: true,result:submissionList})
     }catch(error){
         //error message
         res.status(500).json({message: "Error with fetching product", error: error.message})

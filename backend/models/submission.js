@@ -3,16 +3,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SubmissionSchema = new Schema({
-    projectid : {
+    supervisorid : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'progress',
+        ref : 'requestSupervisor',
         required : true
 
     },
     
     studentID : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'student',
+        required : true
+    },
+    progressName : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true
+    },
+    groupName : {
+        type : mongoose.Schema.Types.ObjectId,
         required : true
     },
 
@@ -26,5 +33,5 @@ const SubmissionSchema = new Schema({
 
 })
 
-const Submission = mongoose.model("submission",SubmissionSchema)
+const Submission = mongoose.model("submissions",SubmissionSchema)
 module.exports = Submission
