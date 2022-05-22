@@ -23,6 +23,14 @@ import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSu
 import Footer from './components/Footer/Footer';
 
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
+import AllCosupervisors from './components/UserManagement/CosupervisorList/allcosupervisors'; 
+import AllPanelmembers from './components/UserManagement/PanelmemberList/allpanelmembers'; 
+import AllStudents from './components/UserManagement/GroupList/allgroups'; 
+import UpdateStudent from './components/StudentManagement/UpdateStudent/UpdateStudent'; 
+import AssignPanelmember from './components/UserManagement/AssignPanelmember/AssignPanelmember';
+
+
+
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
 
 
@@ -45,6 +53,11 @@ function App() {
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
+            <Route path="/users/cosupervisorlist" exact component = {AllCosupervisors}/>
+            <Route path="/users/panelmemberlist" exact component = {AllPanelmembers}/>
+            <Route path="/users/studentlist" exact component = {AllStudents}/>
+            <Route path="/student/update/:id" exact component = {UpdateStudent}/>
+            <Route path="/users/student/addpanel/:id" exact component = {AssignPanelmember}/>
 
             <Route path="/evolution/addProgress"exact component={AddProgress}/>
             <Route path="/evolution/levels" exact component={Levels}/>
