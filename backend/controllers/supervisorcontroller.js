@@ -15,7 +15,7 @@ exports.signinSupervisor = async(req,res) => {
                 return res.status(404).json({message: "Such email doesn't exist"});
 
             //compare the password with provided password
-            const ispasswordMatch = await bcrypt.compare(password, doctor.password);
+            const ispasswordMatch = await bcrypt.compare(password, supervisor.password);
 
             //if passwords didn't match
             if(!ispasswordMatch)
