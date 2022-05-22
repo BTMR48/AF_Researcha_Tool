@@ -31,9 +31,11 @@ import AssignPanelmember from './components/UserManagement/AssignPanelmember/Ass
 
 
 
+
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
 import AddRequest from './components/RequestManagement/AddRequest';
 import ViewRequest from './components/RequestManagement/ViewRequests/ViewRequest';
+import AddMarking from './components/MarkingSchemeManagement/AddMarking';
 
 
 function App() {
@@ -54,6 +56,7 @@ function App() {
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
+
             <Route path="/users/cosupervisorlist" exact component = {AllCosupervisors}/>
             <Route path="/users/panelmemberlist" exact component = {AllPanelmembers}/>
             <Route path="/users/studentlist" exact component = {AllStudents}/>
@@ -62,6 +65,8 @@ function App() {
 
 
             <Route path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>
+
+            <Route path="/marking/add" exact component = {AddMarking}/>
 
             <Route path="/evolution/addProgress"exact component={AddProgress}/>
             <Route path="/evolution/levels" exact component={Levels}/>
