@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
 import { red, grey } from '@material-ui/core/colors';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 
-import './allsupervisors.css'
+import './allgroups.css'
 
 
-function AllSupervisors() {
+function AllStudents() {
 
-    const [supervisors, setSupervisors] = useState([]);
+    const [students, setStudents] = useState([]);
     // const [isAdmin,setIsAdmin]=useState(false)
     const history = useHistory()
    
@@ -22,15 +23,15 @@ function AllSupervisors() {
         //   }else{
         //     setIsAdmin(false)
         //   }
-          async function getSupervisors() {
-            axios.post(`http://localhost:8070/supervisor`).then((res) => {
-              setSupervisors(res.data)  
+          async function getStudents() {
+            axios.post(`http://localhost:8070/student`).then((res) => {
+              setStudents(res.data) 
             }).catch((error) => {
-              alert("Failed to fetch Supervisors")
+              alert("Failed to fetch Students")
             })
           }
       
-          getSupervisors()
+          getStudents()
     })
 
     async function onDelete(id) {
@@ -40,26 +41,25 @@ function AllSupervisors() {
           }
         };
 
-        await axios.delete(`http://localhost:8070/supervisor/delete/${id}`, config).then(() => {
-        alert("Supervisor deleted successfully")
-        setSupervisors(supervisors.filter(element => element._id !== id))
+        await axios.delete(`http://localhost:8070/student/delete/${id}`, config).then(() => {
+        alert("Student deleted successfully")
+        setStudents(students.filter(element => element._id !== id))
         }).catch((error) => {
-        alert(`Failed to delete the Supervisor`)
+        alert(`Failed to delete the Student`)
         })
     }
 
     function filterContent (data, searchTerm){
         
-        const result = data.filter((supervisor) =>
-            supervisor.name.toLowerCase().includes(searchTerm) ||
-            supervisor.fields.map(str => str.toLowerCase().includes(searchTerm))
+        const result = data.filter((student) =>
+            student.name.toLowerCase().includes(searchTerm)             
         )
-        setSupervisors(result)
+        setStudents(result)
     }
 
     function handleSearch(event){
       const searchTerm = event.currentTarget.value
-      axios.post(`http://localhost:8070/supervisor`).then((res) => {
+      axios.post(`http://localhost:8070/student`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
           alert(error)
@@ -67,19 +67,19 @@ function AllSupervisors() {
     }
 
     function update(id) {
-        history.push(`/supervisor/update/${id}`)
+        history.push(`/users/student/addpanel/${id}`)
       }
 
-    function addSupervisor(){
-        history.push(`/supervisor/signup`)
-    }
+    // function addStudent(){
+    //     history.push(`/student/signup`)
+    // }
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col-4">
                     <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                     <h2>Supervisors</h2>
+                     <h2>Students</h2>
                     </div>
                    
                 </div>
@@ -95,18 +95,18 @@ function AllSupervisors() {
                             type="text"
                             name="search"
                             id="search"
-                            placeholder="Search Supervisors"
+                            placeholder="Search Students"
                             onChange={handleSearch}
                             required
                         />
                     </div>
                 </div>
             </div>
-            {/* {isAdmin &&  */}
+            {/* {isAdmin && 
                 <div align="center">
-                    <button className="addStaffBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addSupervisor()}> Add Supervisor </button>
+                    <button className="addStudentBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addStudent()}> Add Student </button>
                 </div>
-            {/* } */}
+            } */}
             <br/>
 
             <div className="blue-table">
@@ -114,37 +114,38 @@ function AllSupervisors() {
                     <table>
                         <thead >
                             <tr>
-                                <th style={{ textAlign: 'center' }}>Name</th>
+                                <th style={{ textAlign: 'center' }}>Group Name</th>
                                 <th style={{ textAlign: 'center' }}>Email</th>
-                                <th style={{ textAlign: 'center' }}>Research Field</th>
+                                <th style={{ textAlign: 'center' }}>Panel Member</th>
                                 <th style={{ textAlign: 'center' }}></th>
                             </tr>
                         </thead>
                         <tbody style={{ textAlign: 'center' }}>
-                            {supervisors.map((Supervisor,key) => (
+                            {students.map((Student,key) => (
                             <tr key={key}>
                             
                                 <td>
                                     {
-                                      <h6>{Supervisor.title + " " + Supervisor.name}</h6>
+                                      <h6>{Student.groupname}</h6>
                                     }
                                 </td>
                             
                                 <td>
-                                    <h6>{Supervisor.email}</h6>
+                                    <h6>{Student.email}</h6>
                                 </td>
 
                                 <td>
-                                    {Supervisor.fields.map(fields => <h6>{fields}</h6>)}
+                                    <h6>{Student.panelmember}</h6>
                                 </td>
 
                                 <td>
                                     {/* { isAdmin ? "" : */}
                                         <div style={{verticalAlign:'middle'}}>
-                                            <IconButton onClick={() => update(Supervisor._id)}>
-                                                <EditIcon style={{ color: grey[500] }} ></EditIcon>
-                                            </IconButton>
-                                            <IconButton onClick={() => onDelete(Supervisor._id)}>
+                                            <button className="addPanelBtn" style={{backgroundColor:'#0000'}} onClick={()=>update(Student._id)}>
+                                                 <AddIcon style={{ color: grey[500] }} ></AddIcon> 
+                                                 Add Panelmember
+                                            </button>
+                                            <IconButton onClick={() => onDelete(Student._id)}>
                                                 <DeleteIcon style={{ color: red[500] }} ></DeleteIcon>
                                             </IconButton>
                                         </div>
@@ -162,4 +163,4 @@ function AllSupervisors() {
     )
 }
 
-export default AllSupervisors
+export default AllStudents
