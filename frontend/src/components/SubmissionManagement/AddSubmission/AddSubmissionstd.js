@@ -10,11 +10,11 @@ import { Document, Page } from 'react-pdf';
 
 
 
-function Submit() {
+function Submit(props) {
     const user = JSON.parse(localStorage.getItem('user'));
-    //const progressID = props.match.params.progressID
+    const progressID = props.match.params.id;
     const studentID = user._id;
-    const[name,setName]=useState(""); 
+    const name = props.match.params.name;
     const[groupID,setGroupID]=useState("");
 
     const [previewSource, setPreviewSource] = useState();
@@ -63,7 +63,7 @@ function Submit() {
         }
 
        
-        const newSubmission = {studentID, name, groupID, imgUrl}
+        const newSubmission = {studentID,progressID, name, groupID, imgUrl}
         
         const config = {
             headers: {
@@ -106,8 +106,8 @@ function Submit() {
                                 <div className="form-name">
                                     <OutlinedInput
                                         type="text" id="name" placeholder="Progress Name" 
-                                        required fullWidth
-                                        onChange={(e)=>setName(e.target.value)}
+                                        required fullWidth readOnly 
+                                            value={name}
                                         inputProps={{style: {padding: 12}}} 
                                     />
                                 </div>
@@ -115,7 +115,7 @@ function Submit() {
                             <div className="col-md-8 mb-4">
                                 <div className="form-name">
                                     <OutlinedInput
-                                        type="text" id="name" placeholder="Progress Name" 
+                                        type="text" id="name" placeholder="GroupID" 
                                         required fullWidth
                                         onChange={(e)=>setGroupID(e.target.value)}
                                         inputProps={{style: {padding: 12}}} 
@@ -128,9 +128,9 @@ function Submit() {
                     <div className="col-4 d-flex justify-content-center">
                         <div>
                             {previewSource ? 
-                                <img src={previewSource} alt="preview" className="previewImgProgress"/>
+                                <document src={previewSource} alt="preview" className="previewImgProgress"/>
                             :
-                                <img src="/images/progress.png" className="previewImgProgress" alt="progress pic"/>
+                                <document src="/images/progress.png" className="previewImgProgress" alt="submission pdf"/>
                             }
                             <div className="form-group">
                                 <label htmlFor="profilepic">

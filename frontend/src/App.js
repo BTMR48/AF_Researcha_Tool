@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/Header/Header'
-// import PrivateRoute from './Routes/PrivateRoute';
-// import StudentPrivateRoute from './Routes/StudentPrivateRoute';
+import PrivateRoute from './Routes/PrivateRoute';
+import StudentPrivateRoute from './Routes/StudentPrivateRoute';
 
 
 import AdminSignIn from './components/AdminManagement/AdminLogin';
@@ -51,10 +51,12 @@ function App() {
             <Route path="/evolution/levels" exact component={Levels}/>
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
-            <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
+            
 
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
             <Route path="/student/request/:id" exact component={AddRequest}/>
+
+            <StudentPrivateRoute path="/submission/addSubmission/:id/:name" exact component= {AddSubmission}/>
 
   
             <Footer/>

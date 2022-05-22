@@ -4,6 +4,7 @@ import './AddProgress.css'
 import Button from '@material-ui/core/Button';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { TextField } from '@material-ui/core';
 import { Document, Page } from 'react-pdf';
 
@@ -171,7 +172,7 @@ function AddProgress() {
                                     />
 
                                     <Button color="primary" variant="contained" component="span">
-                                        <AddAPhotoIcon/> &nbsp; Upload Pdf
+                                        <PictureAsPdfIcon/> &nbsp; Upload Pdf
                                     </Button>
                                 </label>
                             </div>
