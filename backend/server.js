@@ -11,7 +11,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 
-
+const Markingrouter = require("./routes/markingrouter");
 const AdminRouter = require("./routes/adminrouter.js");
 const StudentRouter = require("./routes/studentrouter.js");
 const ProgressRouter = require("./routes/progressrouter.js");
@@ -19,6 +19,11 @@ const SupervisorRouter = require("./routes/supervisorrouter");
 const PanelmemberRouter = require("./routes/panelmemberrouter");
 const CoSupervisorrouter = require("./routes/cosupervisorrouter");
 
+const SubmissionRouter = require("./routes/submissionrouter");
+
+
+const Submission = require("./routes/submissionrouter");
+const RequestRouter = require("./routes/requestrouter");
 
 //getting the database url
 const URL = process.env.MONGODB_URL;
@@ -50,6 +55,18 @@ app.use("/supervisor",SupervisorRouter);
 app.use("/panelmember",PanelmemberRouter);
 //when http://localhost:8070/supervisor ran it will execute supervisorrouter.js file
 app.use("/cosupervisor",CoSupervisorrouter);
+
+//when http://localhost:8070/submission ran it will execute submissionrouter.js file
+app.use("/submission",SubmissionRouter);
+//when http://localhost:8070/marking ran it will execute markingrouter.js file
+app.use("/marking",Markingrouter);
+
+//when http://localhost:8070/submission ran it will execute supervisorrouter.js file
+app.use("/submission",Submission);
+//when http://localhost:8070/request ran it will execute requestrouter.js file
+app.use("/request",RequestRouter);
+
+
 
 
 //defining a port to run the application

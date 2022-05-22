@@ -33,7 +33,7 @@ function Header() {
     const SidebarItem = [
         {
           title: 'Home',
-          path: '/evolution/levels',
+          path: `/evolution/levels`,
           icon: <HomeIcon/>,
           cName: 'nav-text'
         },
@@ -45,7 +45,7 @@ function Header() {
         },
         {
           title: 'Topic Registration',
-          path: `/Registration/${user._id}`,
+          path: `/supervisor/ViewSupervisor`,
           icon: <EventAvailableIcon/>,
           cName: 'nav-text'
         },
@@ -133,13 +133,15 @@ function Header() {
                             <IconButton onClick={showSidebar}>
                                 <DehazeIcon fontSize="large"/>
                             </IconButton>
-                            }      
+                            } 
                         </ul>
                         <div className="header-title">
                             <h3 onClick={home}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SLIIT&nbsp;Research&nbsp;Management Tool </h3>
                         </div>
                         <ul className="mx-3">
                             {isSignedIn ?
+
+                            
                                 <div>
                                     <IconButton onClick={profile}>
                                         <Avatar alt="user" src={`${user.imgUrl}`} />
@@ -158,33 +160,35 @@ function Header() {
                         </ul>
                     </div>
                 </nav>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className='nav-menu-items' onClick={showSidebar}>
-                        <li className='mb-4 mt-3' align="center">
-                            {/* <img src="/images/Logo.png" width="150px"  height="90px" alt="logo"/> */}
-                            {/* <img src="/images/sliit-web-logo.png" width="150px" alt="logo"/> */}
-                            <img src="/images/SLIIT_Logo.png" width="100px" height="120px" alt="logo"/>
-                        </li>
-                        {SidebarItem.map((item, index) => {
-                        return (
-                            <li key={index} className={item.cName}>
-                                <Link to={item.path}>
-                                    {item.icon}
-                                    <span className="nav-span">{item.title}</span>
-                                </Link>
+                {isSignedIn &&
+                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                        <ul className='nav-menu-items' onClick={showSidebar}>
+                            <li className='mb-4 mt-3' align="center">
+                                {/* <img src="/images/Logo.png" width="150px"  height="90px" alt="logo"/> */}
+                                {/* <img src="/images/sliit-web-logo.png" width="150px" alt="logo"/> */}
+                                <img src="/images/SLIIT_Logo.png" width="100px" height="120px" alt="logo"/>
                             </li>
-                        );
-                        })}
-                        {isSignedIn &&
-                            <div className="sidebar-bottom" align="center">
-                                <Button variant="contained" color="secondary" disableElevation size="small" onClick={logout}
-                                endIcon={<ExitToAppIcon/>}>
-                                    Log Out  
-                                </Button>
-                            </div>
-                        }
-                    </ul>
-                </nav>
+                            {SidebarItem.map((item, index) => {
+                            return (
+                                <li key={index} className={item.cName}>
+                                    <Link to={item.path}>
+                                        {item.icon}
+                                        <span className="nav-span">{item.title}</span>
+                                    </Link>
+                                </li>
+                            );
+                            })}
+                            
+                                <div className="sidebar-bottom" align="center">
+                                    <Button variant="contained" color="secondary" disableElevation size="small" onClick={logout}
+                                    endIcon={<ExitToAppIcon/>}>
+                                        Log Out  
+                                    </Button>
+                                </div>
+                            
+                        </ul>
+                    </nav>
+                }
             </div>
         </header>
     )

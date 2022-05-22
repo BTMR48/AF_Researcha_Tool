@@ -40,7 +40,7 @@ function UpdateProgress(props){
       fetchProgress()
     },[props]);
 
-    //handling the image uploading
+    //handling the pdf uploading
     const handleFileInputChange = (event) => {
         const file = event.target.files[0];
         previewFile(file);

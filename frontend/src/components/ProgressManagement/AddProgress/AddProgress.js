@@ -4,7 +4,10 @@ import './AddProgress.css'
 import Button from '@material-ui/core/Button';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { TextField } from '@material-ui/core';
+import { Document, Page } from 'react-pdf';
+
 
 
 
@@ -18,7 +21,7 @@ function AddProgress() {
     const [selectedFile, setSelectedFile] = useState();
     const [fileInputState, setFileInputState] = useState('');
 
-    //handling the image uploading
+    //handling the pdf uploading
     const handleFileInputChange = (event) => {
         const file = event.target.files[0];
         previewFile(file);
@@ -26,7 +29,7 @@ function AddProgress() {
         setFileInputState(event.target.value);
     };
 
-    //display a preview of uploaded image
+    //display a preview of uploaded pdf
     const previewFile = (file) => {
         const reader = new FileReader();
         reader.readAsDataURL(file)
@@ -51,7 +54,7 @@ function AddProgress() {
         if(previewSource){
             const formData = new FormData();
             formData.append("file", selectedFile) 
-            formData.append("upload_preset", "progress_pictures")
+            formData.append("upload_preset", "progress_pdfs")
 
            
             try {
@@ -169,7 +172,7 @@ function AddProgress() {
                                     />
 
                                     <Button color="primary" variant="contained" component="span">
-                                        <AddAPhotoIcon/> &nbsp; Upload Image
+                                        <PictureAsPdfIcon/> &nbsp; Upload Pdf
                                     </Button>
                                 </label>
                             </div>
@@ -179,7 +182,7 @@ function AddProgress() {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <input className="form-submit-btn" type="submit" value="Add product" />
+                            <input className="form-submit-btn" type="submit" value="Add Progress" />
                         </div>
                     </div>
                 </div>

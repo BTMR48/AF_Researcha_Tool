@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/Header/Header'
-// import PrivateRoute from './Routes/PrivateRoute';
-// import StudentPrivateRoute from './Routes/StudentPrivateRoute';
+import PrivateRoute from './Routes/PrivateRoute';
+import StudentPrivateRoute from './Routes/StudentPrivateRoute';
 
 
 import AdminSignIn from './components/AdminManagement/AdminLogin';
@@ -19,9 +19,9 @@ import AddProgress from './components/ProgressManagement/AddProgress/AddProgress
 import Levels from './components/ProgressManagement/Levels/Levels';
 import SingleLevel from './components/ProgressManagement/SingleLevel/SingleLevel';
 import UpdateProgress from './components/ProgressManagement/UpdateProgress/UpdateProgress';
-import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmission';
+import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmissionstd';
 import Footer from './components/Footer/Footer';
-
+import ViewSubmission from './components/SubmissionManagement/ViewSubmission/ViewSubmission';
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
 import AllCosupervisors from './components/UserManagement/CosupervisorList/allcosupervisors'; 
 import AllPanelmembers from './components/UserManagement/PanelmemberList/allpanelmembers'; 
@@ -32,7 +32,8 @@ import AssignPanelmember from './components/UserManagement/AssignPanelmember/Ass
 
 
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
-
+import AddRequest from './components/RequestManagement/AddRequest';
+import ViewRequest from './components/RequestManagement/ViewRequests/ViewRequest';
 
 
 function App() {
@@ -59,12 +60,24 @@ function App() {
             <Route path="/student/update/:id" exact component = {UpdateStudent}/>
             <Route path="/users/student/addpanel/:id" exact component = {AssignPanelmember}/>
 
+
+            <Route path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>
+
             <Route path="/evolution/addProgress"exact component={AddProgress}/>
             <Route path="/evolution/levels" exact component={Levels}/>
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
-            <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
+            
+
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
+            <Route path="/student/request/:id" exact component={AddRequest}/>
+
+
+            <StudentPrivateRoute path="/submission/addSubmission/:id/:name" exact component= {AddSubmission}/>
+
+
+            <Route path="/request/allrequest/" exact component={ViewRequest} />
+
   
             <Footer/>
         </div>

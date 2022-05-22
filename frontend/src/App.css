@@ -17,7 +17,7 @@ Link:hover {
   border: none;
 }
 
-.form-submit-btn{background-image: linear-gradient(to right, #0092FA 0%, #12C4FA  51%, #0092FA  100%)}
+.form-submit-btn{background-image: linear-gradient(to right, #f2df34 0%, #dbd517  51%, #0092FA  100%)}
 .form-submit-btn {
     border: 0;
     margin: 20px auto;
@@ -55,7 +55,7 @@ body{
     background: none;
     display: block;
     text-align: center;
-    border: 2px solid #3498db;
+    border: 2px solid #dbc834;
     padding: 10px 20px;
     width: 400px;
     outline: none;

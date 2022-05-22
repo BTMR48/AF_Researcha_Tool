@@ -11,9 +11,9 @@ import RateReviewIcon from '@material-ui/icons/RateReview';
 
 function Footer() {
     const history=useHistory();
-    function RateUs(){
-        history.push("/patient/review")
-    }
+    // function Feedback(){
+    //     history.push("https://www.sliit.lk/service-feedback-form/")
+    // }
     return (
         <footer className="px-5">
             <div className="">
@@ -25,7 +25,7 @@ function Footer() {
                     <div className="col-xl-3"style={{ paddingLeft: 70 }}>
                         <br/>
                         <p>
-                            This website is mainly focused on the current pandemic  situation of our country.
+                            This website is mainly focused on the current pandemic situation of our country.
                             We hope to monitor the current situation of the country by making awareness     
                         </p>
                     </div>
@@ -33,7 +33,7 @@ function Footer() {
                         <h3>Links</h3>
                         <ul className="list-group">
                             <li><Link to="/" style={{ color: '#FFF' }}>Home</Link></li>
-                            <li><Link to="/pharmacy/items"  style={{ color: '#FFF' }}>Pharmacy</Link></li>
+                            <li><Link to="/pharmacy/items"  style={{ color: '#FFF' }}>supervisors</Link></li>
                             <li><Link to=""  style={{ color: '#FFF' }}>About Us</Link></li>
                             <li><Link to=""  style={{ color: '#FFF' }}>Contacts</Link></li>
                             <li><Link to="/admin/signin"  style={{ color: '#FFF' }}>Admin</Link></li>
@@ -42,17 +42,17 @@ function Footer() {
                     <div className="col-xl-3" >
                         <h3>&nbsp;Reach Us On </h3>
                         <br/>
-                        <p><LocationOnIcon fontSize="small"/>&nbsp;Petta Road, Maradana, colombo 10</p>
-                        <p><EmailIcon fontSize="small"/>&nbsp; info.aspirushealthcare@gmail.com</p>
-                        <p><PhoneIcon fontSize="small"/>&nbsp;011 - 277202099</p>
+                        <p><LocationOnIcon fontSize="small"/>&nbsp; SLIIT Malabe Campus, New Kandy Rd, Malabe 10115</p>
+                        <p><EmailIcon fontSize="small"/>&nbsp; info@sliit.lk</p>
+                        <p><PhoneIcon fontSize="small"/>&nbsp;0117 544 801</p>
                     </div>
                     <div className="col-xl-3"align="center">
-                        <h5> We value your feedback</h5>    
-                        <Rating name="size-large" defaultValue={5} size="large"  />
-                        <br/><br/>
+                        <br></br>
+                        <h5>   Provide Feedback to SLIIT</h5>    
+                        <br></br>
                         <Button variant="contained" style={{backgroundColor:blue[500],color:'white'}} endIcon={<RateReviewIcon/>}
-                                onClick={RateUs} >
-                            Rate US 
+                                href="https://www.sliit.lk/service-feedback-form/" >
+                            Feedback
                         </Button> 
                         <br/> <br/>
                         <span>
@@ -63,7 +63,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="col-xl-12 text-center "> 
-                    <p className ="mb-0"> ASPIRUS Health Care © 2021 - All Rights Reserved</p>
+                    <p className ="mb-0"> SLIIT UNI © 2021 - All Rights Reserved</p>
                 </div>
             </div>
         </footer>
