@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
-const crypto = require("crypto");
+// const crypto = require("crypto");
 
 const Schema = mongoose.Schema;
 
@@ -8,6 +8,7 @@ const StudentSchema = new Schema({
     
     groupname: {
         type: String,
+        unique: true,
         require: true
     },
 
@@ -23,23 +24,8 @@ const StudentSchema = new Schema({
         required: true,
         match: /^(?:7|0|(?:\+94))[0-9]{9,10}$/
     },
-
+    
     member1name: {
-        type: String,
-        require: true
-    },
-    
-    member2name: {
-        type: String,
-        require: true
-    },
-    
-    member3name: {
-        type: String,
-        require: true
-    },
-
-    member4name: {
         type: String,
         require: true
     },
@@ -50,6 +36,11 @@ const StudentSchema = new Schema({
         unique: true,
         match: /^([a-z|A-Z]{2}[0-9]{8})$/
     },
+    
+    member2name: {
+        type: String,
+        require: true
+    },
 
     member2reg: {
         type: String,
@@ -57,12 +48,22 @@ const StudentSchema = new Schema({
         unique: true,
         match: /^([a-z|A-Z]{2}[0-9]{8})$/
     },
-
+    
+    member3name: {
+        type: String,
+        require: true
+    },
+    
     member3reg: {
         type: String,
         required: true,
         unique: true,
         match: /^([a-z|A-Z]{2}[0-9]{8})$/
+    },
+
+    member4name: {
+        type: String,
+        require: true
     },
 
     member4reg: {
@@ -82,6 +83,7 @@ const StudentSchema = new Schema({
 
     panelmember: {
         type: String,
+        default: '',
         require: false
     },
 
@@ -102,18 +104,18 @@ StudentSchema.pre("save", async function(next){
 })
 
 
-//reset password token
-StudentSchema.methods.getResetPasswordToken = function () {
-    const resetToken = crypto.randomBytes(20).toString("hex");
+// //reset password token
+// StudentSchema.methods.getResetPasswordToken = function () {
+//     const resetToken = crypto.randomBytes(20).toString("hex");
   
-    // Hash token (private key) and save to database
-    this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+//     // Hash token (private key) and save to database
+//     this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
   
-    // Set token expire date
-    this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
+//     // Set token expire date
+//     this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
   
-    return resetToken;
-};  
+//     return resetToken;
+// };  
 
 
 const Student = mongoose.model("student",StudentSchema)

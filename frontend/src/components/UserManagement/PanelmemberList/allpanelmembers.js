@@ -6,12 +6,12 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 
-import './allsupervisors.css'
+import './allpanelmembers.css'
 
 
-function AllSupervisors() {
+function AllPanelmembers() {
 
-    const [supervisors, setSupervisors] = useState([]);
+    const [panelmembers, setPanelmembers] = useState([]);
     // const [isAdmin,setIsAdmin]=useState(false)
     const history = useHistory()
    
@@ -22,15 +22,15 @@ function AllSupervisors() {
         //   }else{
         //     setIsAdmin(false)
         //   }
-          async function getSupervisors() {
-            axios.post(`http://localhost:8070/supervisor`).then((res) => {
-              setSupervisors(res.data)  
+          async function getPanelmembers() {
+            axios.post(`http://localhost:8070/panelmember`).then((res) => {
+              setPanelmembers(res.data)  
             }).catch((error) => {
-              alert("Failed to fetch Supervisors")
+              alert("Failed to fetch Panelmembers")
             })
           }
       
-          getSupervisors()
+          getPanelmembers()
     })
 
     async function onDelete(id) {
@@ -40,26 +40,26 @@ function AllSupervisors() {
           }
         };
 
-        await axios.delete(`http://localhost:8070/supervisor/delete/${id}`, config).then(() => {
-        alert("Supervisor deleted successfully")
-        setSupervisors(supervisors.filter(element => element._id !== id))
+        await axios.delete(`http://localhost:8070/panelmember/delete/${id}`, config).then(() => {
+        alert("Panelmember deleted successfully")
+        setPanelmembers(panelmembers.filter(element => element._id !== id))
         }).catch((error) => {
-        alert(`Failed to delete the Supervisor`)
+        alert(`Failed to delete the Panelmember`)
         })
     }
 
     function filterContent (data, searchTerm){
         
-        const result = data.filter((supervisor) =>
-            supervisor.name.toLowerCase().includes(searchTerm) ||
-            supervisor.fields.map(str => str.toLowerCase().includes(searchTerm))
+        const result = data.filter((panelmember) =>
+            panelmember.name.toLowerCase().includes(searchTerm) ||
+            panelmember.fields.map(str => str.toLowerCase().includes(searchTerm))
         )
-        setSupervisors(result)
+        setPanelmembers(result)
     }
 
     function handleSearch(event){
       const searchTerm = event.currentTarget.value
-      axios.post(`http://localhost:8070/supervisor`).then((res) => {
+      axios.post(`http://localhost:8070/panelmember`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
           alert(error)
@@ -67,11 +67,11 @@ function AllSupervisors() {
     }
 
     function update(id) {
-        history.push(`/supervisor/update/${id}`)
+        history.push(`/panelmember/update/${id}`)
       }
 
     function addSupervisor(){
-        history.push(`/supervisor/signup`)
+        history.push(`/panelmember/signup`)
     }
 
     return (
@@ -79,7 +79,7 @@ function AllSupervisors() {
             <div className="row">
                 <div className="col-4">
                     <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                     <h2>Supervisors</h2>
+                     <h2>Panelmembers</h2>
                     </div>
                    
                 </div>
@@ -95,7 +95,7 @@ function AllSupervisors() {
                             type="text"
                             name="search"
                             id="search"
-                            placeholder="Search Supervisors"
+                            placeholder="Search Panelmembers"
                             onChange={handleSearch}
                             required
                         />
@@ -104,7 +104,7 @@ function AllSupervisors() {
             </div>
             {/* {isAdmin &&  */}
                 <div align="center">
-                    <button className="addStaffBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addSupervisor()}> Add Supervisor </button>
+                    <button className="addStaffBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addSupervisor()}> Add Panelmember </button>
                 </div>
             {/* } */}
             <br/>
@@ -116,35 +116,35 @@ function AllSupervisors() {
                             <tr>
                                 <th style={{ textAlign: 'center' }}>Name</th>
                                 <th style={{ textAlign: 'center' }}>Email</th>
-                                <th style={{ textAlign: 'center' }}>Research Field</th>
+                                <th style={{ textAlign: 'center' }}>Phone</th>
                                 <th style={{ textAlign: 'center' }}></th>
                             </tr>
                         </thead>
                         <tbody style={{ textAlign: 'center' }}>
-                            {supervisors.map((Supervisor,key) => (
+                            {panelmembers.map((Panelmember,key) => (
                             <tr key={key}>
                             
                                 <td>
                                     {
-                                      <h6>{Supervisor.title + " " + Supervisor.name}</h6>
+                                      <h6>{Panelmember.title + " " + Panelmember.name}</h6>
                                     }
                                 </td>
                             
                                 <td>
-                                    <h6>{Supervisor.email}</h6>
+                                    <h6>{Panelmember.email}</h6>
                                 </td>
 
                                 <td>
-                                    {Supervisor.fields.map(fields => <h6>{fields}</h6>)}
+                                    <h6>{Panelmember.phoneno}</h6>
                                 </td>
 
                                 <td>
                                     {/* { isAdmin ? "" : */}
                                         <div style={{verticalAlign:'middle'}}>
-                                            <IconButton onClick={() => update(Supervisor._id)}>
+                                            <IconButton onClick={() => update(Panelmember._id)}>
                                                 <EditIcon style={{ color: grey[500] }} ></EditIcon>
                                             </IconButton>
-                                            <IconButton onClick={() => onDelete(Supervisor._id)}>
+                                            <IconButton onClick={() => onDelete(Panelmember._id)}>
                                                 <DeleteIcon style={{ color: red[500] }} ></DeleteIcon>
                                             </IconButton>
                                         </div>
@@ -162,4 +162,4 @@ function AllSupervisors() {
     )
 }
 
-export default AllSupervisors
+export default AllPanelmembers
