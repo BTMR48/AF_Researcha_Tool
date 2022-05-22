@@ -1,10 +1,7 @@
+const router = require("express").Router();
+const { viewSubmission,addSubmission} = require('../controllers/submissioncontroller.js')
 
-const router=require("express").Router();
-const{ addSubmission  }=require('../controllers/submissioncontroller');
-//const{ fetchAll, fetchOne }=require('../controllers/submissioncontroller.js');
-
+router.get('/:id', viewSubmission);
 router.post('/add', addSubmission);
-
-
 
 module.exports = router;

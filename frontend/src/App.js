@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/Header/Header'
-// import PrivateRoute from './Routes/PrivateRoute';
-// import StudentPrivateRoute from './Routes/StudentPrivateRoute';
+import PrivateRoute from './Routes/PrivateRoute';
+import StudentPrivateRoute from './Routes/StudentPrivateRoute';
 
 
 import AdminSignIn from './components/AdminManagement/AdminLogin';
@@ -21,7 +21,7 @@ import SingleLevel from './components/ProgressManagement/SingleLevel/SingleLevel
 import UpdateProgress from './components/ProgressManagement/UpdateProgress/UpdateProgress';
 import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmissionstd';
 import Footer from './components/Footer/Footer';
-
+import ViewSubmission from './components/SubmissionManagement/ViewSubmission/ViewSubmission';
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
 import AddRequest from './components/RequestManagement/AddRequest';
@@ -46,16 +46,22 @@ function App() {
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
-
+            <Route path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>
             <Route path="/evolution/addProgress"exact component={AddProgress}/>
             <Route path="/evolution/levels" exact component={Levels}/>
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
-            <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
+            
 
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
             <Route path="/student/request/:id" exact component={AddRequest}/>
+
+
+            <StudentPrivateRoute path="/submission/addSubmission/:id/:name" exact component= {AddSubmission}/>
+
+
             <Route path="/request/allrequest/" exact component={ViewRequest} />
+
   
             <Footer/>
         </div>

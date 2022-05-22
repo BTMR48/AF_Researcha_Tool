@@ -9,6 +9,10 @@ import {orange,blue,red } from '@material-ui/core/colors';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+
+
 //import {Submit} from './../../SubmissionManagement/AddSubmission/AddSubmissionstd'
 
 
@@ -18,7 +22,7 @@ function ProgressDetails(props) {
     const[name,setName]=useState("");
     const[description,setDescription]=useState("");
     const[date,setDate]=useState("");
-    const[imgUrl,setImgUrl]=useState("");
+    const[imgUrl,setImgUrl]=useState([]);
     const [progresses, setProgresses] = useState([])
     const history=useHistory()
     const [user, setUser] = useState("");
@@ -62,7 +66,9 @@ function ProgressDetails(props) {
             alert(`Failed to delete the progress\n${error.message}`)
         }) 
     } 
-         
+    function viewPdf(imgUrl) {
+        window.open(imgUrl);
+    }
 
     
    
@@ -72,15 +78,29 @@ function ProgressDetails(props) {
     
     function submit(){
         // navigate(`/patient/buyPayment/${id}/${date}`)
-        history.push(`/submission/addSubmission/${id}`)
+        history.push(`/submission/addSubmission/${id}/${name}`)
     }
+
+   
     
    
     return (
         <div className = "container" align="center">
             <div className="detailProgress" >     
                 <div className="detailProgress">
-                                <img src={`${imgUrl}`} alt="progressDetails" />
+                    {/* <div>
+                    {imgUrl}
+                    </div> */}
+                     {/* <img src={`${imgUrl}`} alt="Progress Template" /> */}
+                              <div>
+
+                                    <IconButton onClick={() => viewPdf(`${imgUrl}`)}>
+                                        <PictureAsPdfIcon style={{ color: red[500], backgroundPosition: 'center'}} ></PictureAsPdfIcon>
+                                    </IconButton>
+                                   
+                            
+                              </div>
+                        
                     <div className="box-detailProgress">
                             <div className="row">
                                 <h2>{name}</h2>

@@ -1,5 +1,5 @@
 .nav-menu {
-  background-image: linear-gradient(to right, hsl(239, 47%, 40%) 0%, #005C97 110%);
+  background-image: linear-gradient(to right, #333, #07344f 110%);
   width: 180px;
   height: 104vh;
   display: flex;
