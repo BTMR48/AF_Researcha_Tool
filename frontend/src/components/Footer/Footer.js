@@ -11,9 +11,9 @@ import RateReviewIcon from '@material-ui/icons/RateReview';
 
 function Footer() {
     const history=useHistory();
-    function RateUs(){
-        history.push("/patient/review")
-    }
+    // function Feedback(){
+    //     history.push("https://www.sliit.lk/service-feedback-form/")
+    // }
     return (
         <footer className="px-5">
             <div className="">
@@ -47,12 +47,12 @@ function Footer() {
                         <p><PhoneIcon fontSize="small"/>&nbsp;0117 544 801</p>
                     </div>
                     <div className="col-xl-3"align="center">
-                        <h5> We value your feedback</h5>    
-                        <Rating name="size-large" defaultValue={5} size="large"  />
-                        <br/><br/>
+                        <br></br>
+                        <h5>   Provide Feedback to SLIIT</h5>    
+                        <br></br>
                         <Button variant="contained" style={{backgroundColor:blue[500],color:'white'}} endIcon={<RateReviewIcon/>}
-                                onClick={RateUs} >
-                            Rate US 
+                                href="https://www.sliit.lk/service-feedback-form/" >
+                            Feedback
                         </Button> 
                         <br/> <br/>
                         <span>
