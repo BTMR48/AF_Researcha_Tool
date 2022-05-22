@@ -19,11 +19,12 @@ import AddProgress from './components/ProgressManagement/AddProgress/AddProgress
 import Levels from './components/ProgressManagement/Levels/Levels';
 import SingleLevel from './components/ProgressManagement/SingleLevel/SingleLevel';
 import UpdateProgress from './components/ProgressManagement/UpdateProgress/UpdateProgress';
-import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmission';
+import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmissionstd';
 import Footer from './components/Footer/Footer';
 import ViewSubmission from './components/SubmissionManagement/ViewSubmission/ViewSubmission';
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
+import AddRequest from './components/RequestManagement/AddRequest';
 
 
 
@@ -51,7 +52,10 @@ function App() {
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
             <Route path="/submission/addSubmission/:id" exact component= {AddSubmission}/>
+
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
+            <Route path="/student/request/:id" exact component={AddRequest}/>
+
   
             <Footer/>
         </div>
