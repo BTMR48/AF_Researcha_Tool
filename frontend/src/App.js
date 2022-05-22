@@ -25,7 +25,7 @@ import Footer from './components/Footer/Footer';
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
 import AddRequest from './components/RequestManagement/AddRequest';
-
+import ViewRequest from './components/RequestManagement/ViewRequests/ViewRequest';
 
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
 
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
             <Route path="/student/request/:id" exact component={AddRequest}/>
-
+            <Route path="/request/allrequest/" exact component={ViewRequest} />
   
             <Footer/>
         </div>

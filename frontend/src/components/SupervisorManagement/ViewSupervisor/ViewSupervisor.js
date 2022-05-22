@@ -3,10 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import './ViewSupervisor.css'
 import axios from 'axios'
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-//import {blue} from '@material-ui/core/colors';
-//import Supervisor from '../../../../../backend/models/supervisor';
 import { blue } from '@mui/material/colors'
 
 function ViewSupervisor(){
@@ -14,25 +11,6 @@ function ViewSupervisor(){
     const[supervisors, setSupervisors] = useState([])
     const history = useHistory()
     const location = useLocation()
-
-    const responsive = {
-        superLargeDesktop: {
-          breakpoint: { max: 4000, min: 3000 },
-          items: 5
-        },
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 5
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1
-        }
-      };
 
       useEffect(() => {
           async function getViewSupervisor(){
@@ -90,7 +68,7 @@ function ViewSupervisor(){
                       </div>
                 </div>
               </div>
-              <Carousel wipeable={true} responsive={responsive} autoPlay={true} autoPlaySpeed={2000} infinite={true} className="px-5 py-5 mb-2"> 
+              <div className='supervisorGrid'>
                 {supervisors.map((Supervisor,key) => (
                   <div key={key}>
                     <div className='supervisorsCard'>
@@ -111,7 +89,7 @@ function ViewSupervisor(){
                     </div>
                   </div>
                 ))}
-              </Carousel>
+              </div>
             </div>
           </div>
       )

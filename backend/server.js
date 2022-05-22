@@ -19,6 +19,7 @@ const SupervisorRouter = require("./routes/supervisorrouter");
 const PanelmemberRouter = require("./routes/panelmemberrouter");
 const CoSupervisorrouter = require("./routes/cosupervisorrouter");
 const Submission = require("./routes/submissionrouter");
+const RequestRouter = require("./routes/requestrouter");
 
 //getting the database url
 const URL = process.env.MONGODB_URL;
@@ -52,6 +53,9 @@ app.use("/panelmember",PanelmemberRouter);
 app.use("/cosupervisor",CoSupervisorrouter);
 //when http://localhost:8070/submission ran it will execute supervisorrouter.js file
 app.use("/submission",Submission);
+//when http://localhost:8070/request ran it will execute requestrouter.js file
+app.use("/request",RequestRouter);
+
 
 
 

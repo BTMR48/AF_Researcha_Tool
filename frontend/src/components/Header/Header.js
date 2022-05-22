@@ -45,7 +45,7 @@ function Header() {
         },
         {
           title: 'Topic Registration',
-          path: `/Registration/${user._id}`,
+          path: `/supervisor/ViewSupervisor`,
           icon: <EventAvailableIcon/>,
           cName: 'nav-text'
         },
