@@ -21,13 +21,8 @@ function UpdateStudent(props) {
     const [member2reg,setMember2Reg] = useState("");
     const [member3reg,setMember3Reg] = useState("");
     const [member4reg,setMember4Reg] = useState("");
-    const [panelmember,setPanelmember] = useState("");
 
     const history = useHistory();
-    // const [userImg, setUserImg] = useState("");
-    // const [fileInputState, setFileInputState] = useState('');
-    // const [selectedFile, setSelectedFile] = useState();
-    // const [previewSource, setPreviewSource] = useState();
 
     //fetching user data
     useEffect(()=>{
@@ -44,7 +39,6 @@ function UpdateStudent(props) {
                 setMember3Reg(res.data.result.member3reg)
                 setMember4Name(res.data.result.member4name)
                 setMember4Reg(res.data.result.member4reg)
-                // setUserImg(res.data.result.imgUrl)
             }).catch((error)=>{
                 alert("Failed to fetch student data")
             })
@@ -52,46 +46,11 @@ function UpdateStudent(props) {
         fetchUser()
     },[props]);
 
-    //handling the image uploading
-    // const handleFileInputChange = (event) => {
-    //     const file = event.target.files[0];
-    //     previewFile(file);
-    //     setSelectedFile(file);
-    //     setFileInputState(event.target.value);
-    // };
-
-
-    //display a preview of uploaded image
-    // const previewFile = (file) => {
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(file)
-    //     reader.onloadend = () => {
-    //         setPreviewSource(reader.result)
-    //     }
-    // }
 
     //update the user
     async function Update(event){
 
-        event.preventDefault();
-
-        // let imgUrl
-
-        // if(previewSource){
-        //     const formData = new FormData();
-        //     formData.append("file", selectedFile) 
-        //     formData.append("upload_preset", "patient_pictures")
-
-        //     try {
-        //         await axios.post("https://api.cloudinary.com/v1_1/aspirushealthcare/image/upload", formData).then((res) =>{
-        //             imgUrl = res.data.secure_url
-        //         })
-        //     } catch (error) {
-        //         alert(error)
-        //     }
-        // }
-
-        const updateStudent = {groupname, email, phone, member1name, member1reg, member2name, member2reg, member3name, member3reg, member4name, member4reg, panelmember}
+        const updateStudent = {groupname, email, phone, member1name, member1reg, member2name, member2reg, member3name, member3reg, member4name, member4reg}
 
         //header with authorization token
         const config = {
@@ -104,7 +63,7 @@ function UpdateStudent(props) {
         try {
             await axios.put(`http://localhost:8070/student/update/${props.match.params.id}`,updateStudent, config);
                 alert("Updated Successfully")
-                history.push('/student/profile')
+                // history.push('/student/profile')
         } catch (error) {
             if(error.response.status === 401){
                 alert("Authentication failed. Please Sign In again")
@@ -122,7 +81,7 @@ function UpdateStudent(props) {
                 </div>
                  <div className="col-11">
                     <div className="pb-2 px-5 d-flex align-items-center justify-content-between">
-                        <h2>Update Profile</h2>
+                        <h2>My Profile</h2>
                     </div>
                 </div>
             </div>
@@ -248,119 +207,8 @@ function UpdateStudent(props) {
                                         />
                                     </div>
                                 </div>
-                                
-                                {/* <div className="col-md-4 mb-4">
-                                    <div className="form-group">
-                                        <TextField 
-                                            id="bloodGroup"
-                                            select
-                                            SelectProps={{
-                                                native: true,
-                                            }}
-                                            variant="outlined"
-                                            fullWidth
-                                            value={bloodGroup}
-                                            onChange={(event)=> {setBloodGroup(event.target.value)}}
-                                            inputProps={{style: {padding: 12}}}
-                                        >
-                                        {bloodGroups.map((option) => (
-                                            <option key={option.value} value={option.value}>
-                                            {option.label}
-                                            </option>
-                                        ))}
-                                        </TextField>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 mb-4">
-                                    <div className="form-group">
-                                        <OutlinedInput 
-                                            type="text" id="height" placeholder="Height" fullWidth
-                                            value={height}
-                                            endAdornment={
-                                                <InputAdornment position="end">
-                                                    m
-                                                </InputAdornment>
-                                            }
-                                            onChange={(event)=> {setHeight(event.target.value)}}
-                                            inputProps={{style: {padding: 12}}}
-                                            label="Blood Pressure"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-4 mb-4">
-                                    <div className="form-group">
-                                        <OutlinedInput 
-                                            type="text" id="weight" placeholder="Weight" fullWidth
-                                            value={weight}
-                                            endAdornment={
-                                                <InputAdornment position="end">
-                                                    kg
-                                                </InputAdornment>
-                                            }
-                                            onChange={(event)=> {setWeight(event.target.value)}}
-                                            inputProps={{style: {padding: 12}}}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-group">
-                                        <OutlinedInput 
-                                            type="text" id="bloodPressure" required placeholder="Blood Pressure" fullWidth
-                                            value={bloodPressure}
-                                            endAdornment={
-                                                <InputAdornment position="end">
-                                                    mm/Hg
-                                                </InputAdornment>
-                                            }
-                                            onChange={(event)=> {setBloodPressure(event.target.value)}}
-                                            inputProps={{style: {padding: 12}}}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-group">
-                                        <OutlinedInput 
-                                            type="text" id="sugarLevel" required placeholder="Sugar Level" fullWidth
-                                            value={sugarLevel}
-                                            endAdornment={
-                                                <InputAdornment position="end">
-                                                    mg/dL
-                                                </InputAdornment>
-                                            }
-                                            onChange={(event)=> {setSugarLevel(event.target.value)}}
-                                            inputProps={{style: {padding: 12}}}
-                                        />
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
-                        {/* <div className="col-4 d-flex justify-content-center">
-                            <div>
-                                { previewSource  ?
-                                    <img src={previewSource} alt="preview" className="previewImg"/>
-                                : userImg === ""? 
-                                    <img src="/images/avatar.jpg" alt="preview" className="previewImg"/>
-                                :
-                                    <img src={`${userImg}`} className="previewImg" alt="profile pic"/>
-                                }
-                                <div className="form-group">
-                                    <label htmlFor="profilepic">
-                                        <input
-                                            style={{ display: 'none' }}
-                                            id="profilepic"
-                                            name="profilepic"
-                                            type="file"
-                                            onChange={handleFileInputChange}
-                                            value={fileInputState}
-                                        />
-
-                                        <Button color="primary" variant="contained" component="span">
-                                            <AddAPhotoIcon/> &nbsp; Upload Profile Picture
-                                        </Button>
-                                    </label>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>   
                     <div className="row">
                         <div className="col-md-12">

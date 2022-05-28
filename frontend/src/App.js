@@ -22,6 +22,7 @@ import UpdateProgress from './components/ProgressManagement/UpdateProgress/Updat
 import AddSubmission from './components/SubmissionManagement/AddSubmission/AddSubmissionstd';
 import Footer from './components/Footer/Footer';
 import ViewSubmission from './components/SubmissionManagement/ViewSubmission/ViewSubmission';
+import UsersHome from './components/UserManagement/UserHome'; 
 import AllSupervisors from './components/UserManagement/SupervisorList/allsupervisors'; 
 import AllCosupervisors from './components/UserManagement/CosupervisorList/allcosupervisors'; 
 import AllPanelmembers from './components/UserManagement/PanelmemberList/allpanelmembers'; 
@@ -35,7 +36,13 @@ import AssignPanelmember from './components/UserManagement/AssignPanelmember/Ass
 import ViewSupervisor from './components/SupervisorManagement/ViewSupervisor/ViewSupervisor';
 import AddRequest from './components/RequestManagement/AddRequest';
 import ViewRequest from './components/RequestManagement/ViewRequests/ViewRequest';
+
+import UpdateSupervisor from './components/SupervisorManagement/UpdateSupervisor/UpdateSupervisor';
+import UpdateCosupervisor from './components/CosupervisorManagement/UpdateCosupervisor/UpdateCosupervisor';
+import UpdatePanelmember from './components/PanelmemberManagement/UpdatePanelmember/UpdatePanelmember';
+
 import AddMarking from './components/MarkingSchemeManagement/AddMarking';
+
 
 
 function App() {
@@ -55,13 +62,18 @@ function App() {
             <Route path="/cosupervisor/signup" exact component = {CosupervisorSignUp}/>
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
+
+            <Route path="/users" exact component = {UsersHome}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
 
             <Route path="/users/cosupervisorlist" exact component = {AllCosupervisors}/>
             <Route path="/users/panelmemberlist" exact component = {AllPanelmembers}/>
             <Route path="/users/studentlist" exact component = {AllStudents}/>
             <Route path="/student/update/:id" exact component = {UpdateStudent}/>
-            <Route path="/users/student/addpanel/:id" exact component = {AssignPanelmember}/>
+            <Route path="/supervisor/update/:id" exact component = {UpdateSupervisor}/>
+            <Route path="/cosupervisor/update/:id" exact component = {UpdateCosupervisor}/>
+            <Route path="/panelmember/update/:id" exact component = {UpdatePanelmember}/>
+            <Route path="/users/addpanel/:id" exact component = {AssignPanelmember}/>
 
 
             <Route path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>

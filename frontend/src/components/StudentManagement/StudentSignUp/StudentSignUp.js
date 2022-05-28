@@ -62,7 +62,7 @@ function SignUp() {
             try {
                 await axios.post("http://localhost:8070/student/signup", newStudent , config)
                     alert("Registration Successful")
-                    history.push('/student/signin')
+                    history.push('/')
             } catch (error) {
                 if(error.response.status === 409){
                     alert(error.response.data.message)
@@ -198,19 +198,6 @@ function SignUp() {
                                             />
                                         </div>
                                     </div>
-                                        
-                                    
-                                    
-                                    {/* <div className="col-md-6 mb-4">
-                                        <div className="form-group">
-                                            <OutlinedInput  
-                                                type="text" id="role" placeholder="Role" 
-                                                required fullWidth
-                                                // onChange={(event)=> {setRole(event.target.value)}}
-                                                inputProps={{style: {padding: 12}}}
-                                            />
-                                        </div>
-                                    </div> */}
                                     
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -273,7 +260,7 @@ function SignUp() {
                                 </div>
                             </div>
                         </div>
-                        <p>Already have an account? <Link to="/student/signin">Sign In</Link></p>
+                        <p>Already have an account? <Link to="/">Sign In</Link></p>
                     </form>             
                 </div>                   
             </div>
