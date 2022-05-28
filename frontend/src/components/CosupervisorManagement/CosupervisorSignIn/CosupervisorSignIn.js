@@ -28,7 +28,7 @@ function CosupervisorLogin() {
             localStorage.setItem("cosupervisorAuthToken", `Cosupervisor ${data.token}`)
             localStorage.setItem("user",JSON.stringify(data.result))
         
-            history.push('/')
+            history.push('/request/allrequest')
         } catch (error) {
             if(error.response.status === 404){
                 alert("Invalid email")
