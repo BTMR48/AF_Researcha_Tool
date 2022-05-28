@@ -13,26 +13,34 @@ import './allgroups.css'
 function AllStudents() {
 
     const [students, setStudents] = useState([]);
-    // const [isAdmin,setIsAdmin]=useState(false)
+    const [isAdmin,setIsAdmin]=useState(false);
     const history = useHistory()
-   
- 
-    useEffect(() => {        
-        // if(localStorage.getItem("adminAuthToken")){
-        //     setIsAdmin(true)
-        //   }else{
-        //     setIsAdmin(false)
-        //   }
-          async function getStudents() {
-            axios.post(`http://localhost:8070/student`).then((res) => {
-              setStudents(res.data) 
-            }).catch((error) => {
-              alert("Failed to fetch Students")
-            })
+    const [user, setUser] =  useState("");
+    
+    
+    useEffect(() => {  
+        if(localStorage.getItem("user")){
+            setUser(JSON.parse(localStorage.getItem('user')))
           }
-      
-          getStudents()
-    })
+          if(localStorage.getItem("adminAuthToken")){
+            setIsAdmin(true)
+            console.log(isAdmin)
+          }
+        
+        async function getStudents() {
+            axios.post(`http://localhost:8070/student`).then((res) => {
+                setStudents(res.data) 
+            }).catch((error) => {
+                alert("Failed to fetch Students")
+            })
+        }
+        
+
+        if(isAdmin === true){
+            getStudents()
+        }
+        
+    }, [isAdmin])
 
     async function onDelete(id) {
         const config = {
@@ -45,14 +53,14 @@ function AllStudents() {
         alert("Student deleted successfully")
         setStudents(students.filter(element => element._id !== id))
         }).catch((error) => {
-        alert(`Failed to delete the Student`)
+        alert(error)
         })
     }
 
     function filterContent (data, searchTerm){
         
         const result = data.filter((student) =>
-            student.name.toLowerCase().includes(searchTerm)             
+            student.groupname.toLowerCase().includes(searchTerm)             
         )
         setStudents(result)
     }
@@ -62,12 +70,12 @@ function AllStudents() {
       axios.post(`http://localhost:8070/student`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
-          alert(error)
+          alert("Failed to Search")
       })
     }
 
     function update(id) {
-        history.push(`/users/student/addpanel/${id}`)
+        history.push(`/users/addpanel/${id}`)
       }
 
     // function addStudent(){
@@ -139,7 +147,7 @@ function AllStudents() {
                                 </td>
 
                                 <td>
-                                    {/* { isAdmin ? "" : */}
+                                    { isAdmin && 
                                         <div style={{verticalAlign:'middle'}}>
                                             <button className="addPanelBtn" style={{backgroundColor:'#0000'}} onClick={()=>update(Student._id)}>
                                                  <AddIcon style={{ color: grey[500] }} ></AddIcon> 
@@ -149,7 +157,7 @@ function AllStudents() {
                                                 <DeleteIcon style={{ color: red[500] }} ></DeleteIcon>
                                             </IconButton>
                                         </div>
-                                    {/* } */}
+                                    }
                                 </td>
                                 
                             </tr> 

@@ -1,12 +1,11 @@
 import React,{useState} from "react";
 import { useHistory} from 'react-router-dom';
 import { OutlinedInput } from "@material-ui/core";
-// import Chip from '@material-ui/core/Chip';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import Input from '@material-ui/core/Input';
-// import Select from '@material-ui/core/Select';
-// import MenuItem from '@material-ui/core/MenuItem';
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import 'date-fns';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import './PanelmemberSignUp.css';
@@ -18,6 +17,8 @@ function PanelmemberSignUp(){
     
     const [password, setPassword]= useState("");
     const [confirmPassword,setConfirmPassword]=useState("");
+    const [showPassword, setShowPassword] = useState();
+    const [showMessage, setShowMessage] = useState(false)
     const [name,setName]=useState("");
     const [title,setTitle]=useState("");
     const [email,setEmail]=useState("");
@@ -28,6 +29,20 @@ function PanelmemberSignUp(){
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
 
+    function passwordOnFocus(){
+        setShowMessage(true)
+    }
+
+    function passwordOnBlur(){
+        setShowMessage(false)
+    }
+
+    //show hide password
+    function handleShowPassword(){
+        setShowPassword((prevShowPassword) => !prevShowPassword)
+    }
+
+    //handling the image uploading
     const handleFileInputChange = (event) => {
         const file = event.target.files[0];
         previewFile(file);
@@ -78,7 +93,7 @@ function PanelmemberSignUp(){
             
                 await axios.post("http://localhost:8070/panelmember/signup",newPanelmember,config);
                 alert("Panel Member added successfully")
-                history.push(`/panelmember/signin`)
+                history.push(`/users/panelmemberlist`)
             } catch(error){
                 alert("Registration failed!");
                 
@@ -88,8 +103,6 @@ function PanelmemberSignUp(){
         }
        
     }
-  
-    //handling the image uploading
     
     return(   
         <div className="container" align="center">
@@ -162,13 +175,8 @@ function PanelmemberSignUp(){
                                 />
                             </div>
                 
+                            <br/>                        
                             <br/>
-                                      
-                
-                        
-                            <br/>
-                
-
                             <br/>
                 
                             <div className="col-xl-6 mb-3">
@@ -183,36 +191,53 @@ function PanelmemberSignUp(){
                                     inputProps={{style: {padding: 12}, pattern: "[0-9]{10}"}}
                                 />
                             </div>
-
+                            <div className="col-xl-6 mb-3"></div>
                             <br/>
                         
-                            <div className="col-xl-6 mb-3">  
-                                <div  className="form-group">
-                                    <OutlinedInput
-                                        type="password"
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        name="password"
-                                        value={password}
-                                        id="password"
-                                        placeholder="Password"
-                                        inputProps={{style: {padding: 12}}}
-                                        required fullWidth
+                            <div className="col-xl-6 mb-3">
+                                <div className="form-group">
+                                    <OutlinedInput 
+                                        type={showPassword ? "text" : "password"}
+                                        id="password" name="password" placeholder="Password" required fullWidth
+                                        onChange={(event)=> {setPassword(event.target.value)}}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                            <IconButton onClick={handleShowPassword}>
+                                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                            </InputAdornment>
+                                        }
+                                        inputProps={{style: {padding: 12}, pattern: "[A-Za-z0-9]{8,}"}}
+                                        onFocus={passwordOnFocus}
+                                        onBlur={passwordOnBlur}
                                     />
                                 </div>
                             </div>
-                            <div className="col-xl-6 mb-3">  
+                            <div className="col-xl-6 mb-3">
                                 <div className="form-group">
-                                    <OutlinedInput
-                                        value={confirmPassword}
-                                        type="password"
-                                        name="con-password"
-                                        id="con-password"
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
-                                        placeholder="Confirm Password"
-                                        required fullWidth
-                                        inputProps={{style: {padding: 12}}}
+                                    <OutlinedInput 
+                                        type={showPassword ? "text" : "password"}
+                                        id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required fullWidth
+                                        onChange={(event)=> {setConfirmPassword(event.target.value)}}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                            <IconButton onClick={handleShowPassword}>
+                                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                            </InputAdornment>
+                                        }
+                                        inputProps={{style: {padding: 12}, pattern: "[A-Za-z0-9]{8,}"}}
+                                        onFocus={passwordOnFocus}
+                                        onBlur={passwordOnBlur}
                                     />
                                 </div>
+                            </div>
+                            <div className="col-xl-12 mb-4">
+                                {showMessage &&
+                                    <div className="PWmessage">
+                                        <p>Password must contain lowercase letters, uppercase letters, numbers and should consist minimum of 8 characters</p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

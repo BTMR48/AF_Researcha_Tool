@@ -69,9 +69,9 @@ function CosupervisorLogin() {
              <input type="submit" value="Sign In" className="form-submit-btn"/>
                 
             <div className="text-muted">
-             <p >or</p>
-             <p> Don't have an Account? <Link to="/cosupervisor/signup"> Click Here</Link></p>
-             <p> Are you a student?<Link to="/student/signin"> Click Here</Link></p>
+             
+             <p> Are you a Panelmember?<Link to="/panelmember/signin"> Click Here</Link></p>
+             <p> Are you a student?<Link to="/"> Click Here</Link></p>
             </div>
         </form>
     </div>

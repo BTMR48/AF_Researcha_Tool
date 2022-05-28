@@ -25,17 +25,17 @@ function Footer() {
                     <div className="col-xl-3"style={{ paddingLeft: 70 }}>
                         <br/>
                         <p>
-                            This website is mainly focused on the current pandemic situation of our country.
-                            We hope to monitor the current situation of the country by making awareness     
+                            This website is focused on managing Research Projects of 4th Year undergradutes 
+                            at Sri Lanka Institute of Information Technology    
                         </p>
                     </div>
                     <div className="col-xl-2" align="center">
                         <h3>Links</h3>
                         <ul className="list-group">
                             <li><Link to="/" style={{ color: '#FFF' }}>Home</Link></li>
-                            <li><Link to="/pharmacy/items"  style={{ color: '#FFF' }}>supervisors</Link></li>
                             <li><Link to=""  style={{ color: '#FFF' }}>About Us</Link></li>
                             <li><Link to=""  style={{ color: '#FFF' }}>Contacts</Link></li>
+                            <li><Link to="/supervisor/signin"  style={{ color: '#FFF' }}>Supervisors</Link></li>
                             <li><Link to="/admin/signin"  style={{ color: '#FFF' }}>Admin</Link></li>
                         </ul>
                     </div>

@@ -69,9 +69,7 @@ function PanelmemberLogin() {
              <input type="submit" value="Sign In" className="form-submit-btn"/>
                 
             <div className="text-muted">
-             <p >or</p>
-             <p> Don't have an Account? <Link to="/panelmember/signup"> Click Here</Link></p>
-             <p> Are you a student?<Link to="/student/signin"> Click Here</Link></p>
+             <p> Are you a student?<Link to="/"> Click Here</Link></p>
             </div>
         </form>
     </div>

@@ -34,7 +34,7 @@ function Login() {
             //setting the student authorization token
             localStorage.setItem("studentAuthToken", `Student ${data.token}`)
             //setting user
-            localStorage.setItem("user", JSON.stringify(data.result)) // ?????????????????????????????????????????
+            localStorage.setItem("user", JSON.stringify(data.result)) 
             
             history.push('/evolution/levels')
         } catch (error) {
@@ -57,7 +57,6 @@ function Login() {
             <div className="card-form">
                 <form className="boxSignIn" onSubmit={signIn}>
                     <h1 className="form-h1">Student Login</h1>
-                    {/* <p className="text-muted"> All your health needs at one place!</p>  */}
                     <input 
                         type="email" 
                         name="email" 
@@ -82,15 +81,13 @@ function Login() {
                         </IconButton>
                     </span>
 
-                    <Link className="forgot" to="/student/forgotpassword">Forgot password?</Link> 
+                    {/* <Link className="forgot" to="/student/forgotpassword">Forgot password?</Link>  */}
                     <input className="form-submit-btn" type="submit" value="Sign In" />
-
-                    {/* <p className="text-muted">or</p> */}
 
                     <br></br><br></br><br></br>
                     <div className="text-muted">
                         <p>Don't have an account? <Link to="/student/signup">Sign Up</Link></p>
-                        <p>Are you a doctor? <Link to="/doctor/signin"> Click here</Link></p>
+                        <p>Are you a Supervisor? <Link to="/supervisor/signin"> Click here</Link></p>
                     </div>
                 </form>
             </div>

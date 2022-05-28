@@ -5,49 +5,85 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from "@material-ui/core/InputAdornment";
+import AddIcon from '@material-ui/icons/Add';
+import { red, grey } from '@material-ui/core/colors';
 import axios from 'axios';
 import './AssignPanelmember.css';
 
 function AssignPanelmember(props) {
     
-    const [assignedpanel,setAssignedPanel] = useState("");
-    const [panelmembers,setPanelmembers] = useState("");
+    // const [groupname,setGroupName] = useState("");
+    // const [email,setEmail] = useState("");
+    // const [phone,setPhone] = useState("");
+    // const [member1name,setMember1Name] = useState("");
+    // const [member2name,setMember2Name] = useState("");
+    // const [member3name,setMember3Name] = useState("");
+    // const [member4name,setMember4Name] = useState("");
+    // const [member1reg,setMember1Reg] = useState("");
+    // const [member2reg,setMember2Reg] = useState("");
+    // const [member3reg,setMember3Reg] = useState("");
+    // const [member4reg,setMember4Reg] = useState("");
+    const [studentID,setStudentID] = useState(props.match.params.id);
+    const [panelmembers,setPanelmembers] = useState([]);
+    const [isAdmin,setIsAdmin]=useState(false)
+
     const history = useHistory();
 
     //fetching user data
-    useEffect(()=>{
-        async function fetchUser(){
-            await axios.get(`http://localhost:8070/student/${props.match.params.id}`).then((res)=>{
-                setAssignedPanel(res.data.result.panelmember)
-                console.log(res)
-            }).catch((error)=>{
-                alert("Failed to fetch student data")
-            })
-        }
-        fetchUser()
-    },[props]);
+    // useEffect(()=>{
+    //     async function fetchUser(){
+    //         await axios.get(`http://localhost:8070/student/${props.match.params.id}`).then((res)=>{
+    //             // setStudentID(res.data.result._id)
+    //             // setEmail(res.data.result.email)
+    //             // setPhone(res.data.result.phone)
+    //             // setMember1Name(res.data.result.member1name)
+    //             // setMember1Reg(res.data.result.member1reg)
+    //             // setMember2Name(res.data.result.member2name)
+    //             // setMember2Reg(res.data.result.member2reg)
+    //             // setMember3Name(res.data.result.member3name)
+    //             // setMember3Reg(res.data.result.member3reg)
+    //             // setMember4Name(res.data.result.member4name)
+    //             // setMember4Reg(res.data.result.member4reg)
+    //             // setUserImg(res.data.result.imgUrl)
+    //         }).catch((error)=>{
+    //             alert("Failed to fetch student data")
+    //         })
+    //     }
+    //     fetchUser()
+    // },[props]);
+    console.log(studentID)
 
     //fetching panelmember data
     useEffect(()=>{
+
+        if(localStorage.getItem("adminAuthToken")){
+            setIsAdmin(true)
+          }else{
+            setIsAdmin(false)
+          }
+
         async function fetchPanelmember(){
             await axios.post(`http://localhost:8070/panelmember`).then((res)=>{
                 setPanelmembers(res.data)
-                console.log(res)
+                
             }).catch((error)=>{
                 alert("Failed to fetch panelmember data")
             })
         }
         fetchPanelmember()
-    })
+    }, [isAdmin])
+
 
     //update the user
-    async function Update(event){
+    async function Update(name, id){
 
-        event.preventDefault();
+        // event.preventDefault();
+        let panelmember = name;
+        let panelmemberID = id;
+        const addPanel = {panelmember}
 
-        const updateStudent = {panelmembers}
-
-        //header with authorization token
+        Assign(panelmemberID)
+        // header with authorization token
         const config = {
             headers: {
                 "content-Type": "application/json",
@@ -56,16 +92,30 @@ function AssignPanelmember(props) {
         };
 
         try {
-            await axios.put(`http://localhost:8070/student/update/${props.match.params.id}`,updateStudent, config);
-                alert("Added Successfully")
-                history.push('/student/profile')
+            await axios.put(`http://localhost:8070/student/update/${props.match.params.id}`,addPanel, config); 
+                alert("Assigned Successfully")
+                history.push('/users/studentlist')
         } catch (error) {
             if(error.response.status === 401){
                 alert("Authentication failed. Please Sign In again")
                 history.push('/student/signin')
             } else{
-                alert("Adding Failed")
+                alert("Assigning Failed")
             }
+        }    
+    }
+
+    //assign the panelmember
+    async function Assign(id){
+
+        // event.preventDefault();
+        let panelmemberID = id;
+        const assignPanel = {panelmemberID, studentID}
+
+        try {
+            await axios.post(`http://localhost:8070/pnlgroup/add`,assignPanel); 
+        } catch (error) {
+            alert("This panelmember is already assigned to this group")
         }    
     }
 
@@ -76,49 +126,42 @@ function AssignPanelmember(props) {
                 </div>
                  <div className="col-11">
                     <div className="pb-2 px-5 d-flex align-items-center justify-content-between">
-                        <h2>Add Panel Member</h2>
+                        <h2></h2>
                     </div>
                 </div>
             </div>
-            <div className="">
-                <form onSubmit={Update} encType="multipart/form-data" className="boxUpdate">
-                    <div className="row">
-                        <div className="col-md-12 mb-4">
-                            <div className="form-group">
-                                <tbody style={{ textAlign: 'center' }}>
+            <div className="blue-table">
+                <div className="blue-table, box-view-list">
+                    <table>
+                        
+                        <tbody style={{ textAlign: 'center' }}>
+                            {panelmembers.map((Panelmember,key) => (
+                            <tr key={key}>
+                            
+                                <td>
+                                    {
+                                      <h6>{Panelmember.title + " " + Panelmember.name}</h6>
+                                    }
+                                </td>
 
-                                    {panelmembers.map((Panelmember,key) => (
-                                    <tr key={key}>
-                                    
-                                        <td>
-                                            <h6>{Panelmember.name}</h6>                                        
-                                        </td>
-                                    
-                                        <td>
-                                            <h6>{Panelmember.email}</h6>
-                                        </td>
-
-                                        <td>
-                                            <h6>{Panelmember}</h6>
-                                        </td>
-                                        
-                                    </tr> 
-                                    ))}
+                                <td>
+                                    { isAdmin &&
+                                        <div style={{verticalAlign:'middle'}}>
+                                            <button className="addPanelBtn" style={{backgroundColor:'#0000'}} onClick={()=>Update(Panelmember.name, Panelmember._id)}>
+                                                 <AddIcon style={{ color: grey[500] }} ></AddIcon> 
+                                                 Assign
+                                            </button>
+                                        </div>
+                                    }
+                                </td>
                                 
-                                </tbody>
-                                                                
-                            </div>
-                        </div>
-                    </div>   
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="form-group">
-                                <input className="form-submit-btn mb-0" type="submit" value="Update" />
-                            </div> 
-                        </div>
-                    </div> 
-                </form>     
-            </div>                    
+                            </tr> 
+                            ))}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     )
 }
