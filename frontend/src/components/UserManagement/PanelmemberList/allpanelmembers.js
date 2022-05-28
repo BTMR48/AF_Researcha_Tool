@@ -12,16 +12,16 @@ import './allpanelmembers.css'
 function AllPanelmembers() {
 
     const [panelmembers, setPanelmembers] = useState([]);
-    // const [isAdmin,setIsAdmin]=useState(false)
+    const [isAdmin,setIsAdmin]=useState(false)
     const history = useHistory()
    
  
     useEffect(() => {        
-        // if(localStorage.getItem("adminAuthToken")){
-        //     setIsAdmin(true)
-        //   }else{
-        //     setIsAdmin(false)
-        //   }
+        if(localStorage.getItem("adminAuthToken")){
+            setIsAdmin(true)
+          }else{
+            setIsAdmin(false)
+          }
           async function getPanelmembers() {
             axios.post(`http://localhost:8070/panelmember`).then((res) => {
               setPanelmembers(res.data)  
@@ -30,8 +30,11 @@ function AllPanelmembers() {
             })
           }
       
-          getPanelmembers()
-    })
+          if(isAdmin === true){
+              getPanelmembers()
+            }
+            
+    }, [isAdmin])
 
     async function onDelete(id) {
         const config = {
@@ -51,8 +54,7 @@ function AllPanelmembers() {
     function filterContent (data, searchTerm){
         
         const result = data.filter((panelmember) =>
-            panelmember.name.toLowerCase().includes(searchTerm) ||
-            panelmember.fields.map(str => str.toLowerCase().includes(searchTerm))
+            panelmember.name.toLowerCase().includes(searchTerm)
         )
         setPanelmembers(result)
     }
@@ -62,7 +64,7 @@ function AllPanelmembers() {
       axios.post(`http://localhost:8070/panelmember`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
-          alert(error)
+          alert("Failed to Search")
       })
     }
 
@@ -102,11 +104,11 @@ function AllPanelmembers() {
                     </div>
                 </div>
             </div>
-            {/* {isAdmin &&  */}
+            {isAdmin && 
                 <div align="center">
                     <button className="addStaffBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addSupervisor()}> Add Panelmember </button>
                 </div>
-            {/* } */}
+            }
             <br/>
 
             <div className="blue-table">
@@ -139,16 +141,16 @@ function AllPanelmembers() {
                                 </td>
 
                                 <td>
-                                    {/* { isAdmin ? "" : */}
+                                    { isAdmin && 
                                         <div style={{verticalAlign:'middle'}}>
-                                            <IconButton onClick={() => update(Panelmember._id)}>
+                                            {/* <IconButton onClick={() => update(Panelmember._id)}>
                                                 <EditIcon style={{ color: grey[500] }} ></EditIcon>
-                                            </IconButton>
+                                            </IconButton> */}
                                             <IconButton onClick={() => onDelete(Panelmember._id)}>
                                                 <DeleteIcon style={{ color: red[500] }} ></DeleteIcon>
                                             </IconButton>
                                         </div>
-                                    {/* } */}
+                                    }
                                 </td>
                                 
                             </tr> 

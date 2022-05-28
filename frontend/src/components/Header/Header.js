@@ -23,6 +23,8 @@ import './Sidebar.css';
 
 function Header() {
     const [isSignedIn, setIsSignedIn] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isSupervisor, setIsSupervisor] = useState(false);
     const [cartCount, setCartCount] = useState();
     const [user, setUser] = useState("");
     const [URL, setURL] = useState("/patient");
@@ -39,7 +41,7 @@ function Header() {
         },
         {
           title: 'Profile',
-           path: `${URL}/profile`,
+           path: `${URL}/update/${user._id}`,
           icon: <PersonIcon/>,
           cName: 'nav-text'
         },
@@ -55,17 +57,23 @@ function Header() {
           icon: <AssignmentIcon/>,
           cName: 'nav-text'
         },
-        {
+        isSupervisor &&{
             title: 'Chat',
             path: `/student/chat/${user._id}`,
             icon: <ForumIcon />,
             cName: 'nav-text'
-        }
+        },
+        isAdmin && {
+            title: 'User Management',
+            path: `/users`,
+            icon: <PersonIcon/>,
+            cName: 'nav-text'
+        },
     ];
 
     useEffect(() => {
         //check whether user has signed in
-        if(localStorage.getItem("studentAuthToken") || localStorage.getItem("supervisorAuthToken") || localStorage.getItem("adminAuthToken") ){
+        if(localStorage.getItem("studentAuthToken") || localStorage.getItem("supervisorAuthToken") || localStorage.getItem("adminAuthToken") || localStorage.getItem("cosupervisorAuthToken") || localStorage.getItem("panelmemberAuthToken")){
             setIsSignedIn(true)
 
             //get user data
@@ -84,20 +92,32 @@ function Header() {
             // getCartCount();
 
         
+            if(localStorage.getItem("adminAuthToken")){
+                // setURL(`/admin`)
+                setIsAdmin(true)
+            }
             if(localStorage.getItem("studentAuthToken")){
                 setURL(`/student`)
             }
 
             if(localStorage.getItem("supervisorAuthToken")){
                 setURL(`/supervisor`)
+                setIsSupervisor(true)
             }
+            if(localStorage.getItem("cosupervisorAuthToken")){
+                setURL(`/cosupervisor`)
+            }
+            if(localStorage.getItem("panelmemberAuthToken")){
+                setURL(`/panelmember`)
+            }
+
         }else{
             setIsSignedIn(false)
         }
     }, [user._id,location])
 
     function profile() {
-        history.push(`${URL}/profile/`)
+        history.push(`${URL}/update/${user._id}`)
     }
 
 
