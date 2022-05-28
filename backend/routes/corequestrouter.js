@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const{addRequest, viewAllRequest, deleteRequest, viewOneRequest, updateRequest} = require('../controllers/requestcontroller.js')
+const{addRequest, updateRequest, viewAllRequest, deleteRequest, viewOneRequest} = require('../controllers/coRequestController.js')
 
 //add new request
 router.post('/add', addRequest);
@@ -10,10 +10,10 @@ router.put('/update/:id', updateRequest);
 // view request
 router.get('/', viewAllRequest);
 
-//view one request
-router.get('/:id',viewOneRequest);
-
 //delete request
 router.delete('/delete/:id', deleteRequest);
+
+//view one request
+router.get('/:id',viewOneRequest);
 
 module.exports = router;

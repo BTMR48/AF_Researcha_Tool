@@ -17,7 +17,9 @@ function AddRequest(props) {
     const [fields, setFields] = useState("");
     const [topic, setTopic] = useState("");
     const [batchgroup, setBatchgroup] = useState(""); 
+    const [type,setType]=useState("");
     const [imgUrl, setImgUrl] = useState("");
+    const [isAdmin,setIsAdmin]=useState(false)
     const history = useHistory()
 
     
@@ -29,6 +31,14 @@ function AddRequest(props) {
 
     useEffect(() => {
 
+        if(localStorage.getItem("user")){
+            setUser(JSON.parse(localStorage.getItem('user')))
+        }
+        
+        if(localStorage.getItem("adminAuthToken")){
+            setIsAdmin(true)
+        }
+
         async function getSupervisorDetails(){
             axios.get(`http://localhost:8070/supervisor/${props.match.params.id}`, config).then((res) => {
                 setSupervisorID(res.data._id)
@@ -39,6 +49,7 @@ function AddRequest(props) {
                 setTitle(res.data.title)
                 setTopic(res.data.topic)
                 setBatchgroup(res.data.batchgroup)
+                setType(res.data.type)
             }).catch((error) => {
                 console.log(error)
                 alert("Failed to fetch supervisor")
@@ -54,7 +65,8 @@ function AddRequest(props) {
             supervisorID,
             studentID,
             topic,
-            batchgroup
+            batchgroup,
+            type
         }
 
         localStorage.setItem("supervisorrequest", JSON.stringify(newRequest))
@@ -129,7 +141,7 @@ function AddRequest(props) {
                                         id="batchgroup" placeholder="Batch Group (EX: SE_REG_2020)" 
                                         required fullWidth variant="outlined" 
                                         onChange={(e)=>setBatchgroup(e.target.value)}
-                                        inputProps={{style: {padding: 12}}}
+                                        inputProps={{style: {padding: 1}}}
                                     />
                                 </div>
                             </div>
@@ -140,13 +152,57 @@ function AddRequest(props) {
                                         id="topic" placeholder="Topic Name" 
                                         required fullWidth variant="outlined" 
                                         onChange={(e)=>setTopic(e.target.value)}
-                                        inputProps={{style: {padding: 12}}}
+                                        inputProps={{style: {padding: 1}}}
                                     />
                                 </div>
                             </div>
+                            <div className="row">
+                            <div className="col-md-12 mb-4">
+                                <div className="form-group">
+                                    {/* <div>
+                                        <label><h6>Type</h6></label> &nbsp;
+                                    </div> */}
+                                        <div>
+                                            {isAdmin === true ? 
+                                                <div>
+                                                     <div className="form-check form-check-inline">
+                                                        <input 
+                                                            className="form-check-input" type="radio" name="Type" id="Approve" value="Approve" required
+                                                            onChange={(e)=>setType(e.target.value)}
+                                                        />
+                                                        <label className="form-check-label" for="Approve" >
+                                                            Approve
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check form-check-inline">
+                                                        <input 
+                                                            className="form-check-input" type="radio" name="Type" id="Reject" value="Reject" required
+                                                            onChange={(e)=>setType(e.target.value)}
+                                                        />
+                                                        <label className="form-check-label" for="Reject" >
+                                                            Reject
+                                                        </label>
+                                                    </div> 
+                                                </div>
+                                                :
+                                                <div className="form-check form-check-inline">
+
+                                                    <input 
+                                                        className="form-check-input" type="radio" name="Type" id="Request" value="Request" required
+                                                        onChange={(e)=>setType(e.target.value)}
+                                                    />
+                                                    <label className="form-check-label" for="Request" >
+                                                        Request
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                             <div className="col-12">
                                 <div className="form-group">
-                                    <input className="form-submit-btn mb-0" type="submit" value="Make a Request" />
+                                    <input className="form-submit-btn mb-0" type="submit" value="Request" />
                                 </div>
                             </div>
                         </div>

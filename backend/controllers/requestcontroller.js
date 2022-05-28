@@ -1,12 +1,11 @@
 const router = require("express").Router();
+const { request } = require("express");
 let Request = require("../models/Request");
 
 //add new request
 exports.addRequest = async (req, res) =>{   
-    //constant variables for attributes
-    // const studentID = req.body.studentID;
-    // const supervisorID = req.body.supervisorID;
-    const {studentID, supervisorID, topic, batchgroup} = req.body;
+
+    const {studentID, supervisorID, topic, batchgroup,type} = req.body;
 
     //object
     const newRequest = new Request({
@@ -14,7 +13,8 @@ exports.addRequest = async (req, res) =>{
         studentID,
         supervisorID,
         topic,
-        batchgroup
+        batchgroup,
+        type
     })
 
     newRequest.save().then(() => {
@@ -47,8 +47,36 @@ exports.deleteRequest = async (req, res) =>{
   })
 }
 
+//view one request
+exports.viewOneRequest = async (req, res) => {
+    let requestID =req.params.id;
 
+    await Request.findById(requestID).then((request) => {
+            res.status(200).json({success: true, status:"Request fetched", request});
+        }).catch((error) =>{
+            res.status(500).json({success:false, status:"fetching request failed", error: error.message});
+        })
+}
 
+//update requests
+exports.updateRequest = async (req, res) =>{
+    let requestID = req.params.id;
+
+    const {topic, batchgroup, type} = req.body;
+
+    const updateRequest = {
+        topic,
+        batchgroup,
+        type
+    }
+    try{
+        await Request.findByIdAndUpdate(requestID, updateRequest);
+
+        res.status(200).json({ success: true, message: "Updated" })
+    }catch(error){
+        res.status(500).json({ message: "Error with Updating", error: error.message });
+    }
+}
 
 // exports.updateRequest = async (req, res) => {
 //     //fetch id from url
@@ -93,17 +121,5 @@ exports.deleteRequest = async (req, res) =>{
 //         //error message
 //         res.status(500).json({message: "fetching Result failed", error:error.message})
 //    }
-// }
-
-// //view one request
-// exports.viewOneRequest = async (req, res) => {
-//     let requestID =req.params.id;
-
-//     await Request.findById(requestID).populate(
-//         {path: 'studentID supervisorID', select: ['firstname','lastname','title','name','fields','imgUrl', 'topic', 'batchgroup']}).then((request) => {
-//             res.status(200).json({success: true, result:request})
-//         }).catch((error) =>{
-//             res.status(500).json({success:false, status:"fetching request failed", error: error.message});
-//         })
 // }
 
