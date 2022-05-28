@@ -52,6 +52,12 @@ function Header() {
           cName: 'nav-text'
         },
         {
+            title: 'Requests',
+            path: `/request/allrequest/`,
+            icon: <EventAvailableIcon/>,
+            cName: 'nav-text'
+        },
+        {
           title: 'Marking Schema',
           path: `/marking`,
           icon: <AssignmentIcon/>,
