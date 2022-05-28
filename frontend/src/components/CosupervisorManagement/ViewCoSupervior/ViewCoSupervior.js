@@ -5,12 +5,32 @@ import './ViewCoSupervior.css'
 import axios from 'axios'
 import 'react-multi-carousel/lib/styles.css';
 import { blue , orange } from '@mui/material/colors'
+import Carousel from 'react-multi-carousel';
 
 function ViewCoSupervisor(){
 
     const[cosupervisors, setCoSupervisors] = useState([])
     const history = useHistory()
     const location = useLocation()
+
+    const responsive = {
+      superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 5
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+      }
+    };
 
       useEffect(() => {
           async function getViewCoSupervisor(){
@@ -68,7 +88,7 @@ function ViewCoSupervisor(){
                       </div>
                 </div> */}
               </div>
-              <div className='supervisorGrid'>
+              <Carousel wipeable={true}  responsive={responsive} autoPlay={true} autoPlaySpeed={2000} infinite={true} className="px-5 py-5 mb-2"> 
                 {cosupervisors.map((CoSupervisor,key) => (
                   <div key={key}>
                     <div className='supervisorsCard'>
@@ -89,7 +109,7 @@ function ViewCoSupervisor(){
                     </div>
                   </div>
                 ))}
-              </div>
+              </Carousel>
             </div>
           </div>
       )

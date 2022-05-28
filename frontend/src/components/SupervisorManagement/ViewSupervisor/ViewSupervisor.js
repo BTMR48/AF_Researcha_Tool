@@ -90,8 +90,7 @@ function ViewSupervisor(){
                       </div>
                 </div>
               </div>
-              <div className='supervisorGrid'>
-              {/* <Carousel wipeable={true}  responsive={responsive} autoPlay={true} autoPlaySpeed={2000} infinite={true} className="px-5 py-5 mb-2">  */}
+              <Carousel wipeable={true}  responsive={responsive} autoPlay={true} autoPlaySpeed={2000} infinite={true} className="px-5 py-5 mb-2"> 
                 {supervisors.map((Supervisor,key) => (
                   <div key={key}>
                     <div className='supervisorsCard'>
@@ -112,8 +111,7 @@ function ViewSupervisor(){
                     </div>
                   </div>
                 ))}
-              {/* </Carousel> */}
-              </div>
+              </Carousel>
               <div></div>
               <br></br>
               <br></br>

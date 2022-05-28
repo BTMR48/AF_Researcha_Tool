@@ -13,7 +13,8 @@ function ViewRequest() {
   const history = useHistory()
   const location = useLocation()
 
-  const [isAdmin,setIsAdmin]=useState(false)
+  const [isSupervisor,setIsSupervisor]=useState(false)
+  const [isCoSupervisor,setIsCoSupervisor]=useState(false)
   const [user, setUser] = useState("");
 
   const config = {
@@ -28,8 +29,12 @@ function ViewRequest() {
       setUser(JSON.parse(localStorage.getItem('user')))
     }
   
-    if(localStorage.getItem("adminAuthToken")){
-        setIsAdmin(true)
+    if(localStorage.getItem("supervisorAuthToken")){
+        setIsSupervisor(true)
+    }
+
+    if(localStorage.getItem("cosupervisorAuthToken")){
+      setIsCoSupervisor(true)
     }
 
       async function getViewRequests(){
@@ -59,12 +64,17 @@ function ViewRequest() {
     <div className="container">
       <div className="row">
           <div className="col-4">
-            <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                <h2>Supervisor Requests</h2>
-            </div>
+            {isCoSupervisor === false ?
+              <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
+                  <h2>Supervisor Requests</h2>
+              </div>
+              :
+              <div></div>
+            }
           </div>
       </div>
           <div className="col-5">
+          {isCoSupervisor === false ?
             <div className="requestGrid"  > 
                     {requests.map((Request,key) => (
                       <div key={key}>
@@ -75,7 +85,7 @@ function ViewRequest() {
                             <h6 style={{color:red[300]}}>{Request.type}</h6>
                             <div align ="center">
                                 <div>
-                                  {isAdmin === true ?
+                                  {isSupervisor === true ?
                                     <div>
                                       <button className='cancelBtn' style={{backgroundColor:'#2f89fc'}} onClick={()=>view(Request._id)}> Edit </button>
                                     </div>
@@ -91,10 +101,20 @@ function ViewRequest() {
                       </div>
                     ))}
             </div>
+          :
+            <div></div>  
+          }
           </div>
           <br></br>
           <div>
-            <ViewCorequest />
+        
+            {isSupervisor === false ?
+              <div>
+                <ViewCorequest />
+              </div>
+              :
+              <div></div>
+            }
           </div>
     </div>
   )

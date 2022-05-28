@@ -11,7 +11,7 @@ function ViewCorequest() {
     const history = useHistory()
     const location = useLocation()
   
-    const [isAdmin,setIsAdmin]=useState(false)
+    const [isCoSupervisor,setIsCoSupervisor]=useState(false)
     const [user, setUser] = useState("");
   
     const config = {
@@ -26,10 +26,10 @@ function ViewCorequest() {
           setUser(JSON.parse(localStorage.getItem('user')))
         }
       
-        if(localStorage.getItem("adminAuthToken")){
-            setIsAdmin(true)
+        if(localStorage.getItem("cosupervisorAuthToken")){
+          setIsCoSupervisor(true)
         }
-    
+        
           async function getViewCoRequests(){
               axios.get('http://localhost:8070/corequest/').then((res) => {
                   setRequests(res.data)
@@ -75,7 +75,7 @@ function ViewCorequest() {
                             <h6 style={{color:red[300]}}>{Request.type}</h6>
                             <div align ="center">
                                 <div>
-                                  {isAdmin === true ?
+                                  {isCoSupervisor === true ?
                                     <div>
                                       <button className='cancelBtn' style={{backgroundColor:'#2f89fc'}} onClick={()=>view(Request._id)}> Edit </button>
                                     </div>
