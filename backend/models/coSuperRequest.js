@@ -2,16 +2,21 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const RequestSchema = new Schema({
+const CoRequestSchema = new Schema({
     studentID:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'student',
         required:true
     },
 
-    supervisorID:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: 'supervisor',
+    coSupervisorID:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'cosupervisor',
+        required:true
+    },
+
+    supervisorName:{
+        type: String,
         required: true
     },
 
@@ -24,6 +29,7 @@ const RequestSchema = new Schema({
         type: String,
         required: true
     },
+
     type : {
         type : String,
         required : true
@@ -31,5 +37,5 @@ const RequestSchema = new Schema({
 
 });
 
-const Request = mongoose.model("supervisorrequest", RequestSchema)
-module.exports = Request
+const CoRequest = mongoose.model("cosupervisorrequest", CoRequestSchema)
+module.exports = CoRequest

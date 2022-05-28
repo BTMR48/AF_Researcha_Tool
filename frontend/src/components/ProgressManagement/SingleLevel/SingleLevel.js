@@ -12,9 +12,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
-
 //import {Submit} from './../../SubmissionManagement/AddSubmission/AddSubmissionstd'
-
 
 function ProgressDetails(props) { 
     const [isAdmin,setIsAdmin]=useState(false)
@@ -70,8 +68,7 @@ function ProgressDetails(props) {
         window.open(imgUrl);
     }
 
-    
-   
+
     function update(uid){
         history.push(`/evolution/level/updateProgress/${uid}`)
     }
@@ -80,9 +77,6 @@ function ProgressDetails(props) {
         // navigate(`/patient/buyPayment/${id}/${date}`)
         history.push(`/submission/addSubmission/${id}/${name}`)
     }
-
-   
-    
    
     return (
         <div className = "container" align="center">
