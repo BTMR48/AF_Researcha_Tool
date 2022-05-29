@@ -12,26 +12,29 @@ import './allsupervisors.css'
 function AllSupervisors() {
 
     const [supervisors, setSupervisors] = useState([]);
-    // const [isAdmin,setIsAdmin]=useState(false)
+    const [isAdmin,setIsAdmin]=useState(false)
     const history = useHistory()
    
  
     useEffect(() => {        
-        // if(localStorage.getItem("adminAuthToken")){
-        //     setIsAdmin(true)
-        //   }else{
-        //     setIsAdmin(false)
-        //   }
+        if(localStorage.getItem("adminAuthToken")){
+            setIsAdmin(true)
+          }else{
+            setIsAdmin(false)
+          }
           async function getSupervisors() {
             axios.post(`http://localhost:8070/supervisor`).then((res) => {
               setSupervisors(res.data)  
             }).catch((error) => {
-              alert("Failed to fetch supervisors")
+              alert("Failed to fetch Supervisors")
             })
           }
-      
-          getSupervisors()
-    })
+          
+          if(isAdmin === true){
+              getSupervisors()
+            }
+            
+    }, [isAdmin])
 
     async function onDelete(id) {
         const config = {
@@ -44,7 +47,7 @@ function AllSupervisors() {
         alert("Supervisor deleted successfully")
         setSupervisors(supervisors.filter(element => element._id !== id))
         }).catch((error) => {
-        alert(`Failed to delete the supervisor`)
+        alert(`Failed to delete the Supervisor`)
         })
     }
 
@@ -52,7 +55,7 @@ function AllSupervisors() {
         
         const result = data.filter((supervisor) =>
             supervisor.name.toLowerCase().includes(searchTerm) ||
-            supervisor.fields.map(str => str.toLowerCase().includes(searchTerm))
+            supervisor.fields.toString().toLowerCase().includes(searchTerm)
         )
         setSupervisors(result)
     }
@@ -62,7 +65,7 @@ function AllSupervisors() {
       axios.post(`http://localhost:8070/supervisor`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
-          alert(error)
+          alert("Failed to Search")
       })
     }
 
@@ -95,18 +98,18 @@ function AllSupervisors() {
                             type="text"
                             name="search"
                             id="search"
-                            placeholder="Search supervisors"
+                            placeholder="Search Supervisors"
                             onChange={handleSearch}
                             required
                         />
                     </div>
                 </div>
             </div>
-            {/* {isAdmin &&  */}
+            {isAdmin && 
                 <div align="center">
                     <button className="addStaffBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addSupervisor()}> Add Supervisor </button>
                 </div>
-            {/* } */}
+            } 
             <br/>
 
             <div className="blue-table">
@@ -139,16 +142,16 @@ function AllSupervisors() {
                                 </td>
 
                                 <td>
-                                    {/* { isAdmin ? "" : */}
+                                    { isAdmin &&
                                         <div style={{verticalAlign:'middle'}}>
-                                            <IconButton onClick={() => update(Supervisor._id)}>
+                                            {/* <IconButton onClick={() => update(Supervisor._id)}>
                                                 <EditIcon style={{ color: grey[500] }} ></EditIcon>
-                                            </IconButton>
+                                            </IconButton> */}
                                             <IconButton onClick={() => onDelete(Supervisor._id)}>
                                                 <DeleteIcon style={{ color: red[500] }} ></DeleteIcon>
                                             </IconButton>
                                         </div>
-                                    {/* } */}
+                                    }
                                 </td>
                                 
                             </tr> 

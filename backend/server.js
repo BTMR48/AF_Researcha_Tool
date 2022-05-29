@@ -18,8 +18,14 @@ const ProgressRouter = require("./routes/progressrouter.js");
 const SupervisorRouter = require("./routes/supervisorrouter");
 const PanelmemberRouter = require("./routes/panelmemberrouter");
 const CoSupervisorrouter = require("./routes/cosupervisorrouter");
+
 const SubmissionRouter = require("./routes/submissionrouter");
 
+
+const Submission = require("./routes/submissionrouter");
+const RequestRouter = require("./routes/requestrouter");
+const CoRequestRouter = require("./routes/corequestrouter");
+const PanelgroupRouter = require("./routes/panelgrouprouter");
 
 //getting the database url
 const URL = process.env.MONGODB_URL;
@@ -51,10 +57,22 @@ app.use("/supervisor",SupervisorRouter);
 app.use("/panelmember",PanelmemberRouter);
 //when http://localhost:8070/supervisor ran it will execute supervisorrouter.js file
 app.use("/cosupervisor",CoSupervisorrouter);
+
 //when http://localhost:8070/submission ran it will execute submissionrouter.js file
 app.use("/submission",SubmissionRouter);
 //when http://localhost:8070/marking ran it will execute markingrouter.js file
 app.use("/marking",Markingrouter);
+
+//when http://localhost:8070/submission ran it will execute supervisorrouter.js file
+app.use("/submission",Submission);
+//when http://localhost:8070/request ran it will execute requestrouter.js file
+app.use("/request",RequestRouter);
+//when http://localhost:8070/request ran it will execute co-requestrouter.js file
+app.use("/corequest", CoRequestRouter);
+//when http://localhost:8070/pnlgroup ran it will execute panelgrouprouter.js file
+app.use("/pnlgroup",PanelgroupRouter);
+
+
 
 
 

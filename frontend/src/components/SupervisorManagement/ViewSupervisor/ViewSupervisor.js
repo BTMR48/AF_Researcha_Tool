@@ -3,11 +3,10 @@ import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import './ViewSupervisor.css'
 import axios from 'axios'
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-//import {blue} from '@material-ui/core/colors';
-//import Supervisor from '../../../../../backend/models/supervisor';
-import { blue } from '@mui/material/colors'
+import { blue , orange } from '@mui/material/colors'
+import Carousel from 'react-multi-carousel';
+import ViewCoSupervisor from '../../CosupervisorManagement/ViewCoSupervior/ViewCoSupervior';
 
 function ViewSupervisor(){
 
@@ -16,23 +15,24 @@ function ViewSupervisor(){
     const location = useLocation()
 
     const responsive = {
-        superLargeDesktop: {
-          breakpoint: { max: 4000, min: 3000 },
-          items: 5
-        },
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 5
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1
-        }
-      };
+      superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 5
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+      }
+    };
+    
 
       useEffect(() => {
           async function getViewSupervisor(){
@@ -72,7 +72,7 @@ function ViewSupervisor(){
               <div className='row'>
                 <div className='col-4'>
                   <div className='pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between'>
-                    <h2>Research Supervisors</h2>
+                    <h2>Supervisors</h2>
                   </div>
                 </div>
                 <div className='col-3'>
@@ -90,7 +90,7 @@ function ViewSupervisor(){
                       </div>
                 </div>
               </div>
-              <Carousel wipeable={true} responsive={responsive} autoPlay={true} autoPlaySpeed={2000} infinite={true} className="px-5 py-5 mb-2"> 
+              <Carousel wipeable={true}  responsive={responsive} autoPlay={true} autoPlaySpeed={2000} infinite={true} className="px-5 py-5 mb-2"> 
                 {supervisors.map((Supervisor,key) => (
                   <div key={key}>
                     <div className='supervisorsCard'>
@@ -105,13 +105,17 @@ function ViewSupervisor(){
                         <h6>{Supervisor.name}</h6>
                         <h6 style={{color:blue[500]}}>{Supervisor.fields}</h6>
                         <div align ="center">
-                          <button className='reqSupervisorBtn' style={{backgroundColor:'#2f89fc'}} onClick={()=>request(Supervisor._id)}> Request </button>
+                          <button className='reqSupervisorBtn' style={{backgroundColor:orange[500]}} onClick={()=>request(Supervisor._id)}> Request </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
               </Carousel>
+              <div></div>
+              <br></br>
+              <br></br>
+              < ViewCoSupervisor />
             </div>
           </div>
       )

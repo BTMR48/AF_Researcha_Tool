@@ -10,19 +10,19 @@ router.post('/signup', studentsignup);
 router.post('/signin', studentsignin);
 
 //student update profile
-router.put('/updategroup/:id', studentauth, updateStudent);
+router.put('/update/:id', updateStudent);
 
 //student delete profile
-router.delete('/deletegroup/:id',studentauth, deleteStudent);
+router.delete('/delete/:id', deleteStudent);
 
 //student forgotPassword
-router.post('/forgotpassword', forgotPassword);
+// router.post('/forgotpassword', forgotPassword);
 
-//student resetPassword
-router.put('/resetpassword/:resetPasswordToken', resetPassword);
+// //student resetPassword
+// router.put('/resetpassword/:resetPasswordToken', resetPassword);
 
 //find all students
-router.get('/', fetchAll);
+router.post('/', fetchAll);
 
 //find one student
 router.get('/:id', fetchOne);
