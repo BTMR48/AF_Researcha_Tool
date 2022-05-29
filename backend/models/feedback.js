@@ -10,12 +10,12 @@ const FeedbackSchema=new Schema({
         required:true
     },
     proId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'stProgress'
     },
 
-    description:{
+    feedback:{
         type:String,
         required:true
     },

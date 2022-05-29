@@ -1,5 +1,6 @@
 const Submission = require('../models/submissionDoc');
-
+const Feedback = require('../models/feedback');
+const Mark = require('../models/marks');
 exports.viewSubmission = async (req, res) => {
 
   Submission.find().populate({ path: 'grpId proId', select: ['grpName', 'supId', 'progressName'] }).then((submission) => {
@@ -36,6 +37,33 @@ exports.addSubmission = async(req,res) => {
         //error message
         res.status(500).json({message: "can't added", error: error.message})
     }
+}
+exports.addFeedback = async (req, res) => {
+ 
+  //constant variables for the attributes
+  const {mark,feedback} = req.body;
+ 
+  let grpId=req.params.grpId;
+  let proId=req.params.proId;
+  
+  //object
+  const newFeedback= new Feedback({
+    //initializing properties
+    feedback,
+    grpId,
+    proId
+  })
+  const newMark= new Mark({
+    //initializing properties
+    mark,
+    grpId,
+    proId
+  })
+  await newMark.save();
+  await newFeedback.save();
+  //saving the object to the db 
+  res.status(201).json({success: true, result: newMark});
+  
 }
 
 

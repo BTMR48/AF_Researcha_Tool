@@ -9,12 +9,15 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import '../ViewSubmission/ViewSubmission.css';
 
+
 function ViewSubmission(props) {
 
     const [submission1Arr, setSubmission1Arr] = useState([])
     const [submission2Arr, setSubmission2Arr] = useState([])
     const [MarkingArr, setMarkingArr] = useState([])
     const [isSupervisor, setIsSupervisor] = useState(false)
+    const history = useHistory()
+
 
     useEffect(() => {
         if (localStorage.getItem("supervisorAuthToken")) {
@@ -25,7 +28,6 @@ function ViewSubmission(props) {
 
 
         async function getSubmission1() {
-            console.log("element");
             await axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
                 const result = res.data.result.filter((submission) =>
                     submission.grpId.supId.toLowerCase().includes(props.match.params.id.toLowerCase()))
@@ -37,7 +39,6 @@ function ViewSubmission(props) {
         }
         getSubmission1()
         async function getSubmission2() {
-            console.log("element");
             await axios.get(`http://localhost:8070/submission/progress_2`).then((res) => {
                 const result = res.data.result.filter((submission) =>
                     submission.grpId.supId.toLowerCase().includes(props.match.params.id.toLowerCase()))
@@ -65,12 +66,10 @@ function ViewSubmission(props) {
 
     }
 
-    function giveFeedback(grp_name) {
-        return (
-            <Popup trigger={<button> Trigger</button>} position="right center">
-
-            </Popup>
-        )
+    function giveFeedback(grpId,proId,submission) {
+        console.log(grpId +" "+ proId)
+        console.log(submission)
+        history.push(`/submission/${grpId}/${proId}`)
     }
 
     function viewSubmissionDoc(submissionUrl) {
@@ -155,7 +154,7 @@ function ViewSubmission(props) {
                     <div className="col-3">
                 </div>
                 <div className="col-5">
-                    <div className="px-3 search" align="centers">
+                    <div className="px-3 search" align="center">
                         <input
                             type="text"
                             name="search"
@@ -189,11 +188,9 @@ function ViewSubmission(props) {
                                                     <IconButton onClick={() => viewSubmissionDoc(submission1.submissionUrl)}>
                                                         <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
                                                     </IconButton>
-                                                    <Popup trigger={<IconButton onClick={() => giveFeedback(submission1.grpId.grpName)}>
+                                                    <IconButton onClick={() => giveFeedback(submission1.grpId._id,submission1.proId._id,submission1)}>
                                                         <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
-                                                    </IconButton>} position="right center">
-
-                                                    </Popup>
+                                                    </IconButton>
 
                                                 </div>
                                             </td>
@@ -245,11 +242,9 @@ function ViewSubmission(props) {
                                                     <IconButton onClick={() => viewSubmissionDoc(submission2.submissionUrl)}>
                                                         <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
                                                     </IconButton>
-                                                    <Popup trigger={<IconButton onClick={() => giveFeedback(submission2.grpId.grpName)}>
+                                                   <IconButton onClick={() => giveFeedback(submission2.grpId._id,submission2.proId._id,submission2)}>
                                                         <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
-                                                    </IconButton>} position="right center">
-
-                                                    </Popup>
+                                                    </IconButton>
 
                                                 </div>
                                             </td>
