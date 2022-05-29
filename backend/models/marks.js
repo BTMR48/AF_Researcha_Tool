@@ -10,7 +10,7 @@ const MarksSchema=new Schema({
         required:true
     },
     proId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'stProgress'
     },
