@@ -12,16 +12,16 @@ import './allcosupervisors.css'
 function AllCosupervisors() {
 
     const [cosupervisors, setCosupervisors] = useState([]);
-    // const [isAdmin,setIsAdmin]=useState(false)
+    const [isAdmin,setIsAdmin]=useState(false)
     const history = useHistory()
    
  
     useEffect(() => {        
-        // if(localStorage.getItem("adminAuthToken")){
-        //     setIsAdmin(true)
-        //   }else{
-        //     setIsAdmin(false)
-        //   }
+        if(localStorage.getItem("adminAuthToken")){
+            setIsAdmin(true)
+          }else{
+            setIsAdmin(false)
+          }
           async function getCosupervisors() {
             axios.post(`http://localhost:8070/cosupervisor`).then((res) => {
               setCosupervisors(res.data)  
@@ -29,9 +29,11 @@ function AllCosupervisors() {
               alert("Failed to fetch Co-Supervisors")
             })
           }
-      
-          getCosupervisors()
-    })
+          if(isAdmin === true){
+              getCosupervisors()
+            }
+            
+    }, [isAdmin])
 
     async function onDelete(id) {
         const config = {
@@ -52,7 +54,7 @@ function AllCosupervisors() {
         
         const result = data.filter((cosupervisor) =>
             cosupervisor.name.toLowerCase().includes(searchTerm) ||
-            cosupervisor.fields.map(str => str.toLowerCase().includes(searchTerm))
+            cosupervisor.fields.toString().toLowerCase().includes(searchTerm)
         )
         setCosupervisors(result)
     }
@@ -62,7 +64,7 @@ function AllCosupervisors() {
       axios.post(`http://localhost:8070/cosupervisor`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
-          alert(error)
+          alert("Failed to Search")
       })
     }
 
@@ -102,11 +104,11 @@ function AllCosupervisors() {
                     </div>
                 </div>
             </div>
-            {/* {isAdmin &&  */}
+            {isAdmin && 
                 <div align="center">
                     <button className="addStaffBtn" style={{backgroundColor:'#0376c4'}} onClick={()=>addSupervisor()}> Add Co-Supervisor </button>
                 </div>
-            {/* } */}
+            }
             <br/>
 
             <div className="blue-table">
@@ -139,16 +141,16 @@ function AllCosupervisors() {
                                 </td>
 
                                 <td>
-                                    {/* { isAdmin ? "" : */}
+                                    { isAdmin && 
                                         <div style={{verticalAlign:'middle'}}>
-                                            <IconButton onClick={() => update(Cosupervisor._id)}>
+                                            {/* <IconButton onClick={() => update(Cosupervisor._id)}>
                                                 <EditIcon style={{ color: grey[500] }} ></EditIcon>
-                                            </IconButton>
+                                            </IconButton> */}
                                             <IconButton onClick={() => onDelete(Cosupervisor._id)}>
                                                 <DeleteIcon style={{ color: red[500] }} ></DeleteIcon>
                                             </IconButton>
                                         </div>
-                                    {/* } */}
+                                    }
                                 </td>
                                 
                             </tr> 

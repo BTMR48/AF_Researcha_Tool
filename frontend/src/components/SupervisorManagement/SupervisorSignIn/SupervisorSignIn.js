@@ -28,7 +28,7 @@ function SupervisorLogin() {
             localStorage.setItem("supervisorAuthToken", `Supervisor ${data.token}`)
             localStorage.setItem("user",JSON.stringify(data.result))
         
-            history.push('/')
+            history.push('/request/allrequest')
         } catch (error) {
             if(error.response.status === 404){
                 alert("Invalid email")
@@ -69,9 +69,8 @@ function SupervisorLogin() {
              <input type="submit" value="Sign In" className="form-submit-btn"/>
                 
             <div className="text-muted">
-             <p >or</p>
-             <p> Don't have an Account? <Link to="/supervisor/signup"> Click Here</Link></p>
-             <p> Are you a student?<Link to="/student/signin"> Click Here</Link></p>
+             <p> Are you a Co-Supervisor?<Link to="/cosupervisor/signin"> Click Here</Link></p>
+             <p> Are you a Panelmember?<Link to="/panelmember/signin"> Click Here</Link></p>
             </div>
         </form>
     </div>

@@ -31,7 +31,7 @@ function AdminLogin() {
             //getting data from backend
             const {data} = await axios.post("http://localhost:8070/admin/signin", {email, password}, config);
 
-            //setting the patient authorization token
+            //setting the admin authorization token
             localStorage.setItem("adminAuthToken", `Admin ${data.token}`)
             //setting user
             localStorage.setItem("user", JSON.stringify(data.result))
@@ -54,8 +54,7 @@ function AdminLogin() {
         <div className="container" align="center">
             <div className="card-form">
                 <form className="boxSignIn" onSubmit={signIn}>
-                    <h1 className="form-h1">Admin Login</h1>
-                    <p className="text-muted"> All your health needs at one place!</p> 
+                    <h1 className="form-h1">Admin Login</h1> 
                     <input 
                         type="email" 
                         name="email" 
@@ -83,10 +82,6 @@ function AdminLogin() {
                     <input className="form-submit-btn" type="submit" value="Sign In" />
 
                     <br></br><br></br>
-                    <div className="text-muted">
-                        <p>Are you a Patient? <Link to="/patient/signin">Click here</Link></p>
-                        <p>Are you a doctor? <Link to="/doctor/signin"> Click here</Link></p>
-                    </div>
                 </form>
             </div>
         </div>
