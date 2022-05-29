@@ -7,15 +7,13 @@ import IconButton from '@material-ui/core/IconButton';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { lighten } from '@mui/material';
-import { Document, Page } from 'react-pdf';
+import '../ViewSubmission/ViewSubmission.css';
 
 function ViewSubmission(props) {
-    
-    const [submissionArr, setSubmissionArr] = useState([])
+
+    const [submission1Arr, setSubmission1Arr] = useState([])
+    const [submission2Arr, setSubmission2Arr] = useState([])
     const [MarkingArr, setMarkingArr] = useState([])
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
     const [isSupervisor, setIsSupervisor] = useState(false)
 
     useEffect(() => {
@@ -25,16 +23,32 @@ function ViewSubmission(props) {
             setIsSupervisor(false)
         }
 
-        // async function getSubmission() {
-        //     console.log("element");
-        //     await axios.get(`http://localhost:8070/submission/viewSubmission/${props.match.params.id}`).then((res) => {
-        //         setSubmissionArr(res.data.result)
-        //     }).catch((error) => {
-        //         alert("Failed to fetch the submission details")
-        //     })
-        // }
-        // getSubmission()
-        async function  getMarking() {
+
+        async function getSubmission1() {
+            console.log("element");
+            await axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
+                const result = res.data.result.filter((submission) =>
+                    submission.grpId.supId.toLowerCase().includes(props.match.params.id.toLowerCase()))
+                setSubmission1Arr(result)
+
+            }).catch((error) => {
+                alert("Failed to fetch the submission details")
+            })
+        }
+        getSubmission1()
+        async function getSubmission2() {
+            console.log("element");
+            await axios.get(`http://localhost:8070/submission/progress_2`).then((res) => {
+                const result = res.data.result.filter((submission) =>
+                    submission.grpId.supId.toLowerCase().includes(props.match.params.id.toLowerCase()))
+                setSubmission2Arr(result)
+
+            }).catch((error) => {
+                alert("Failed to fetch the submission details")
+            })
+        }
+        getSubmission2()
+        async function getMarking() {
             await axios.get(`http://localhost:8070/marking/view`).then((res) => {
                 setMarkingArr(res.data)
             }).catch((error) => {
@@ -44,77 +58,159 @@ function ViewSubmission(props) {
         getMarking()
     }, [props])
 
+   
     function viewPdf(markingUrl) {
         console.log(markingUrl)
         window.open(markingUrl);
 
     }
 
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-      }
-    
+    function giveFeedback(grp_name) {
+        return (
+            <Popup trigger={<button> Trigger</button>} position="right center">
 
-    function giveFeedback(id) {
-
-    }
-    function viewSubmissionDoc(id) {
-
+            </Popup>
+        )
     }
 
-    function filterContent(data, searchTerm) {
+    function viewSubmissionDoc(submissionUrl) {
+        console.log(submissionUrl)
+        window.open(submissionUrl);
+    }
+
+    function filterContent1(data, searchTerm) {
         const result = data.filter((submission) =>
-        submission.groupName.toLowerCase().includes(searchTerm))
-        setSubmissionArr(result)
+            submission.grpId.grpName.toLowerCase().includes(searchTerm))
+        setSubmission1Arr(result)
     }
 
-    function handleSearch(event) {
+    function handleSearch1(event) {
         const searchTerm = event.currentTarget.value
-        axios.get(`http://localhost:8070/submission/${props.match.params.id}`).then((res) => {
-            filterContent(res.data.result, searchTerm.toLowerCase())
+        axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
+            filterContent1(res.data.result, searchTerm.toLowerCase())
             console.log(res.data.result)
         }).catch((error) => {
-            alert("Failed to search student group with the given key word")
+            alert("Failed to search student group with the given keyword")
+        })
+    }
+    function viewSubmissionDoc(submissionUrl) {
+        console.log(submissionUrl)
+        window.open(submissionUrl);
+    }
+
+    function filterContent2(data, searchTerm) {
+        const result = data.filter((submission) =>
+            submission.grpId.grpName.toLowerCase().includes(searchTerm))
+        setSubmission2Arr(result)
+    }
+
+    function handleSearch2(event) {
+        const searchTerm = event.currentTarget.value
+        axios.get(`http://localhost:8070/submission/progress_2`).then((res) => {
+            filterContent2(res.data.result, searchTerm.toLowerCase())
+            console.log(res.data.result)
+        }).catch((error) => {
+            alert("Failed to search student group with the given keyword")
         })
     }
 
     return (
-        
+
         <div className="container">
-             <div className="col-4">
-                    <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                        <h2>Marking criteria</h2>
-                    </div>
-                </div>
-             <div className="blue-table ">
-                <div>
-                    <table style={ {border:'1px solid black'}}>
-                        
-                        <thead >
-                        {MarkingArr.map((Marking, key) => (
-                            <tr style={ {border:'1px solid black'}} key={key}>
-                                
-                                <th  style={{ textAlign: 'center',border:'1px solid black',backgroundColor: 'powderblue',color:'blue'}}> {Marking.progress_name}</th>
-                               
-                                <th>
-                                <IconButton onClick={() => viewPdf(Marking.submission_doc)}>
-                                                <PictureAsPdfIcon style={{ color: red[500], backgroundPosition: 'center'}} ></PictureAsPdfIcon>
-                                            </IconButton>
-                                </th>
-                            </tr>
-                            ))}
-                        </thead>
-                  
-                    </table>
+            <div className="col-4">
+                <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
+                    <h2>Marking criteria</h2>
                 </div>
             </div>
-            {/* <div className="row">
+            <div className="productGrid"  >
+                {MarkingArr.map((marking, key) => (
+                    <div key={key}>
+                        <div className="productCard" align="center">
+                            <IconButton onClick={() => viewPdf(marking.submission_doc)}>
+                                <PictureAsPdfIcon style={{ color: red[500], backgroundPosition: 'center' }} ></PictureAsPdfIcon>
+                            </IconButton>
+                            <div className="p-3">
+                                <h6>{marking.progress_name}</h6>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <br /><br />
+
+
+            <div className="row">
                 <div className="col-4">
                     <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
                         <h2>Submissions</h2>
                     </div>
                 </div>
                 <div className="col-3">
+                </div>
+                <br/> <br/><br/> <br/>
+                <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
+                        <h4>Progress 1</h4>
+                    </div>
+                    <div className="col-3">
+                </div>
+                <div className="col-5">
+                    <div className="px-3 search" align="centers">
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search submissions"
+                            onChange={handleSearch1}
+                            required
+                        />
+                        <br />
+                    </div>
+                </div>
+            
+        
+                    <div className="blue-table ">
+                        <div className="blue-table, box-view-prescription">
+                            <table>
+                                < thead >
+                                    <tr>
+                                        <th style={{ textAlign: 'center' }}>Student Group</th>
+                                        <th style={{ textAlign: 'center' }}>Progress_1</th>
+                                    </tr>
+                                </thead>
+                                <tbody style={{ textAlign: 'center' }}>
+                                    {submission1Arr.map((submission1, key) => (
+                                        <tr key={key}>
+                                            <td>
+                                                {submission1.grpId.grpName}
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <IconButton onClick={() => viewSubmissionDoc(submission1.submissionUrl)}>
+                                                        <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
+                                                    </IconButton>
+                                                    <Popup trigger={<IconButton onClick={() => giveFeedback(submission1.grpId.grpName)}>
+                                                        <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
+                                                    </IconButton>} position="right center">
+
+                                                    </Popup>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="col-3">
+                </div>
+                <br/> <br/>
+                <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
+                        <h4>Progress 2</h4>
+                    </div>
+                    <div className="col-3">
                 </div>
                 <div className="col-5">
                     <div className="px-3 search" align="center">
@@ -123,50 +219,49 @@ function ViewSubmission(props) {
                             name="search"
                             id="search"
                             placeholder="Search submissions"
-                            onChange={handleSearch}
+                            onChange={handleSearch2}
                             required
                         />
+                        <br />
                     </div>
                 </div>
-            </div>
-           
-            <div className="blue-table ">
-                <div className="blue-table, box-view-prescription">
-                    <table>
-                        <thead >
-                            <tr>
-                                <th style={{ textAlign: 'center' }}>Student Group</th>
-                                <th style={{ textAlign: 'center' }}>Submission 1</th>
-                            </tr>
-                        </thead>
-                        <tbody style={{ textAlign: 'center' }}>
-                            {submissionArr.map((submission, key) => (
-                                <tr key={key}>
+                    <div className="blue-table ">
+                        <div className="blue-table, box-view-prescription">
+                            <table>
+                                < thead >
+                                    <tr>
+                                        <th style={{ textAlign: 'center' }}>Student Group</th>
+                                        <th style={{ textAlign: 'center' }}>Progress_2</th>
+                                    </tr>
+                                </thead>
+                                <tbody style={{ textAlign: 'center' }}>
+                                    {submission2Arr.map((submission2, key) => (
+                                        <tr key={key}>
+                                            <td>
+                                                {submission2.grpId.grpName}
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <IconButton onClick={() => viewSubmissionDoc(submission2.submissionUrl)}>
+                                                        <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
+                                                    </IconButton>
+                                                    <Popup trigger={<IconButton onClick={() => giveFeedback(submission2.grpId.grpName)}>
+                                                        <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
+                                                    </IconButton>} position="right center">
 
-                                    <td>
-                                        {submission.groupName}
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <IconButton onClick={() => viewSubmissionDoc(submission.imgUrl)}>
-                                                <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
-                                            </IconButton>
-                                            <Popup trigger={<IconButton onClick={() => giveFeedback(submission.groupName)}>
-                                                <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
-                                            </IconButton>} position="right center">
-                                                <div>Popup content here !!</div>
-                                            </Popup>
+                                                    </Popup>
 
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
 
-                        </tbody>
-                    </table>
-                </div>
-            </div> */}
-        </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+        </div >
     )
 }
 
