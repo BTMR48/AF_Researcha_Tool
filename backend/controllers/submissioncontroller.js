@@ -1,24 +1,17 @@
-const Submission = require('../models/submission');
+const Submission = require('../models/submissionDoc');
 
-exports.viewSubmission= async(req,res) => {
-    let supervisorid = req.params.id;
-    console.log(supervisorid);
-    try {
-        console.log("element");
-        const studentList = await Submission.find({supervisorid}).populate({path:'supervisorid', select:['studentID']});
-        studentList.forEach(element =>{
-            console.log(element);
-            const submissionList = Submission.find({element,progressName}).select('groupName','imgUrl');
-                }
-              );
-              
-        
-        //success message
-        res.status(200).json({success: true,result:submissionList})
-    }catch(error){
-        //error message
-        res.status(500).json({message: "Error with fetching product", error: error.message})
-    }
+exports.viewSubmission = async (req, res) => {
+
+  Submission.find().populate({ path: 'grpId proId', select: ['grpName', 'supId', 'progressName'] }).then((submission) => {
+    let progressName=req.params.name;
+    const result = submission.filter((submissions) =>
+            submissions.proId.progressName.toLowerCase().includes(progressName))
+    res.status(200).json({ success: true, result: result })
+
+  }).catch((error) => {
+    res.status(500).json({ message: "fetching failed", error: error.message });
+  })
+
 }
 
 // //Add a submission
@@ -30,7 +23,7 @@ exports.viewSubmission= async(req,res) => {
 //         //creating a new submission
 //         const submission = await Submission.create({studentID, name, groupID,imgUrl});
 
-        
+
 //         res.status(200).json ({success:true,message:"submission added",submission})
 //      }catch(error){
 //          res.status(500).json({message: "unable to add the submission",error:error.message});
@@ -39,31 +32,31 @@ exports.viewSubmission= async(req,res) => {
 
 //add new Submission
 exports.addSubmission = async (req, res) => {
- 
-    //constant variables for the attributes
-    const {studentID,name, groupID,imgUrl} = req.body;
-     let today = new Date();
-    const date = (today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear());
-    
-   
-    //object
-    const newSubmission = new Submission({
-      //initializing properties
-     // progressID,
-      studentID,
-      name,     
-      groupID, 
-      date,
-      imgUrl
-    })
-   
-    //saving the object to the db 
-    newSubmission.save().then(() => {
-      res.status(200).json({ status: "New Submission Added" });
-    }).catch((error) => {
-      res.status(500).json({message:"Fail to Add Submission",error:error.message})
-    })
-  }
+
+  //constant variables for the attributes
+  const { studentID, name, groupID, imgUrl } = req.body;
+  let today = new Date();
+  const date = (today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear());
+
+
+  //object
+  const newSubmission = new Submission({
+    //initializing properties
+    // progressID,
+    studentID,
+    name,
+    groupID,
+    date,
+    imgUrl
+  })
+
+  //saving the object to the db 
+  newSubmission.save().then(() => {
+    res.status(200).json({ status: "New Submission Added" });
+  }).catch((error) => {
+    res.status(500).json({ message: "Fail to Add Submission", error: error.message })
+  })
+}
 
 // //Add a submission
 // exports.addSubmission = async(req,res) => {
