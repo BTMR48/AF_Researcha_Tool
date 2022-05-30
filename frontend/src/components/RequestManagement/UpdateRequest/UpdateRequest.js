@@ -74,7 +74,7 @@ function UpdateRequest(props) {
                 <br></br>
                 <div className="form-name">
                     <OutlinedInput
-                        type="text" id="student" placeholder="Group Name" readOnly fullWidth
+                        type="text" id="student" placeholder="Topic" readOnly fullWidth
                         value={topic}
                         inputProps={{ style: { padding: 12 } }}
                     />

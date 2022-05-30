@@ -53,7 +53,7 @@ import TopicSubmission from './components/TopicEvaluation/TopicSubmission';
 import UpdateTopicSubmission from './components/TopicEvaluation/UpdateTopicSubmission';
 
 import AddFeedback from './components/SubmissionManagement/SubmissionFeedback/AddFeedback';
-
+import ViewTopicSubmission from './components/TopicEvaluation/ViewTopicSubmission';
 
 function App() {
   return (
@@ -109,6 +109,7 @@ function App() {
             <Route path = '/corequest/update/:id' exact component = {UpdateCoRequest} />
             <Route path = '/topiceval/add' exact component={TopicSubmission} />
             <Route path = '/topiceval/update/:id' exact component={UpdateTopicSubmission} />
+            <Route path = '/topiceval/view' exact component={ViewTopicSubmission} />
 
             <Footer/>
         </div>
