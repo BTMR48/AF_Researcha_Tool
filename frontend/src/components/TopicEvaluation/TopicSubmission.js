@@ -4,7 +4,7 @@ import './TopicSubmission.css'
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@material-ui/core/Button';
-
+import { useHistory } from 'react-router';
 
 function TopicSubmission() {
 
@@ -14,6 +14,7 @@ function TopicSubmission() {
     const [topic, setTopic] = useState("");
     const [type, setType] = useState("");
     const [feedback, setFeedback] = useState("");
+    const history = useHistory()
 
     const [previewSource, setPreviewSource] = useState();
     const [selectedFile, setSelectedFile] = useState();
@@ -66,7 +67,8 @@ function TopicSubmission() {
         
         try {
             await axios.post("http://localhost:8070/topiceval/add", newTopicEval , config)
-            alert("Document Submit Successfully")  
+            alert("Document Submit Successfully") 
+            history.push('/topiceval/view') 
             event.target.reset(); 
         }catch (error) {         
             alert("Document can't be Submitted");
@@ -102,6 +104,7 @@ function TopicSubmission() {
                                         inputProps={{style: {padding: 12}}} 
                                     />
                                 </div>
+                                <br></br>
                                 <div className="form-name">
                                     <OutlinedInput
                                         type="text" id="topic" placeholder="Topic" 
@@ -110,6 +113,7 @@ function TopicSubmission() {
                                         inputProps={{style: {padding: 12}}} 
                                     />
                                 </div>
+                                <br></br>
                                 <div className="form-name">
                                     <OutlinedInput
                                         type="text" id="supervisorname" placeholder="Supervisor" 
@@ -118,6 +122,7 @@ function TopicSubmission() {
                                         inputProps={{style: {padding: 12}}} 
                                     />
                                 </div>
+                                <br></br>
                                 <div className="form-name">
                                     <OutlinedInput
                                         type="text" id="cosupervisorname" placeholder="Co-Supervisor" 
