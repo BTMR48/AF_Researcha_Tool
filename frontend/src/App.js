@@ -48,8 +48,12 @@ import UpdateCosupervisor from './components/CosupervisorManagement/UpdateCosupe
 import UpdatePanelmember from './components/PanelmemberManagement/UpdatePanelmember/UpdatePanelmember';
 
 import AddMarking from './components/MarkingSchemeManagement/AddMarking';
+
 import TopicSubmission from './components/TopicEvaluation/TopicSubmission';
 import UpdateTopicSubmission from './components/TopicEvaluation/UpdateTopicSubmission';
+
+import AddFeedback from './components/SubmissionManagement/SubmissionFeedback/AddFeedback';
+
 
 function App() {
   return (
@@ -80,7 +84,7 @@ function App() {
             <Route path="/cosupervisor/update/:id" exact component = {UpdateCosupervisor}/>
             <Route path="/panelmember/update/:id" exact component = {UpdatePanelmember}/>
             <Route path="/users/addpanel/:id" exact component = {AssignPanelmember}/>
-
+            <Route path="/submission/:grpId/:proId" exact component = {AddFeedback}/>
             <Route path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>
 
             <Route path="/marking/add" exact component = {AddMarking}/>
