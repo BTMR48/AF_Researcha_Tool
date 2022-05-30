@@ -61,7 +61,7 @@ exports.signupCosupervisor = async(req,res) => {
 exports.updateCosupervisor = async(req,res) => {
 
     let cosupervisorID = req.params.id;
-    const { title, name, email, fields, phoneno } = req.body;
+    const { title, name, email, fields, phoneno, imgUrl } = req.body;
 
     // let to=new Date(req.body.availableTimeTo)
     // let from=new Date(req.body.availableTimeFrom)
@@ -69,7 +69,7 @@ exports.updateCosupervisor = async(req,res) => {
     // const availableTimeTo = (to.getHours() + ":" + to.getMinutes())
     // const availableTimeFrom = (from.getHours() + ":" + from.getMinutes())
 
-    const updateCosupervisor= { title, name, email, fields, phoneno} 
+    const updateCosupervisor= { title, name, email, fields, phoneno, imgUrl } 
     
     try{
         //find cosupervisor by ID  

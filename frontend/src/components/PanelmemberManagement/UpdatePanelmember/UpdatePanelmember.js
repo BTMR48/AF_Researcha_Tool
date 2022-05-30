@@ -64,7 +64,8 @@ function UpdatePanelmember(props) {
     //update the user
     async function Update(event){
 
-
+        event.preventDefault();
+        
         let imgUrl
 
         if(previewSource){

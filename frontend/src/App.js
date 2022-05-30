@@ -97,7 +97,7 @@ function App() {
             <StudentPrivateRoute path="/submission/addSubmission/:id/:name" exact component= {AddSubmission}/>
 
             <Route path="/request/allrequest" exact component={ViewRequest} />
-            <Route path ="/panelmember/:id" exact component={PanelMemberDetails} />
+            <Route path ="/panelmember/:id" exact component={PanelMemberDetails} /> 
             <Route path = "/request/:id" exact component={SingleRequest} />
             <Route path = '/request/update/:id' exact component={UpdateRequest} />
             <Route path = '/cosupervisor/request/:id' exact component={AddCoRequest} />
