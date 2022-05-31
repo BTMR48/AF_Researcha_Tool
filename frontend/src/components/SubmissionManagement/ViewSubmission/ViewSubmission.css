@@ -9,7 +9,6 @@
   .blue-table th {
     text-align: left;
     padding: 6px 6px 6px 6px;
-    background-color: #0376c4;
     color: white;
   }
   
@@ -28,4 +27,92 @@
     -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
     -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
   }
-  
+  .productCard{  
+    max-height: 351px;
+    width: 200px;
+    background: #ffffff;
+    border-radius: 15px;
+    border: none;
+    overflow: hidden;
+    padding-top: 20px;
+    box-shadow:0px 24px 48px 0 rgba(0,0,0,0.1);
+}
+.itemProduct{
+    height: 150px;
+}
+.productCard .imgBx{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.productCard  .productBtn{
+    padding: 5px 12px;
+    margin-top: 15px;
+    color:white;
+    border: none;
+    border-radius: 100px;
+}
+.productGrid{
+    display: grid;
+    grid-gap: 2rem;
+    padding: 1rem;
+    max-width: 1150px;
+    margin: 0 auto;
+
+}
+
+@media (min-width: 600px) {
+    .productGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 800px) {
+    .productGrid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+.addProgress {
+    width: 60%;
+    text-align: left;
+    padding: 40px;
+    background: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow:0px 24px 48px 0 rgba(0,0,0,0.1);
+}
+.modal {
+    font-size: 12px;
+  }
+  .modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+  }
+  .modal > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }

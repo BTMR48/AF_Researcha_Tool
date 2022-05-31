@@ -82,24 +82,19 @@ function ProgressDetails(props) {
         <div className = "container" align="center">
             <div className="detailProgress" >     
                 <div className="detailProgress">
-                    {/* <div>
-                    {imgUrl}
-                    </div> */}
-                     {/* <img src={`${imgUrl}`} alt="Progress Template" /> */}
-                              <div>
 
-                                    <IconButton onClick={() => viewPdf(`${imgUrl}`)}>
-                                        <PictureAsPdfIcon style={{ color: red[500], backgroundPosition: 'center'}} ></PictureAsPdfIcon>
-                                    </IconButton>
-                                   
+                            <div className="imgBx">
+                                <IconButton onClick={() => viewPdf(`${imgUrl}`)}>
+
+                                        <PictureAsPdfIcon style={{ color: red[500], backgroundPosition: 'left', fontSize: "100px" }} ></PictureAsPdfIcon>
+                                </IconButton>
+                            </div>
                             
-                              </div>
-                        
                     <div className="box-detailProgress">
                             <div className="row">
-                                <h2>{name}</h2>
+                                <h2>Level : {name}</h2>
                             </div>
-                            <h5>{date}</h5>
+                            <h5>Deadline : {date}</h5>
                             <p className="text-muted">{description}</p>
                     </div>           
                 </div> 

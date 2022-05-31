@@ -26,6 +26,7 @@ const Submission = require("./routes/submissionrouter");
 const RequestRouter = require("./routes/requestrouter");
 const CoRequestRouter = require("./routes/corequestrouter");
 const PanelgroupRouter = require("./routes/panelgrouprouter");
+const TopicEvalRouter = require('./routes/topicEvalrouter.js');
 
 //getting the database url
 const URL = process.env.MONGODB_URL;
@@ -71,6 +72,9 @@ app.use("/request",RequestRouter);
 app.use("/corequest", CoRequestRouter);
 //when http://localhost:8070/pnlgroup ran it will execute panelgrouprouter.js file
 app.use("/pnlgroup",PanelgroupRouter);
+//when http://localhost:8070/pnlgroup ran it will execute panelgrouprouter.js file
+app.use("/topiceval",TopicEvalRouter);
+
 
 
 

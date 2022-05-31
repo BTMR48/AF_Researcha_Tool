@@ -48,7 +48,7 @@ function ViewSupervisor(){
       function filterContent(data, searchTerm){
           const result = data.filter((Supervisor) =>
           Supervisor.name.toLowerCase().includes(searchTerm) ||
-          Supervisor.fields.toLowerCase().includes(searchTerm)
+          Supervisor.fields.toString().toLowerCase().includes(searchTerm)
           )
           setSupervisors(result)
       }

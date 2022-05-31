@@ -59,6 +59,12 @@ function Header() {
             cName: 'nav-text'
         },
         {
+            title: 'Topic Evaluation',
+            path: `/topiceval/add`,
+            icon: <EventAvailableIcon/>,
+            cName: 'nav-text'
+        },
+        {
           title: 'Marking Schema',
           path: `/marking`,
           icon: <AssignmentIcon/>,

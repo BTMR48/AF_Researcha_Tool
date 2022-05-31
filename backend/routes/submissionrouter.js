@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const { viewSubmission,addSubmission} = require('../controllers/submissioncontroller.js')
+const { viewSubmission,addSubmission,addFeedback} = require('../controllers/submissioncontroller.js')
 
-router.get('/:id', viewSubmission);
+router.get('/:name', viewSubmission);
 router.post('/add', addSubmission);
-
+router.post('/:grpId&:proId', addFeedback);
 module.exports = router;
