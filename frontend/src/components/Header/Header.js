@@ -24,6 +24,7 @@ import './Sidebar.css';
 function Header() {
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [isStudent, setIsStudent] = useState(false);
     const [isSupervisor, setIsSupervisor] = useState(false);
     const [cartCount, setCartCount] = useState();
     const [user, setUser] = useState("");
@@ -45,7 +46,7 @@ function Header() {
           icon: <PersonIcon/>,
           cName: 'nav-text'
         },
-        {
+        isStudent &&{
           title: 'Topic Registration',
           path: `/supervisor/ViewSupervisor`,
           icon: <EventAvailableIcon/>,
@@ -54,6 +55,12 @@ function Header() {
         {
             title: 'Requests',
             path: `/request/allrequest/`,
+            icon: <EventAvailableIcon/>,
+            cName: 'nav-text'
+        },
+        {
+            title: 'Topic Evaluation',
+            path: `/topiceval/add`,
             icon: <EventAvailableIcon/>,
             cName: 'nav-text'
         },
@@ -104,6 +111,7 @@ function Header() {
             }
             if(localStorage.getItem("studentAuthToken")){
                 setURL(`/student`)
+                setIsStudent(true)
             }
 
             if(localStorage.getItem("supervisorAuthToken")){
