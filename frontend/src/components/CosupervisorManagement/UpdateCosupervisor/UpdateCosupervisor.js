@@ -66,7 +66,7 @@ function UpdateCosupervisor(props) {
     //update the user
     async function Update(event){
 
-        
+        event.preventDefault();
 
         let imgUrl
 

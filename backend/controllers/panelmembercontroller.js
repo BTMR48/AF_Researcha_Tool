@@ -61,7 +61,7 @@ exports.signupPanelmember = async(req,res) => {
 exports.updatePanelmember = async(req,res) => {
 
     let PanelmemberID = req.params.id;
-    const { title, name, email, phoneno } = req.body;
+    const { title, name, email, phoneno, imgUrl } = req.body;
 
     // let to=new Date(req.body.availableTimeTo)
     // let from=new Date(req.body.availableTimeFrom)
@@ -69,7 +69,7 @@ exports.updatePanelmember = async(req,res) => {
     // const availableTimeTo = (to.getHours() + ":" + to.getMinutes())
     // const availableTimeFrom = (from.getHours() + ":" + from.getMinutes())
 
-    const updatePanelmember= { title, name, email, phoneno} 
+    const updatePanelmember= { title, name, email, phoneno, imgUrl } 
     
     try{
         //find panelmember by ID  
