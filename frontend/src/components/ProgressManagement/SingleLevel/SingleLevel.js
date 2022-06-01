@@ -80,9 +80,10 @@ function ProgressDetails(props) {
    
     return (
         <div className = "container" align="center">
-            <div className="detailProgress" >     
-                <div className="detailProgress">
-
+            <div className="detailProgress" >
+                <div className="SubmissionCard" >     
+                    <div className="detailProgress">
+                    
                             <div className="imgBx">
                                 <IconButton onClick={() => viewPdf(`${imgUrl}`)}>
 
@@ -90,37 +91,38 @@ function ProgressDetails(props) {
                                 </IconButton>
                             </div>
                             
-                    <div className="box-detailProgress">
-                            <div className="row">
-                                <h2>Level : {name}</h2>
-                            </div>
-                            <h5>Deadline : {date}</h5>
-                            <p className="text-muted">{description}</p>
-                    </div>           
-                </div> 
-                <table className="singleLevelBtn" >  
-                    <div> 
-                        {isAdmin === true ?
-                            <div>
-                                <button className="mx-2 progressBtn" style={{backgroundColor:blue[400]}} onClick={()=>update(id)}>
-                                Update <EditIcon/>
-                                </button>
-                                <button className="mx-2 progressBtn" style={{backgroundColor:red[500]}} onClick={()=>deleteProgress(id)} >
-                                Delete <DeleteForeverIcon/>
-                                </button>
-                            </div>
-                            : 
-                            <div>
-                                <button className="mx-2 progressBtn" style={{backgroundColor:red[500]}} 
-                                            onClick={()=>submit()}>
-                                            Submit Project
+                            <div className="box-detailProgress">
+                                    <div className="row">
+                                        <h2>Level : {name}</h2>
+                                    </div>
+                                    <h5>Deadline : {date}</h5>
+                                    <p className="text-muted">{description}</p>
+                            </div>           
+                    
+                        <table className="singleLevelBtn" >  
+                            <div> 
+                                {isAdmin === true ?
+                                    <div>
+                                        <button className="mx-2 progressBtn" style={{backgroundColor:blue[400]}} onClick={()=>update(id)}>
+                                        Update <EditIcon/>
+                                        </button>
+                                        <button className="mx-2 progressBtn" style={{backgroundColor:red[500]}} onClick={()=>deleteProgress(id)} >
+                                        Delete <DeleteForeverIcon/>
+                                        </button>
+                                    </div>
+                                    : 
+                                    <div>
+                                        <button className="mx-2 progressBtn" style={{backgroundColor:red[500]}} 
+                                                    onClick={()=>submit()}>
+                                                    Submit Project
                                         </button> 
-                            </div>  
-                        }
-                    </div>
-                </table>               
+                                    </div>  
+                                }
+                            </div>
+                        </table> 
+                    </div>               
+                </div>
             </div>
-           
         </div>          
     )
 }
