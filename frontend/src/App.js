@@ -4,7 +4,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import PrivateRoute from './Routes/PrivateRoute';
 import StudentPrivateRoute from './Routes/StudentPrivateRoute';
-
+import SupervisorPrivateRoute from './Routes/SupervisorPrivateRoute';
 import AdminSignIn from './components/AdminManagement/AdminLogin';
 import StudentSignIn from './components/StudentManagement/StudentSignIn/StudentSignIn'; 
 import StudentSignUp from './components/StudentManagement/StudentSignUp/StudentSignUp'; 
@@ -43,13 +43,13 @@ import UpdateRequest from './components/RequestManagement/UpdateRequest/UpdateRe
 import AddCoRequest from './components/CoSupervisorRequest/AddCoRequest';
 import ViewCorequest from './components/CoSupervisorRequest/ViewCorequest';
 import UpdateCoRequest from './components/CoSupervisorRequest/UpdateCoRequest';
-
+import SubmissionFeedback from './components/SubmissionManagement/SubmissionFeedback/AddFeedback'
 import UpdateSupervisor from './components/SupervisorManagement/UpdateSupervisor/UpdateSupervisor';
 import UpdateCosupervisor from './components/CosupervisorManagement/UpdateCosupervisor/UpdateCosupervisor';
 import UpdatePanelmember from './components/PanelmemberManagement/UpdatePanelmember/UpdatePanelmember';
-
+import Messenger from './components/ChatManagement/pages/messenger/Messenger';
 import AddMarking from './components/MarkingSchemeManagement/AddMarking';
-import AddFeedback from './components/SubmissionManagement/SubmissionFeedback/AddFeedback';
+
 
 function App() {
   return (
@@ -59,7 +59,6 @@ function App() {
             <Header/>
             
             <Route path="/admin/signin" exact component={AdminSignIn} />
-
             <Route path="/" exact component = {StudentSignIn}/>
             <Route path="/student/signup" exact component = {StudentSignUp}/>
             <Route path="/supervisor/signin" exact component = {SupervisorSignIn}/>
@@ -68,10 +67,8 @@ function App() {
             <Route path="/cosupervisor/signup" exact component = {CosupervisorSignUp}/>
             <Route path="/panelmember/signin" exact component = {PanelmemberSignIn}/>
             <Route path="/panelmember/signup" exact component = {PanelmemberSignUp}/>
-
             <Route path="/users" exact component = {UsersHome}/>
             <Route path="/users/supervisorlist" exact component = {AllSupervisors}/>
-
             <Route path="/users/cosupervisorlist" exact component = {AllCosupervisors}/>
             <Route path="/users/panelmemberlist" exact component = {AllPanelmembers}/>
             <Route path="/users/studentlist" exact component = {AllStudents}/>
@@ -80,23 +77,19 @@ function App() {
             <Route path="/cosupervisor/update/:id" exact component = {UpdateCosupervisor}/>
             <Route path="/panelmember/update/:id" exact component = {UpdatePanelmember}/>
             <Route path="/users/addpanel/:id" exact component = {AssignPanelmember}/>
-            <Route path="/submission/:grpId/:proId" exact component = {AddFeedback}/>
-            <Route path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>
-
+            <SupervisorPrivateRoute path="/submission/feedback/:id/:proId" exact component = {SubmissionFeedback}/>
+            <SupervisorPrivateRoute path="/submission/viewSubmission/:id" exact component = {ViewSubmission}/>
+            <PrivateRoute path="/messenger" exact component = {Messenger}/>
             <Route path="/marking/add" exact component = {AddMarking}/>
-
             <Route path="/evolution/addProgress"exact component={AddProgress}/>
             <Route path="/evolution/levels" exact component={Levels}/>
             <Route path="/evolution/level/:id" exact component={SingleLevel}/>
             <Route path="/evolution/level/updateProgress/:id" exact component={UpdateProgress}/>
-            
             <Route path="/supervisor/ViewSupervisor" exact component={ViewSupervisor}/>
             <Route path="/student/request/:id" exact component={AddRequest}/>
             <Route path ='/cosupervisor/ViewCosupervisors' exact component={ViewCoSupervisor}/>
             <Route path ='/panelmember/ViewPanelMember' exact component={ViewPanelMember}/>
-
             <StudentPrivateRoute path="/submission/addSubmission/:id/:name" exact component= {AddSubmission}/>
-
             <Route path="/request/allrequest" exact component={ViewRequest} />
             <Route path ="/panelmember/:id" exact component={PanelMemberDetails} />
             <Route path = "/request/:id" exact component={SingleRequest} />
@@ -104,7 +97,6 @@ function App() {
             <Route path = '/cosupervisor/request/:id' exact component={AddCoRequest} />
             <Route path = '/corequest/allcorequest' exact component={ViewCorequest} />
             <Route path = '/corequest/update/:id' exact component = {UpdateCoRequest} />
-  
             <Footer/>
         </div>
       </Router>
