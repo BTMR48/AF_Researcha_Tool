@@ -10,20 +10,25 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 function ViewTopicSubmission() {
 
-    const [isAdmin,setIsAdmin]= useState(false)
+    const [isPanelmember,setIsPanelmember]= useState(false)
+    const [isStudent,setIsStudent]= useState(false)
     const [topiceval, setTopiceval] = useState([])
     const [viewPdf, setViewPdf] = useState("")
     const history = useHistory()
     const location = useLocation()
-    const [user, setUser] =  useState("");
 
     useEffect(() => { 
-        if(localStorage.getItem("user")){
-          setUser(JSON.parse(localStorage.getItem('user')))
-        }
-        if(localStorage.getItem("adminAuthToken")){
-          setIsAdmin(true)
-        }
+        if(localStorage.getItem("panelmemberAuthToken")){
+            setIsPanelmember(true)
+          }else{
+            setIsPanelmember(false)
+          }
+
+        if(localStorage.getItem("studentAuthToken")){
+            setIsStudent(true)
+          }else{
+            setIsStudent(false)
+          }
 
         async function getAllTopiceval() {
           axios.get(`http://localhost:8070/topiceval/view`).then((res) => {
@@ -32,21 +37,22 @@ function ViewTopicSubmission() {
             alert("Failed to fetch submissions")
           })
         }
-
-        if(isAdmin === true){
-            getAllTopiceval();
-          }else{
-            getAllTopiceval();
-          }
-    }, [location,isAdmin])
+   
+        getAllTopiceval();
+          
+    }, [location])
 
     function fetchPdf(submissionDoc) {
         window.open(submissionDoc);
     }
 
-    function UpdateTopicSubmission(){
-        history.push(`/topiceval/update/:id`)
+    function UpdateTopicSubmission(id){
+        history.push(`/topiceval/update/${id}`)
       }
+
+    function TopicSubmission(){
+        history.push(`/topiceval/add`)
+    }
 
   return (
     <div className="container" align ="center" >
@@ -56,32 +62,15 @@ function ViewTopicSubmission() {
                     <h2>Topic Evaluations</h2>
                 </div>
             </div>
-
-            <div className="col-5">
-                {/* {isAdmin === true ?
-                <div className="px-3 search" align="right">
-                    <input 
-                    type="text" 
-                    name="search" 
-                    id="search"
-                    placeholder="Search" 
-                    onChange={handleSearchAll} 
-                    required 
-                    />
+            { isStudent &&
+                <div className="col-8">
+                    <div className="px-3 search" align="right">
+                        <Button onClick={()=>TopicSubmission(topiceval._id)} color="primary" variant="contained" component="span" align="left">
+                                <PictureAsPdfIcon/> &nbsp; Topic Submission
+                        </Button>
+                    </div> 
                 </div>
-                :
-                <div className="px-3 search" align="right">
-                    <input 
-                        type="text" 
-                        name="search" 
-                        id="search"
-                        placeholder="Search" 
-                        onChange={handleSearch} 
-                        required 
-                    />
-                </div> 
-                }   */}
-            </div>
+            }
         </div>
         <div className="progressGrid"  > 
             {/* {isAdmin && 
@@ -112,7 +101,9 @@ function ViewTopicSubmission() {
                                     </IconButton>
                                     </span>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button className="progressBtn" style={{backgroundColor:red[400]}} onClick={()=>UpdateTopicSubmission(topiceval._id)}> Update </button>
+                                    { isPanelmember &&
+                                        <button className="progressBtn" style={{backgroundColor:red[400]}} onClick={()=>UpdateTopicSubmission(TopicEval._id)}> Update </button>
+                                    }    
                                 </span> 
                             </div>
                         </div>
