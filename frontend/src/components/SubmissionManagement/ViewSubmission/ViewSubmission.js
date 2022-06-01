@@ -66,10 +66,9 @@ function ViewSubmission(props) {
 
     }
 
-    function giveFeedback(grpId,proId,submission) {
-        console.log(grpId +" "+ proId)
-        console.log(submission)
-        history.push(`/submission/${grpId}/${proId}`)
+    function giveFeedback(grpId,proId) {
+        console.log(grpId +"Hello Friend"+ proId)
+        history.push(`/submission/feedback/${grpId}/${proId}`)
     }
 
     function viewSubmissionDoc(submissionUrl) {
@@ -182,13 +181,14 @@ function ViewSubmission(props) {
                                         <tr key={key}>
                                             <td>
                                                 {submission1.grpId.grpName}
+                                                {console.log("group Id"+submission1.grpId._id)}
                                             </td>
                                             <td>
                                                 <div>
                                                     <IconButton onClick={() => viewSubmissionDoc(submission1.submissionUrl)}>
                                                         <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
                                                     </IconButton>
-                                                    <IconButton onClick={() => giveFeedback(submission1.grpId._id,submission1.proId._id,submission1)}>
+                                                    <IconButton onClick={() => giveFeedback(submission1.grpId._id,submission1.proId._id)}>
                                                         <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
                                                     </IconButton>
 
@@ -242,7 +242,7 @@ function ViewSubmission(props) {
                                                     <IconButton onClick={() => viewSubmissionDoc(submission2.submissionUrl)}>
                                                         <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
                                                     </IconButton>
-                                                   <IconButton onClick={() => giveFeedback(submission2.grpId._id,submission2.proId._id,submission2)}>
+                                                   <IconButton onClick={() => giveFeedback(submission2.grpId._id,submission2.proId._id)}>
                                                         <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
                                                     </IconButton>
 

@@ -73,7 +73,7 @@ function Header() {
         },
         (isStudent || isSupervisor || isCosupervisor) &&{
             title: 'Chat',
-            path: `/student/chat/${user._id}`,
+            path: `/messenger`,
             icon: <ForumIcon />,
             cName: 'nav-text'
         },
