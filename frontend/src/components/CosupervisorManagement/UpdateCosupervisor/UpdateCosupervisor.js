@@ -66,7 +66,7 @@ function UpdateCosupervisor(props) {
     //update the user
     async function Update(event){
 
-        
+        event.preventDefault();
 
         let imgUrl
 
@@ -108,7 +108,7 @@ function UpdateCosupervisor(props) {
     }
 
     const field = [
-        'Internet of Things', 'Blockchain', 'Artificial Intelligence'
+        'Artificial Intelligence', 'Internet of Things', 'Blockchain', 'Machine Learning', 'Database Systems'
     ]
 
     const handleFieldsChange = (event) => {

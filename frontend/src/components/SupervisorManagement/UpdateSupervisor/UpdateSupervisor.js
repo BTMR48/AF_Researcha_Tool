@@ -66,6 +66,7 @@ function UpdateSupervisor(props) {
     //update the supervisor
     async function Update(event){
 
+        event.preventDefault();
 
         let imgUrl
 
@@ -77,7 +78,6 @@ function UpdateSupervisor(props) {
             try {
                 await axios.post("https://api.cloudinary.com/v1_1/tbrmy/image/upload", formData).then((res) =>{
                     imgUrl = res.data.secure_url
-                    console.log(imgUrl)
                 })
             } catch (error) {
                 alert(error)
@@ -107,7 +107,7 @@ function UpdateSupervisor(props) {
     }
 
     const field = [
-        'Internet of Things', 'Blockchain', 'Artificial Intelligence'
+        'Artificial Intelligence', 'Internet of Things', 'Blockchain', 'Machine Learning', 'Database Systems'
     ]
 
     const handleFieldsChange = (event) => {

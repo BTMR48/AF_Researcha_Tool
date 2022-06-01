@@ -37,7 +37,6 @@ import AddRequest from './components/RequestManagement/AddRequest';
 import ViewRequest from './components/RequestManagement/ViewRequests/ViewRequest';
 import ViewCoSupervisor from './components/CosupervisorManagement/ViewCoSupervior/ViewCoSupervior';
 import ViewPanelMember from './components/PanelmemberManagement/ViewPanelMembers/ViewPanelMember';
-import PanelMemberDetails from './components/PanelmemberManagement/PanelMemberDetails/PanelMemberDetails';
 import SingleRequest from './components/RequestManagement/SingleRequest/SingleRequest';
 import UpdateRequest from './components/RequestManagement/UpdateRequest/UpdateRequest';
 import AddCoRequest from './components/CoSupervisorRequest/AddCoRequest';
@@ -49,6 +48,11 @@ import UpdateCosupervisor from './components/CosupervisorManagement/UpdateCosupe
 import UpdatePanelmember from './components/PanelmemberManagement/UpdatePanelmember/UpdatePanelmember';
 import Messenger from './components/ChatManagement/pages/messenger/Messenger';
 import AddMarking from './components/MarkingSchemeManagement/AddMarking';
+import TopicSubmission from './components/TopicEvaluation/TopicSubmission';
+import UpdateTopicSubmission from './components/TopicEvaluation/UpdateTopicSubmission';
+import AddFeedback from './components/SubmissionManagement/SubmissionFeedback/AddFeedback';
+import ViewTopicSubmission from './components/TopicEvaluation/ViewTopicSubmission';
+import Home from './components/Header/Home'; 
 
 
 function App() {
@@ -91,12 +95,15 @@ function App() {
             <Route path ='/panelmember/ViewPanelMember' exact component={ViewPanelMember}/>
             <StudentPrivateRoute path="/submission/addSubmission/:id/:name" exact component= {AddSubmission}/>
             <Route path="/request/allrequest" exact component={ViewRequest} />
-            <Route path ="/panelmember/:id" exact component={PanelMemberDetails} />
             <Route path = "/request/:id" exact component={SingleRequest} />
             <Route path = '/request/update/:id' exact component={UpdateRequest} />
             <Route path = '/cosupervisor/request/:id' exact component={AddCoRequest} />
             <Route path = '/corequest/allcorequest' exact component={ViewCorequest} />
             <Route path = '/corequest/update/:id' exact component = {UpdateCoRequest} />
+            <Route path = '/topiceval/add' exact component={TopicSubmission} />
+            <Route path = '/topiceval/update/:id' exact component={UpdateTopicSubmission} />
+            <Route path = '/topiceval/view' exact component={ViewTopicSubmission} />
+            <Route path = '/home' exact component={Home} />
             <Footer/>
         </div>
       </Router>

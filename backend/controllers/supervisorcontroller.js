@@ -61,7 +61,7 @@ exports.signupSupervisor = async(req,res) => {
 exports.updateSupervisor = async(req,res) => {
 
     let supervisorID = req.params.id;
-    const { title, name, email, fields, phoneno } = req.body;
+    const { title, name, email, fields, phoneno, imgUrl } = req.body;
 
     // let to=new Date(req.body.availableTimeTo)
     // let from=new Date(req.body.availableTimeFrom)
@@ -69,7 +69,7 @@ exports.updateSupervisor = async(req,res) => {
     // const availableTimeTo = (to.getHours() + ":" + to.getMinutes())
     // const availableTimeFrom = (from.getHours() + ":" + from.getMinutes())
 
-    const updateSupervisor= { title, name, email, fields, phoneno} 
+    const updateSupervisor= { title, name, email, fields, phoneno, imgUrl} 
     
     try{
         //find supervisor by ID  

@@ -9,8 +9,6 @@ import { TextField } from '@material-ui/core';
 import { Document, Page } from 'react-pdf';
 
 
-
-
 function AddProgress() {
     const[progress_name,setName]=useState(""); 
 

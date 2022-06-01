@@ -24,8 +24,10 @@ import './Sidebar.css';
 function Header() {
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [isStudent, setIsStudent] = useState(false);
     const [isSupervisor, setIsSupervisor] = useState(false);
-    const [cartCount, setCartCount] = useState();
+    const [isCosupervisor, setIsCosupervisor] = useState(false);
+    const [isPanelmember, setIsPanelmember] = useState(false);
     const [user, setUser] = useState("");
     const [URL, setURL] = useState("/patient");
     const history = useHistory();
@@ -35,7 +37,7 @@ function Header() {
     const SidebarItem = [
         {
           title: 'Home',
-          path: `/evolution/levels`,
+          path: `/home`,
           icon: <HomeIcon/>,
           cName: 'nav-text'
         },
@@ -45,25 +47,31 @@ function Header() {
           icon: <PersonIcon/>,
           cName: 'nav-text'
         },
-        {
+        isStudent &&{
           title: 'Topic Registration',
           path: `/supervisor/ViewSupervisor`,
           icon: <EventAvailableIcon/>,
           cName: 'nav-text'
         },
-        {
+        (isStudent || isSupervisor || isCosupervisor) &&{
             title: 'Requests',
             path: `/request/allrequest/`,
             icon: <EventAvailableIcon/>,
             cName: 'nav-text'
         },
-        {
-          title: 'Submission Documents',
-          path: `/submission/viewSubmission/${user._id}`,
+        (isStudent || isPanelmember) &&{
+            title: 'Topic Evaluation',
+            path: `/topiceval/view`,
+            icon: <EventAvailableIcon/>,
+            cName: 'nav-text'
+        },
+        {    
+          title: 'Marking Schema',
+          path: `/marking`,
           icon: <AssignmentIcon/>,
           cName: 'nav-text'
         },
-        isSupervisor &&{
+        (isStudent || isSupervisor || isCosupervisor) &&{
             title: 'Chat',
             path: `/messenger`,
             icon: <ForumIcon />,
@@ -86,24 +94,14 @@ function Header() {
             if(localStorage.getItem("user")){
                 setUser(JSON.parse(localStorage.getItem('user')))
             }
-            
-            // async function getCartCount() {
-            //     await axios.get(`http://localhost:8070/cart/${user._id}&shopping`).then((res) => {
-            //         let result = res.data.result;
-            //         setCartCount(result.length) 
-            //     }).catch((error) => {
-            //         console.log(error)
-            //     })
-            // }
-            // getCartCount();
-
-        
+                    
             if(localStorage.getItem("adminAuthToken")){
                 // setURL(`/admin`)
                 setIsAdmin(true)
             }
             if(localStorage.getItem("studentAuthToken")){
                 setURL(`/student`)
+                setIsStudent(true)
             }
 
             if(localStorage.getItem("supervisorAuthToken")){
@@ -112,9 +110,11 @@ function Header() {
             }
             if(localStorage.getItem("cosupervisorAuthToken")){
                 setURL(`/cosupervisor`)
+                setIsCosupervisor(true)
             }
             if(localStorage.getItem("panelmemberAuthToken")){
                 setURL(`/panelmember`)
+                setIsPanelmember(true)
             }
 
         }else{
