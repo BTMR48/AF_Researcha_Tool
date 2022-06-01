@@ -54,6 +54,7 @@ import UpdateTopicSubmission from './components/TopicEvaluation/UpdateTopicSubmi
 
 import AddFeedback from './components/SubmissionManagement/SubmissionFeedback/AddFeedback';
 import ViewTopicSubmission from './components/TopicEvaluation/ViewTopicSubmission';
+import Home from './components/Header/Home'; 
 
 function App() {
   return (
@@ -110,6 +111,7 @@ function App() {
             <Route path = '/topiceval/add' exact component={TopicSubmission} />
             <Route path = '/topiceval/update/:id' exact component={UpdateTopicSubmission} />
             <Route path = '/topiceval/view' exact component={ViewTopicSubmission} />
+            <Route path = '/home' exact component={Home} />
 
             <Footer/>
         </div>
