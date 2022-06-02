@@ -87,7 +87,7 @@ function ViewRequest() {
                                 <div>
                                   {isSupervisor === true ?
                                     <div>
-                                      <button className='cancelBtn' style={{backgroundColor:'#2f89fc'}} onClick={()=>view(Request._id)}> Edit </button>
+                                      <button className='cancelBtn' style={{backgroundColor:orange[500]}} onClick={()=>view(Request._id)}> Reply </button>
                                     </div>
                                     :
                                     <div>
