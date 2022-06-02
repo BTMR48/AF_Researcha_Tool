@@ -26,7 +26,7 @@ function ViewSubmission(props) {
             setIsSupervisor(false)
         }
 
-
+//Fetch submission details
         async function getSubmission1() {
             await axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
                 const result = res.data.result.filter((submission) =>
@@ -59,18 +59,18 @@ function ViewSubmission(props) {
         getMarking()
     }, [props])
 
-   
+//Open pdf url in another window
     function viewPdf(markingUrl) {
         console.log(markingUrl)
         window.open(markingUrl);
 
     }
-
-    function giveFeedback(grpId,proId) {
-        console.log(grpId +"Hello Friend"+ proId)
+//navigate to feedback page
+    function giveFeedback(grpId, proId) {
+        console.log(grpId + "Hello Friend" + proId)
         history.push(`/submission/feedback/${grpId}/${proId}`)
     }
-
+//Open submission documents
     function viewSubmissionDoc(submissionUrl) {
         console.log(submissionUrl)
         window.open(submissionUrl);
@@ -81,7 +81,7 @@ function ViewSubmission(props) {
             submission.grpId.grpName.toLowerCase().includes(searchTerm))
         setSubmission1Arr(result)
     }
-
+//Handle search
     function handleSearch1(event) {
         const searchTerm = event.currentTarget.value
         axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
@@ -146,11 +146,11 @@ function ViewSubmission(props) {
                 </div>
                 <div className="col-3">
                 </div>
-                <br/> <br/><br/> <br/>
+                <br /> <br /><br /> <br />
                 <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                        <h4>Progress 1</h4>
-                    </div>
-                    <div className="col-3">
+                    <h4>Progress 1</h4>
+                </div>
+                <div className="col-3">
                 </div>
                 <div className="col-5">
                     <div className="px-3 search" align="center">
@@ -165,49 +165,49 @@ function ViewSubmission(props) {
                         <br />
                     </div>
                 </div>
-            
-        
-                    <div className="blue-table ">
-                        <div className="blue-table, box-view-prescription">
-                            <table>
-                                < thead >
-                                    <tr>
-                                        <th style={{ textAlign: 'center' }}>Student Group</th>
-                                        <th style={{ textAlign: 'center' }}>Progress_1</th>
+
+
+                <div className="blue-table ">
+                    <div className="blue-table, box-view-prescription">
+                        <table>
+                            < thead >
+                                <tr>
+                                    <th style={{ textAlign: 'center' }}>Student Group</th>
+                                    <th style={{ textAlign: 'center' }}>Progress_1</th>
+                                </tr>
+                            </thead>
+                            <tbody style={{ textAlign: 'center' }}>
+                                {submission1Arr.map((submission1, key) => (
+                                    <tr key={key}>
+                                        <td>
+                                            {submission1.grpId.grpName}
+                                            {console.log("group Id" + submission1.grpId._id)}
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <IconButton onClick={() => viewSubmissionDoc(submission1.submissionUrl)}>
+                                                    <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
+                                                </IconButton>
+                                                <IconButton onClick={() => giveFeedback(submission1.grpId._id, submission1.proId._id)}>
+                                                    <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
+                                                </IconButton>
+
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody style={{ textAlign: 'center' }}>
-                                    {submission1Arr.map((submission1, key) => (
-                                        <tr key={key}>
-                                            <td>
-                                                {submission1.grpId.grpName}
-                                                {console.log("group Id"+submission1.grpId._id)}
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <IconButton onClick={() => viewSubmissionDoc(submission1.submissionUrl)}>
-                                                        <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
-                                                    </IconButton>
-                                                    <IconButton onClick={() => giveFeedback(submission1.grpId._id,submission1.proId._id)}>
-                                                        <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
-                                                    </IconButton>
+                                ))}
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="col-3">
                 </div>
-                <br/> <br/>
+                <div className="col-3">
+                </div>
+                <br /> <br />
                 <div className="pb-2 px-3 d-flex flex-wrap align-items-center justify-content-between">
-                        <h4>Progress 2</h4>
-                    </div>
-                    <div className="col-3">
+                    <h4>Progress 2</h4>
+                </div>
+                <div className="col-3">
                 </div>
                 <div className="col-5">
                     <div className="px-3 search" align="center">
@@ -222,40 +222,40 @@ function ViewSubmission(props) {
                         <br />
                     </div>
                 </div>
-                    <div className="blue-table ">
-                        <div className="blue-table, box-view-prescription">
-                            <table>
-                                < thead >
-                                    <tr>
-                                        <th style={{ textAlign: 'center' }}>Student Group</th>
-                                        <th style={{ textAlign: 'center' }}>Progress_2</th>
+                <div className="blue-table ">
+                    <div className="blue-table, box-view-prescription">
+                        <table>
+                            < thead >
+                                <tr>
+                                    <th style={{ textAlign: 'center' }}>Student Group</th>
+                                    <th style={{ textAlign: 'center' }}>Progress_2</th>
+                                </tr>
+                            </thead>
+                            <tbody style={{ textAlign: 'center' }}>
+                                {submission2Arr.map((submission2, key) => (
+                                    <tr key={key}>
+                                        <td>
+                                            {submission2.grpId.grpName}
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <IconButton onClick={() => viewSubmissionDoc(submission2.submissionUrl)}>
+                                                    <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
+                                                </IconButton>
+                                                <IconButton onClick={() => giveFeedback(submission2.grpId._id, submission2.proId._id)}>
+                                                    <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
+                                                </IconButton>
+
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody style={{ textAlign: 'center' }}>
-                                    {submission2Arr.map((submission2, key) => (
-                                        <tr key={key}>
-                                            <td>
-                                                {submission2.grpId.grpName}
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <IconButton onClick={() => viewSubmissionDoc(submission2.submissionUrl)}>
-                                                        <AssignmentIcon style={{ color: red[500] }} ></AssignmentIcon>
-                                                    </IconButton>
-                                                   <IconButton onClick={() => giveFeedback(submission2.grpId._id,submission2.proId._id)}>
-                                                        <FeedbackIcon style={{ color: grey[500] }} ></FeedbackIcon>
-                                                    </IconButton>
+                                ))}
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-                    </div>
+                </div>
+            </div>
         </div >
     )
 }

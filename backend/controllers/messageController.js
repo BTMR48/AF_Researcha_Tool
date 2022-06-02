@@ -1,6 +1,6 @@
 const Message = require("../models/message");
 
-//add
+//add message
 
 exports.addMessage = async (req, res) => {
   const newMessage = new Message(req.body);
@@ -13,7 +13,7 @@ exports.addMessage = async (req, res) => {
   }
 }
 
-//get
+//get message
 
 exports.getMessage = async (req, res) => {
   try {

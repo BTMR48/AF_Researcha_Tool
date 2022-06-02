@@ -1,6 +1,6 @@
 const Conversation = require("../models/conversation");
 
-//new conv
+//new conversation
 
 exports.addConversation = async (req, res) => {
   console.log(req.body.senderId);
@@ -18,7 +18,7 @@ exports.addConversation = async (req, res) => {
 
 //get conv of a user
 
-exports.getConversation =  async (req, res) => {
+exports.getConversation = async (req, res) => {
   try {
     const conversation = await Conversation.find({
       members: { $in: [req.params.userId] },
