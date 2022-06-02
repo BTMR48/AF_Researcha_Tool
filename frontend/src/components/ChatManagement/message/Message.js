@@ -9,7 +9,7 @@ export default function Message({ message, own ,user}) {
         
         <img
           className="messageImg"
-          src={own ? user : "https://res.cloudinary.com/tbrmy/image/upload/v1653681023/supervisor/ltlsd0yfumtl5lccjz4p.jpg"}
+          src={own ? user :  "https://res.cloudinary.com/tbrmy/image/upload/v1653682791/cosupervisor/zbusvebbxppzckhxxpon.jpg"}
           alt=""
         />
         <p className="messageText">{message.text}</p>

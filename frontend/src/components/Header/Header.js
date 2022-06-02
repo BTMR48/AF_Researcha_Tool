@@ -66,8 +66,8 @@ function Header() {
             cName: 'nav-text'
         },
         {    
-          title: 'Marking Schema',
-          path: `/marking`,
+          title: 'Document submissions',
+          path: `/submission/viewSubmission/${user._id}`,
           icon: <AssignmentIcon/>,
           cName: 'nav-text'
         },

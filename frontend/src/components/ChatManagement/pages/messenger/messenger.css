@@ -12,6 +12,7 @@
 
 .chatMenu {
   flex: 3.5;
+  background: rgb(201, 235, 249);
 }
 
 .chatMenuInput {

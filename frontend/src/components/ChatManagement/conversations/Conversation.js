@@ -13,7 +13,7 @@ export default function Conversation({ conversation, currentUser }) {
       await axios.get(`http://localhost:8070/student/${friendId}`).then((res) => {
         setUser(res.data.result)
             }).catch((error) => {
-                alert("Failed to fetch the Marking details")
+                alert("Failed to fetch the conversation details")
             })
     };
     getUser();

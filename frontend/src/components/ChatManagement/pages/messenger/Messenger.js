@@ -127,8 +127,8 @@ function handleSearch(event) {
          
             <div className="messenger">
         <div className="chatMenu" style={{ borderRadius: "15px"}}>
-        <br/>
-          <div className="searchbar">
+        <br/><br/>
+          <div className="searchbar" style={{ background:"rgb(201, 235, 249)"}}>
           
           <div className="col-5">
                     <div className="px-3 search">
@@ -184,15 +184,7 @@ function handleSearch(event) {
             )}
           </div>
         </div>
-        <div className="chatOnline">
-          <div className="chatOnlineWrapper">
-            <ChatOnline
-              onlineUsers={onlineUsers}
-              currentId={user._id}
-              setCurrentChat={setCurrentChat}
-            />
-          </div>
-        </div>
+    
       </div>              
         </div>
       

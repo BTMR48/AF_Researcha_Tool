@@ -2,6 +2,7 @@ const mongoose=require('mongoose');
 
 const Schema =mongoose.Schema;
 
+//Model for messages sent in the chat
 const MarksSchema=new Schema({
     
     grpId:{
