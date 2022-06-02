@@ -8,6 +8,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import EmailIcon from '@material-ui/icons/Email';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import RateReviewIcon from '@material-ui/icons/RateReview';
+import GoogleMap from '../GoogleMap/GoogleMap'
 
 function Footer() {
     const history=useHistory();
@@ -20,14 +21,27 @@ function Footer() {
                 <div className="row">
                     <div className="col-xl-1" align="center">
                         <br/>
-                        <img src="/images/Logo.png" className="logoFooter" alt="logo"/>
+                        <img src="/images/sliit.png" className="logoFooter" alt="logo"/>
                     </div>
-                    <div className="col-xl-3"style={{ paddingLeft: 70 }}>
+                    <div className="col-xl-3"style={{ paddingLeft: 100 }}>
                         <br/>
                         <p>
                             This website is focused on managing Research Projects of 4th Year undergradutes 
                             at Sri Lanka Institute of Information Technology    
                         </p>
+                    
+                            <h5>   Provide Feedback to SLIIT</h5>    
+                            <br></br>
+                            <Button variant="contained" style={{backgroundColor:blue[500],color:'white'}} endIcon={<RateReviewIcon/>}
+                                    href="https://www.sliit.lk/service-feedback-form/" >
+                                Feedback
+                            </Button> 
+                            <br/> <br/>
+                        <span>
+                            <img src="https://img.icons8.com/color/48/000000/facebook-circled--v4.png" alt="facebook"/>
+                            <img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" alt="instagram"/>
+                            <img src="https://img.icons8.com/color/48/000000/twitter-circled--v2.png" alt="twitter"/>
+                        </span>
                     </div>
                     <div className="col-xl-2" align="center">
                         <h3>Links</h3>
@@ -47,19 +61,9 @@ function Footer() {
                         <p><PhoneIcon fontSize="small"/>&nbsp;0117 544 801</p>
                     </div>
                     <div className="col-xl-3"align="center">
-                        <br></br>
-                        <h5>   Provide Feedback to SLIIT</h5>    
-                        <br></br>
-                        <Button variant="contained" style={{backgroundColor:blue[500],color:'white'}} endIcon={<RateReviewIcon/>}
-                                href="https://www.sliit.lk/service-feedback-form/" >
-                            Feedback
-                        </Button> 
-                        <br/> <br/>
-                        <span>
-                            <img src="https://img.icons8.com/color/48/000000/facebook-circled--v4.png" alt="facebook"/>
-                            <img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" alt="instagram"/>
-                            <img src="https://img.icons8.com/color/48/000000/twitter-circled--v2.png" alt="twitter"/>
-                        </span>
+                        <div>
+                            <GoogleMap />
+                        </div>
                     </div>
                 </div>
                 <div className="col-xl-12 text-center "> 
