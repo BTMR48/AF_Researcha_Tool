@@ -47,10 +47,10 @@ function UpdateCoRequest(props) {
 
         try{
             await axios.put(`http://localhost:8070/corequest/update/${props.match.params.id}`, updateRequest, config);
-            alert("Updated")
+            alert("Replied")
             history.push('/request/allrequest')
         }catch(error){
-            alert("updating Failed")
+            alert("Replying Failed")
         }
 
     }
@@ -117,7 +117,7 @@ function UpdateCoRequest(props) {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <input className="form-submit-btn" type="submit" value="Update" /> 
+                            <input className="form-submit-btn" type="submit" value="Reply" /> 
                         </div>
                     </div>
                 </div>
