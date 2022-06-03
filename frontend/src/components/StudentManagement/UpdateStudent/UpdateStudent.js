@@ -27,7 +27,7 @@ function UpdateStudent(props) {
     //fetching user data
     useEffect(()=>{
         async function fetchUser(){
-            await axios.get(`http://localhost:8070/student/${props.match.params.id}`).then((res)=>{
+            await axios.get(`https://af-research-tool.herokuapp.com/student/${props.match.params.id}`).then((res)=>{
                 setGroupName(res.data.result.groupname)
                 setEmail(res.data.result.email)
                 setPhone(res.data.result.phone)
@@ -61,7 +61,7 @@ function UpdateStudent(props) {
         };
 
         try {
-            await axios.put(`http://localhost:8070/student/update/${props.match.params.id}`,updateStudent, config);
+            await axios.put(`https://af-research-tool.herokuapp.com/student/update/${props.match.params.id}`,updateStudent, config);
                 alert("Updated Successfully")
                 // history.push('/student/profile')
         } catch (error) {

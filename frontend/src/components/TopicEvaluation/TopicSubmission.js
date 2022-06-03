@@ -66,7 +66,7 @@ function TopicSubmission() {
         const newTopicEval = { groupname, submissionDoc, supervisorName, cosupervisorName, topic, type, feedback}
         
         try {
-            await axios.post("http://localhost:8070/topiceval/add", newTopicEval , config)
+            await axios.post("https://af-research-tool.herokuapp.com/topiceval/add", newTopicEval , config)
             alert("Document Submit Successfully") 
             history.push('/topiceval/view') 
             event.target.reset(); 

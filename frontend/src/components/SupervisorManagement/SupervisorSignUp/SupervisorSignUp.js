@@ -97,7 +97,7 @@ function SupervisorSignUp(){
             
             try{
             
-                await axios.post("http://localhost:8070/supervisor/signup",newSupervisor,config);
+                await axios.post("https://af-research-tool.herokuapp.com/supervisor/signup",newSupervisor,config);
                 alert("Supervisor added successfully")
                 history.push(`/users/supervisorlist`)
             } catch(error){

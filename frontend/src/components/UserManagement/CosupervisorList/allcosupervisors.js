@@ -23,7 +23,7 @@ function AllCosupervisors() {
             setIsAdmin(false)
           }
           async function getCosupervisors() {
-            axios.post(`http://localhost:8070/cosupervisor`).then((res) => {
+            axios.post(`https://af-research-tool.herokuapp.com/cosupervisor`).then((res) => {
               setCosupervisors(res.data)  
             }).catch((error) => {
               alert("Failed to fetch Co-Supervisors")
@@ -42,7 +42,7 @@ function AllCosupervisors() {
           }
         };
 
-        await axios.delete(`http://localhost:8070/cosupervisor/delete/${id}`, config).then(() => {
+        await axios.delete(`https://af-research-tool.herokuapp.com/cosupervisor/delete/${id}`, config).then(() => {
         alert("Co-Supervisor deleted successfully")
         setCosupervisors(cosupervisors.filter(element => element._id !== id))
         }).catch((error) => {
@@ -61,7 +61,7 @@ function AllCosupervisors() {
 
     function handleSearch(event){
       const searchTerm = event.currentTarget.value
-      axios.post(`http://localhost:8070/cosupervisor`).then((res) => {
+      axios.post(`https://af-research-tool.herokuapp.com/cosupervisor`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
           alert("Failed to Search")

@@ -31,7 +31,7 @@ function ViewTopicSubmission() {
           }
 
         async function getAllTopiceval() {
-          axios.get(`http://localhost:8070/topiceval/view`).then((res) => {
+          axios.get(`https://af-research-tool.herokuapp.com/topiceval/view`).then((res) => {
             setTopiceval(res.data)  
           }).catch((error) => {
             alert("Failed to fetch submissions")

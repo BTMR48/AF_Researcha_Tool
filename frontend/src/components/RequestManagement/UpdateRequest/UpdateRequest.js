@@ -20,7 +20,7 @@ function UpdateRequest(props) {
 
     useEffect(()=>{
         async function fetchRequest(){
-          await axios.get(`http://localhost:8070/request/${props.match.params.id}`).then((res)=>{
+          await axios.get(`https://af-research-tool.herokuapp.com/request/${props.match.params.id}`).then((res)=>{
              setTopic(res.data.request.topic)
              setType(res.data.request.type)
              setBatchgroup(res.data.request.batchgroup)
@@ -44,7 +44,7 @@ function UpdateRequest(props) {
         };
 
         try{
-            await axios.put(`http://localhost:8070/request/update/${props.match.params.id}`, updateRequest, config);
+            await axios.put(`https://af-research-tool.herokuapp.com/request/update/${props.match.params.id}`, updateRequest, config);
             alert("Updated")
             history.push('/request/allrequest')
         }catch(error){

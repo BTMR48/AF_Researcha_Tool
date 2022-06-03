@@ -41,7 +41,7 @@ function ProgressDetails(props) {
         }
         //get one progress details
       async function getProgressDetails() {
-        axios.get(`http://localhost:8070/progress/level/${props.match.params.id}`).then((res) => {
+        axios.get(`https://af-research-tool.herokuapp.com/progress/level/${props.match.params.id}`).then((res) => {
           setId(res.data.progress._id)   
           setName(res.data.progress.name)
           setDescription(res.data.progress.description)
@@ -57,7 +57,7 @@ function ProgressDetails(props) {
 
      //delete progress
     async function deleteProgress(id){        
-        await axios.delete(`http://localhost:8070/progress/delete/${id}`,config).then(() => {
+        await axios.delete(`https://af-research-tool.herokuapp.com/progress/delete/${id}`,config).then(() => {
             alert("Level deleted successfully")
             history.push('/evolution/levels')
         }).catch((error) => {

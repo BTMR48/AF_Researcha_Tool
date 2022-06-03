@@ -21,7 +21,7 @@ function UpdateCoRequest(props) {
 
     useEffect(()=>{
         async function fetchRequest(){
-            await axios.get(`http://localhost:8070/corequest/${props.match.params.id}`).then((res)=>{
+            await axios.get(`https://af-research-tool.herokuapp.com/corequest/${props.match.params.id}`).then((res)=>{
                 setsupervisorName(res.data.corequest.supervisorName)
                 setTopic(res.data.corequest.topic)
                 setType(res.data.corequest.type)
@@ -46,7 +46,7 @@ function UpdateCoRequest(props) {
         };
 
         try{
-            await axios.put(`http://localhost:8070/corequest/update/${props.match.params.id}`, updateRequest, config);
+            await axios.put(`https://af-research-tool.herokuapp.com/corequest/update/${props.match.params.id}`, updateRequest, config);
             alert("Replied")
             history.push('/request/allrequest')
         }catch(error){

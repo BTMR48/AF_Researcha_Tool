@@ -97,7 +97,7 @@ function CosupervisorSignUp(){
             
             try{
             
-                await axios.post("http://localhost:8070/cosupervisor/signup",newCosupervisor,config);
+                await axios.post("https://af-research-tool.herokuapp.com/cosupervisor/signup",newCosupervisor,config);
                 alert("Co-Supervisor added successfully")
                 history.push(`/users/cosupervisorlist`)
             } catch(error){

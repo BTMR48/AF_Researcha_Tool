@@ -38,7 +38,7 @@ function ViewRequest() {
     }
 
       async function getViewRequests(){
-          axios.get('http://localhost:8070/request/').then((res) => {
+          axios.get('https://af-research-tool.herokuapp.com/request/').then((res) => {
               setRequests(res.data)
           }).catch((error) => {
               alert("Failed to fetch Supervisors")
@@ -48,7 +48,7 @@ function ViewRequest() {
     },[location])
 
     async function deleteRequest(id){
-      await axios.delete(`http://localhost:8070/request/delete/${id}`,config).then(() => {
+      await axios.delete(`https://af-research-tool.herokuapp.com/request/delete/${id}`,config).then(() => {
         alert("Cancel Request")
         history.push('/request/allrequest/')
       }).catch((error) => {

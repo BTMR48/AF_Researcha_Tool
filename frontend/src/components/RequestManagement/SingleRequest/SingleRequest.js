@@ -24,7 +24,7 @@ function SingleRequest(props) {
         }
         
         // async function getSingleRequest() {
-        //     axios.get(`http://localhost:8070/request/${props.match.params.id}`).then((res) => {
+        //     axios.get(`https://af-research-tool.herokuapp.com/request/${props.match.params.id}`).then((res) => {
         //         setId(res.data.request._id) 
         //         setTopic(res.data.request.topic)
         //         setType(res.data.request.type)

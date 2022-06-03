@@ -60,7 +60,7 @@ function SignUp() {
             const newStudent = {groupname, email, phone, member1name, member1reg, member2name, member2reg, member3name, member3reg, member4name, member4reg, password}
             console.log(newStudent)
             try {
-                await axios.post("http://localhost:8070/student/signup", newStudent , config)
+                await axios.post("https://af-research-tool.herokuapp.com/student/signup", newStudent , config)
                     alert("Registration Successful")
                     history.push('/')
             } catch (error) {

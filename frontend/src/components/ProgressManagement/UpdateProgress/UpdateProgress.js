@@ -26,7 +26,7 @@ function UpdateProgress(props){
     useEffect(()=>{
 
       async function fetchProgress(){
-        await axios.get(`http://localhost:8070/progress/level/${props.match.params.id}`).then((res)=>{
+        await axios.get(`https://af-research-tool.herokuapp.com/progress/level/${props.match.params.id}`).then((res)=>{
            setName(res.data.progress.name)
            setDescription(res.data.progress.description)
            setDate(res.data.progress.date)
@@ -86,7 +86,7 @@ function UpdateProgress(props){
         };
         
         try {
-          await axios.put(`http://localhost:8070/progress/update/${props.match.params.id}`,updatedprogress, config);
+          await axios.put(`https://af-research-tool.herokuapp.com/progress/update/${props.match.params.id}`,updatedprogress, config);
           alert("progress Updated Successfully")
           history.push('/evolution/levels')
         } catch (error) {

@@ -32,7 +32,7 @@ function AssignPanelmember(props) {
     //fetching user data
     // useEffect(()=>{
     //     async function fetchUser(){
-    //         await axios.get(`http://localhost:8070/student/${props.match.params.id}`).then((res)=>{
+    //         await axios.get(`https://af-research-tool.herokuapp.com/student/${props.match.params.id}`).then((res)=>{
     //             // setStudentID(res.data.result._id)
     //             // setEmail(res.data.result.email)
     //             // setPhone(res.data.result.phone)
@@ -63,7 +63,7 @@ function AssignPanelmember(props) {
           }
 
         async function fetchPanelmember(){
-            await axios.post(`http://localhost:8070/panelmember`).then((res)=>{
+            await axios.post(`https://af-research-tool.herokuapp.com/panelmember`).then((res)=>{
                 setPanelmembers(res.data)
                 
             }).catch((error)=>{
@@ -92,7 +92,7 @@ function AssignPanelmember(props) {
         };
 
         try {
-            await axios.put(`http://localhost:8070/student/update/${props.match.params.id}`,addPanel, config); 
+            await axios.put(`https://af-research-tool.herokuapp.com/student/update/${props.match.params.id}`,addPanel, config); 
                 alert("Assigned Successfully")
                 history.push('/users/studentlist')
         } catch (error) {
@@ -113,7 +113,7 @@ function AssignPanelmember(props) {
         const assignPanel = {panelmemberID, studentID}
 
         try {
-            await axios.post(`http://localhost:8070/pnlgroup/add`,assignPanel); 
+            await axios.post(`https://af-research-tool.herokuapp.com/pnlgroup/add`,assignPanel); 
         } catch (error) {
             alert("This panelmember is already assigned to this group")
         }    

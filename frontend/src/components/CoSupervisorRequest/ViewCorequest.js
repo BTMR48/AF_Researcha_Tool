@@ -31,7 +31,7 @@ function ViewCorequest() {
         }
         
           async function getViewCoRequests(){
-              axios.get('http://localhost:8070/corequest/').then((res) => {
+              axios.get('https://af-research-tool.herokuapp.com/corequest/').then((res) => {
                   setRequests(res.data)
               }).catch((error) => {
                   alert("Failed to fetch Co-Supervisors")
@@ -41,7 +41,7 @@ function ViewCorequest() {
         },[location])
 
         async function deleteRequest(id){
-            await axios.delete(`http://localhost:8070/corequest/delete/${id}`,config).then(() => {
+            await axios.delete(`https://af-research-tool.herokuapp.com/corequest/delete/${id}`,config).then(() => {
               alert("Cancel Request")
               history.push('/request/allrequest/')
             }).catch((error) => {

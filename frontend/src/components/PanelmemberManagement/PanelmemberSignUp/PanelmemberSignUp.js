@@ -91,7 +91,7 @@ function PanelmemberSignUp(){
             
             try{
             
-                await axios.post("http://localhost:8070/panelmember/signup",newPanelmember,config);
+                await axios.post("https://af-research-tool.herokuapp.com/panelmember/signup",newPanelmember,config);
                 alert("Panel Member added successfully")
                 history.push(`/users/panelmemberlist`)
             } catch(error){

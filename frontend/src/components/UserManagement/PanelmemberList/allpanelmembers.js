@@ -23,7 +23,7 @@ function AllPanelmembers() {
             setIsAdmin(false)
           }
           async function getPanelmembers() {
-            axios.post(`http://localhost:8070/panelmember`).then((res) => {
+            axios.post(`https://af-research-tool.herokuapp.com/panelmember`).then((res) => {
               setPanelmembers(res.data)  
             }).catch((error) => {
               alert("Failed to fetch Panelmembers")
@@ -43,7 +43,7 @@ function AllPanelmembers() {
           }
         };
 
-        await axios.delete(`http://localhost:8070/panelmember/delete/${id}`, config).then(() => {
+        await axios.delete(`https://af-research-tool.herokuapp.com/panelmember/delete/${id}`, config).then(() => {
         alert("Panelmember deleted successfully")
         setPanelmembers(panelmembers.filter(element => element._id !== id))
         }).catch((error) => {
@@ -61,7 +61,7 @@ function AllPanelmembers() {
 
     function handleSearch(event){
       const searchTerm = event.currentTarget.value
-      axios.post(`http://localhost:8070/panelmember`).then((res) => {
+      axios.post(`https://af-research-tool.herokuapp.com/panelmember`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
           alert("Failed to Search")

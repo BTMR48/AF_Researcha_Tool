@@ -24,7 +24,7 @@ function AddFeedback(props) {
         console.log(props.match.params)
         console.log(props.match.params.id + " GrpId+ProId " + props.match.params.proId)
         try {
-            await axios.post(`http://localhost:8070/submission/${props.match.params.id}&${props.match.params.proId}`, newFeedback, config)
+            await axios.post(`https://af-research-tool.herokuapp.com/submission/${props.match.params.id}&${props.match.params.proId}`, newFeedback, config)
             alert("Feedback Added Successfully")
             event.target.reset();
         } catch (error) {

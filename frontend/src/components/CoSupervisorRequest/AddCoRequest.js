@@ -38,7 +38,7 @@ function AddCoRequest(props) {
     }
 
     async function getCoSupervisorDetails(){
-      axios.get(`http://localhost:8070/cosupervisor/${props.match.params.id}`, config).then((res) => {
+      axios.get(`https://af-research-tool.herokuapp.com/cosupervisor/${props.match.params.id}`, config).then((res) => {
         setcoSupervisorID(res.data._id)
         setStudentID(user._id)
         setName(res.data.name)
@@ -71,7 +71,7 @@ function AddCoRequest(props) {
 
     localStorage.setItem("cosupervisorrequest", JSON.stringify(newRequest))
     
-    axios.post("http://localhost:8070/corequest/add", newRequest).then(() => {
+    axios.post("https://af-research-tool.herokuapp.com/corequest/add", newRequest).then(() => {
         alert ("Successful Request")
         localStorage.removeItem("cosupervisorrequest")
         history.push(`/supervisor/ViewSupervisor`)

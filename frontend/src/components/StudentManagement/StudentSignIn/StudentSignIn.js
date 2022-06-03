@@ -29,7 +29,7 @@ function Login() {
         
         try {
             //getting data from backend
-            const {data} = await axios.post("http://localhost:8070/student/signin", {email, password}, config);
+            const {data} = await axios.post("https://af-research-tool.herokuapp.com/student/signin", {email, password}, config);
 
             //setting the student authorization token
             localStorage.setItem("studentAuthToken", `Student ${data.token}`)

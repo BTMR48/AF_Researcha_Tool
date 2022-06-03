@@ -24,7 +24,7 @@ function ProgressLevel() {
       setIsAdmin(true)
     }
     async function getAllProgress() {
-      axios.get(`http://localhost:8070/progress`).then((res) => {
+      axios.get(`https://af-research-tool.herokuapp.com/progress`).then((res) => {
         setProgresses(res.data)  
       }).catch((error) => {
         alert("Failed to fetch Progress")
@@ -32,7 +32,7 @@ function ProgressLevel() {
     }
 
     async function getPublishProgress() {
-      axios.get(`http://localhost:8070/progress/PUBLISH`).then((res) => {
+      axios.get(`https://af-research-tool.herokuapp.com/progress/PUBLISH`).then((res) => {
         setProgresses(res.data.result) 
       }).catch((error) => {
         alert("Failed to fetch progresses")
@@ -55,7 +55,7 @@ function ProgressLevel() {
 
   function handleSearch(event){
     const searchTerm = event.currentTarget.value
-    axios.get(`http://localhost:8070/progress/PUBLISH`).then((res) => {
+    axios.get(`https://af-research-tool.herokuapp.com/progress/PUBLISH`).then((res) => {
       filterContent(res.data.result, searchTerm.toLowerCase())
     }).catch((error) => {
       alert("Failed to fetch progress")
@@ -64,7 +64,7 @@ function ProgressLevel() {
 
   function handleSearchAll(event){
     const searchTerm = event.currentTarget.value
-    axios.get(`http://localhost:8070/progress`).then((res) => {
+    axios.get(`https://af-research-tool.herokuapp.com/progress`).then((res) => {
       filterContent(res.data, searchTerm.toLowerCase())
     }).catch((error) => {
       alert("Admin Failed to fetch progress")
