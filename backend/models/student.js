@@ -86,6 +86,11 @@ const StudentSchema = new Schema({
         default: '',
         require: false
     },
+    followings: {
+        type: String,
+        default: '',
+        require: false
+    },
 
 })
 

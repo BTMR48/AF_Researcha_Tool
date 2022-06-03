@@ -29,15 +29,15 @@ function UpdateTopicSubmission(props) {
     useEffect(()=>{
         async function fetchSubmission(){
           await axios.get(`http://localhost:8070/topiceval/view/${props.match.params.id}`).then((res)=>{
-            setGroupname(res.data.topiceval.groupname)
-            setSupervisorName(res.data.topiceval.supervisorName)
-            setCoSupervisorName(res.data.topiceval.cosupervisorName)
-            setsubmissionDoc(res.data.topiceval.submissionDoc)
-            setTopic(res.data.topiceval.topic)
-            setType(res.data.topiceval.type)
-            setFeedback(res.data.topiceval.feedback)
+            setGroupname(res.data.topicEval.groupname)
+            setSupervisorName(res.data.topicEval.supervisorName)
+            setCoSupervisorName(res.data.topicEval.cosupervisorName)
+            setsubmissionDoc(res.data.topicEval.submissionDoc)
+            setTopic(res.data.topicEval.topic)
+            setType(res.data.topicEval.type)
+            setFeedback(res.data.topicEval.feedback)
           }).catch((error)=>{
-            alert(error)
+            alert("Failed to fetch evaluation")
           })
         }
         fetchSubmission()
@@ -58,7 +58,7 @@ function UpdateTopicSubmission(props) {
         try{
             await axios.put(`http://localhost:8070/topiceval/update/${props.match.params.id}`, updateSubmission, config);
             alert("Updated")
-            // history.push('/topiceval/allrequest')
+            history.push('/topiceval/view')
         }catch(error){
             alert("updating Failed")
         }

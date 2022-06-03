@@ -107,7 +107,7 @@ function UpdateRequest(props) {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <input className="form-submit-btn" type="submit" value="Update" /> 
+                            <input className="form-submit-btn" type="submit" value="Reply" /> 
                         </div>
                     </div>
                 </div>
