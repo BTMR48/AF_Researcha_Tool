@@ -85,12 +85,14 @@ function ViewTopicSubmission() {
                         <div className="p-3">
                             <div className='detailBox'>
                                 <div align='left'>
-                                    <h5>Group Name&nbsp;: {TopicEval.groupname}</h5>
-                                    <h5>Topic  : {TopicEval.topic}</h5>
-                                    <h6 style={{ color: blue[500] }}>Supervisor    : {TopicEval.supervisorName}</h6>
-                                    <h6 style={{ color: blue[500] }}>Co-Supervisor : {TopicEval.cosupervisorName}</h6>
-                                    <h6>feedback      : {TopicEval.feedback}</h6>
-                                    <h5 style={{ color: green[500] }}>Status        : {TopicEval.type}</h5>
+                                    <ul>
+                                        <h5>&nbsp;Group Name&nbsp;: {TopicEval.groupname}</h5>
+                                        <h5>&nbsp;Topic&nbsp;  : {TopicEval.topic}</h5>
+                                        <h6 style={{ color: blue[500] }}>&nbsp;Supervisor &nbsp;   : {TopicEval.supervisorName}</h6>
+                                        <h6 style={{ color: blue[500] }}>&nbsp;Co-Supervisor&nbsp; : {TopicEval.cosupervisorName}</h6>
+                                        <h6 style={{ color: red[500] }}>&nbsp;feedback  &nbsp;    : {TopicEval.feedback}</h6>
+                                        <h5 style={{ color: green[500] }}>&nbsp;Status &nbsp;       : {TopicEval.type}</h5>
+                                    </ul>
                                 </div>
                             </div>
                             <div align="right">
@@ -102,7 +104,7 @@ function ViewTopicSubmission() {
                                     </span>
                                     &nbsp;&nbsp;&nbsp;
                                     { isPanelmember &&
-                                        <button className="progressBtn" style={{backgroundColor:red[400]}} onClick={()=>UpdateTopicSubmission(TopicEval._id)}> Update </button>
+                                        <button className="progressBtn" style={{backgroundColor:red[400]}} onClick={()=>UpdateTopicSubmission(TopicEval._id)}> Feedback </button>
                                     }    
                                 </span> 
                             </div>

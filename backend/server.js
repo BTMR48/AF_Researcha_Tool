@@ -5,11 +5,11 @@ const cors = require("cors");
 const dotenv = require("dotenv").config();
 const app = express();
 
-app.use(express.static('public'));
 //limiting image size to 50mb
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
+
 
 const Markingrouter = require("./routes/markingrouter");
 const AdminRouter = require("./routes/adminrouter.js");
@@ -18,15 +18,16 @@ const ProgressRouter = require("./routes/progressrouter.js");
 const SupervisorRouter = require("./routes/supervisorrouter");
 const PanelmemberRouter = require("./routes/panelmemberrouter");
 const CoSupervisorrouter = require("./routes/cosupervisorrouter");
-
+const conversationRoute = require("./routes/conversations");
+const messageRoute = require("./routes/messages");
 const SubmissionRouter = require("./routes/submissionrouter");
-
-
 const Submission = require("./routes/submissionrouter");
 const RequestRouter = require("./routes/requestrouter");
 const CoRequestRouter = require("./routes/corequestrouter");
 const PanelgroupRouter = require("./routes/panelgrouprouter");
+const userRoute = require("./routes/user");
 const TopicEvalRouter = require('./routes/topicEvalrouter.js');
+
 
 //getting the database url
 const URL = process.env.MONGODB_URL;
@@ -72,6 +73,9 @@ app.use("/request",RequestRouter);
 app.use("/corequest", CoRequestRouter);
 //when http://localhost:8070/pnlgroup ran it will execute panelgrouprouter.js file
 app.use("/pnlgroup",PanelgroupRouter);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
+app.use("/user", userRoute);
 //when http://localhost:8070/pnlgroup ran it will execute panelgrouprouter.js file
 app.use("/topiceval",TopicEvalRouter);
 
