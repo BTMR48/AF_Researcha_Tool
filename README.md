@@ -20,7 +20,7 @@ Technologies used - MongoDB, Express, React, Node (MERN)
 # You need to follow the below steps to run the system locally.
   1.Clone the project from GitHub: (Use the below Link)
 
-  Check the above link to know how to clone the project
+ ### Check the above link to know how to clone the project
 
   2.Open the project you downloaded in an editor (ex: vscode, intellij)
   
