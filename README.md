@@ -1,5 +1,5 @@
-## AF_SE3040_GroupProject 2022S1_REG_48
-# Research Project Management Tool
+# AF_SE3040_GroupProject 2022S1_REG_48
+## Research Project Management Tool
 
 ============================================
 # Group Details
