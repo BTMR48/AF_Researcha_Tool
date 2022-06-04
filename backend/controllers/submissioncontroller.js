@@ -1,12 +1,14 @@
-const Submission = require('../models/submissionDoc');
+const Submission = require('../models/submission');
+const SubmissionDoc = require('../models/submissionDoc');
 const Feedback = require('../models/feedback');
 const Mark = require('../models/marks');
+
 exports.viewSubmission = async (req, res) => {
 
-  Submission.find().populate({ path: 'grpId proId', select: ['grpName', 'supId', 'progressName'] }).then((submission) => {
+  SubmissionDoc.find().populate({ path: 'grpId proId', select: ['grpName', 'supId', 'progressName'] }).then((SubmissionDoc) => {
     let progressName=req.params.name;
-    const result = submission.filter((submissions) =>
-            submissions.proId.progressName.toLowerCase().includes(progressName))
+    const result = SubmissionDoc.filter((SubmissionDocs) =>
+            SubmissionDocs.proId.progressName.toLowerCase().includes(progressName))
     res.status(200).json({ success: true, result: result })
 
   }).catch((error) => {

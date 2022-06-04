@@ -10,11 +10,6 @@ const SubmissionSchema=new Schema({
         // type:String,
         required:true
     },
-    supervisorid:{
-        ref:'requestSupervisor',
-        type:String,
-        required:true
-    },
     progressID:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'progress',
