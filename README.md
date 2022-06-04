@@ -24,8 +24,13 @@ Technologies used - MongoDB, Express, React, Node (MERN)
 
   2.Open the project you downloaded in an editor (ex: vscode, intellij)
   3.In the terminal type cd backend
+  
   4. Then type npm install to install all the relevant node packages.
-  5.Then type npm run start in the terminal to run the backend.
-  6.Then open another terminal and type cd frontend.
-  7.Then type npm install to install all the relevant node packages.
+  
+  6.Then type npm run start in the terminal to run the backend.
+  
+  7.Then open another terminal and type cd frontend.
+  
+  8.Then type npm install to install all the relevant node packages.
+  
 
