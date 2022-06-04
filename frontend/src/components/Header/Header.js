@@ -66,14 +66,14 @@ function Header() {
             cName: 'nav-text'
         },
         {    
-          title: 'Marking Schema',
-          path: `/marking`,
+          title: 'Document submissions',
+          path: `/submission/viewSubmission/${user._id}`,
           icon: <AssignmentIcon/>,
           cName: 'nav-text'
         },
         (isStudent || isSupervisor || isCosupervisor) &&{
             title: 'Chat',
-            path: `/student/chat/${user._id}`,
+            path: `/messenger`,
             icon: <ForumIcon />,
             cName: 'nav-text'
         },
