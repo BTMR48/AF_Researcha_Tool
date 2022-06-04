@@ -23,6 +23,7 @@ Technologies used - MongoDB, Express, React, Node (MERN)
   Check the above link to know how to clone the project
 
   2.Open the project you downloaded in an editor (ex: vscode, intellij)
+  
   3.In the terminal type cd backend
   
   4. Then type npm install to install all the relevant node packages.
