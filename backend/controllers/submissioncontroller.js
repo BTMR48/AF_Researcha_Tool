@@ -1,6 +1,8 @@
 const Submission = require('../models/submissionDoc');
+const SubmissionDoc = require('../models/submission');
 const Feedback = require('../models/feedback');
 const Mark = require('../models/marks');
+
 
 //Fetch submission details
 exports.viewSubmission = async (req, res) => {
@@ -9,6 +11,7 @@ exports.viewSubmission = async (req, res) => {
     let progressName = req.params.name;
     const result = submission.filter((submissions) =>
       submissions.proId.progressName.toLowerCase().includes(progressName))
+
     res.status(200).json({ success: true, result: result })
 
   }).catch((error) => {
