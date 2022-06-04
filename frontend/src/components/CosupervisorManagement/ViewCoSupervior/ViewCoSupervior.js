@@ -34,7 +34,7 @@ function ViewCoSupervisor(){
 
       useEffect(() => {
           async function getViewCoSupervisor(){
-              axios.post('http://localhost:8070/cosupervisor').then((res) => {
+              axios.post('https://af-research-tool.herokuapp.com/cosupervisor').then((res) => {
                   setCoSupervisors(res.data)
               }).catch((error) => {
                   alert("Failed to fetch Co-Supervisors")
@@ -53,7 +53,7 @@ function ViewCoSupervisor(){
 
       function handleSearch(event){
         const searchTerm = event.currentTarget.value
-        axios.post(`http://localhost:8070/cosupervisor`).then((res) => {
+        axios.post(`https://af-research-tool.herokuapp.com/cosupervisor`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
         }).catch((error) => {
           alert("Failed to fetch Co-Supervisors")

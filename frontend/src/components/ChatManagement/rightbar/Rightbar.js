@@ -18,7 +18,7 @@ export default function Rightbar({ user }) {
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axios.get(`http://localhost:8070/student/${user._id}`);
+        const friendList = await axios.get(`https://af-research-tool.herokuapp.com/student/${user._id}`);
         setFriends(friendList.data);
       } catch (err) {
         console.log(err);

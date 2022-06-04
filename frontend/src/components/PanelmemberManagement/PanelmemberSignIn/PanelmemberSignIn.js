@@ -22,7 +22,7 @@ function PanelmemberLogin() {
         try {
             
             //getting data from backend
-            const {data} = await axios.post("http://localhost:8070/panelmember/signin", {email, password}, config);
+            const {data} = await axios.post("https://af-research-tool.herokuapp.com/panelmember/signin", {email, password}, config);
 
             //setting the panelmember authorization token
             localStorage.setItem("panelmemberAuthToken", `Panelmember ${data.token}`)

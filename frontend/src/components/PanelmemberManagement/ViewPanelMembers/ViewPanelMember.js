@@ -14,7 +14,7 @@ function ViewPanelMember(){
 
       useEffect(() => {
           async function getViewPanelMember(){
-              axios.post('http://localhost:8070/panelmember').then((res) => {
+              axios.post('https://af-research-tool.herokuapp.com/panelmember').then((res) => {
                   setPanelMembers(res.data)
               }).catch((error) => {
                   alert("Failed to fetch Panel Members")
@@ -33,7 +33,7 @@ function ViewPanelMember(){
 
       function handleSearch(event){
         const searchTerm = event.currentTarget.value
-        axios.post(`http://localhost:8070/panelmember`).then((res) => {
+        axios.post(`https://af-research-tool.herokuapp.com/panelmember`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
         }).catch((error) => {
           alert("Failed to fetch Panel Members")

@@ -23,7 +23,7 @@ function AllSupervisors() {
             setIsAdmin(false)
           }
           async function getSupervisors() {
-            axios.post(`http://localhost:8070/supervisor`).then((res) => {
+            axios.post(`https://af-research-tool.herokuapp.com/supervisor`).then((res) => {
               setSupervisors(res.data)  
             }).catch((error) => {
               alert("Failed to fetch Supervisors")
@@ -43,7 +43,7 @@ function AllSupervisors() {
           }
         };
 
-        await axios.delete(`http://localhost:8070/supervisor/delete/${id}`, config).then(() => {
+        await axios.delete(`https://af-research-tool.herokuapp.com/supervisor/delete/${id}`, config).then(() => {
         alert("Supervisor deleted successfully")
         setSupervisors(supervisors.filter(element => element._id !== id))
         }).catch((error) => {
@@ -62,7 +62,7 @@ function AllSupervisors() {
 
     function handleSearch(event){
       const searchTerm = event.currentTarget.value
-      axios.post(`http://localhost:8070/supervisor`).then((res) => {
+      axios.post(`https://af-research-tool.herokuapp.com/supervisor`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
           alert("Failed to Search")

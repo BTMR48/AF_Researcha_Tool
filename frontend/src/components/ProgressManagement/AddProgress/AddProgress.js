@@ -69,7 +69,7 @@ function AddProgress() {
         const newProgress = {name,description,type,date,imgUrl}
         
         try {
-            await axios.post("http://localhost:8070/progress/add", newProgress , config)
+            await axios.post("https://af-research-tool.herokuapp.com/progress/add", newProgress , config)
             alert("Progress Added Successfully")  
             event.target.reset(); 
         }catch (error) {         

@@ -11,7 +11,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   useEffect(() => {
     const getFriends = async () => {
     
-      const res = await axios.get(`http://localhost:8070/student/`);
+      const res = await axios.get(`https://af-research-tool.herokuapp.com/student/`);
       setFriends(res.data);
     };
 
@@ -25,7 +25,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
-        `http://localhost:8070/conversations/find/${currentId}/${user._id}`
+        `https://af-research-tool.herokuapp.com/conversations/find/${currentId}/${user._id}`
       );
       setCurrentChat(res.data);
     } catch (err) {

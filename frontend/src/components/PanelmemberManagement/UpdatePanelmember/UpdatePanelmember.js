@@ -29,7 +29,7 @@ function UpdatePanelmember(props) {
     //fetching user data
     useEffect(()=>{
         async function fetchUser(){
-            await axios.get(`http://localhost:8070/panelmember/${props.match.params.id}`).then((res)=>{
+            await axios.get(`https://af-research-tool.herokuapp.com/panelmember/${props.match.params.id}`).then((res)=>{
                 console.log(res)
                 setTitle(res.data.title)
                 setName(res.data.name)
@@ -93,7 +93,7 @@ function UpdatePanelmember(props) {
         };
 
         try {
-            await axios.put(`http://localhost:8070/panelmember/update/${props.match.params.id}`,updatePanelmember, config);
+            await axios.put(`https://af-research-tool.herokuapp.com/panelmember/update/${props.match.params.id}`,updatePanelmember, config);
                 alert("Updated Successfully")
         } catch (error) {
             if(error.response.status === 401){

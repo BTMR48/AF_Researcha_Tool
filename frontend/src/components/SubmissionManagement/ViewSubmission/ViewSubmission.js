@@ -28,7 +28,7 @@ function ViewSubmission(props) {
 
 //Fetch submission details
         async function getSubmission1() {
-            await axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
+            await axios.get(`https://af-research-tool.herokuapp.com/submission/progress_1`).then((res) => {
                 const result = res.data.result.filter((submission) =>
                     submission.grpId.supId.toLowerCase().includes(props.match.params.id.toLowerCase()))
                 setSubmission1Arr(result)
@@ -39,7 +39,7 @@ function ViewSubmission(props) {
         }
         getSubmission1()
         async function getSubmission2() {
-            await axios.get(`http://localhost:8070/submission/progress_2`).then((res) => {
+            await axios.get(`https://af-research-tool.herokuapp.com/submission/progress_2`).then((res) => {
                 const result = res.data.result.filter((submission) =>
                     submission.grpId.supId.toLowerCase().includes(props.match.params.id.toLowerCase()))
                 setSubmission2Arr(result)
@@ -50,7 +50,7 @@ function ViewSubmission(props) {
         }
         getSubmission2()
         async function getMarking() {
-            await axios.get(`http://localhost:8070/marking/view`).then((res) => {
+            await axios.get(`https://af-research-tool.herokuapp.com/marking/view`).then((res) => {
                 setMarkingArr(res.data)
             }).catch((error) => {
                 alert("Failed to fetch the Marking details")
@@ -84,7 +84,7 @@ function ViewSubmission(props) {
 //Handle search
     function handleSearch1(event) {
         const searchTerm = event.currentTarget.value
-        axios.get(`http://localhost:8070/submission/progress_1`).then((res) => {
+        axios.get(`https://af-research-tool.herokuapp.com/submission/progress_1`).then((res) => {
             filterContent1(res.data.result, searchTerm.toLowerCase())
             console.log(res.data.result)
         }).catch((error) => {
@@ -104,7 +104,7 @@ function ViewSubmission(props) {
 
     function handleSearch2(event) {
         const searchTerm = event.currentTarget.value
-        axios.get(`http://localhost:8070/submission/progress_2`).then((res) => {
+        axios.get(`https://af-research-tool.herokuapp.com/submission/progress_2`).then((res) => {
             filterContent2(res.data.result, searchTerm.toLowerCase())
             console.log(res.data.result)
         }).catch((error) => {

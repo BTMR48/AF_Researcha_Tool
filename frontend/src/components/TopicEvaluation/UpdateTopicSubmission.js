@@ -28,7 +28,7 @@ function UpdateTopicSubmission(props) {
 
     useEffect(()=>{
         async function fetchSubmission(){
-          await axios.get(`http://localhost:8070/topiceval/view/${props.match.params.id}`).then((res)=>{
+          await axios.get(`https://af-research-tool.herokuapp.com/topiceval/view/${props.match.params.id}`).then((res)=>{
             setGroupname(res.data.topicEval.groupname)
             setSupervisorName(res.data.topicEval.supervisorName)
             setCoSupervisorName(res.data.topicEval.cosupervisorName)
@@ -56,7 +56,7 @@ function UpdateTopicSubmission(props) {
         };
 
         try{
-            await axios.put(`http://localhost:8070/topiceval/update/${props.match.params.id}`, updateSubmission, config);
+            await axios.put(`https://af-research-tool.herokuapp.com/topiceval/update/${props.match.params.id}`, updateSubmission, config);
             alert("Updated")
             history.push('/topiceval/view')
         }catch(error){

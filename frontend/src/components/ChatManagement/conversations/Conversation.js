@@ -10,7 +10,7 @@ export default function Conversation({ conversation, currentUser }) {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
     console.log("friend"+friendId)
     const getUser = async () => {
-      await axios.get(`http://localhost:8070/student/${friendId}`).then((res) => {
+      await axios.get(`https://af-research-tool.herokuapp.com/student/${friendId}`).then((res) => {
         setUser(res.data.result)
             }).catch((error) => {
                 alert("Failed to fetch the conversation details")

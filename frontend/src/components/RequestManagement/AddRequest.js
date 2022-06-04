@@ -40,7 +40,7 @@ function AddRequest(props) {
         }
 
         async function getSupervisorDetails(){
-            axios.get(`http://localhost:8070/supervisor/${props.match.params.id}`, config).then((res) => {
+            axios.get(`https://af-research-tool.herokuapp.com/supervisor/${props.match.params.id}`, config).then((res) => {
                 setSupervisorID(res.data._id)
                 setStudentID(user._id)
                 setName(res.data.name)
@@ -71,7 +71,7 @@ function AddRequest(props) {
 
         localStorage.setItem("supervisorrequest", JSON.stringify(newRequest))
         
-        axios.post("http://localhost:8070/request/add", newRequest).then(() => {
+        axios.post("https://af-research-tool.herokuapp.com/request/add", newRequest).then(() => {
             alert ("Successful Request")
             localStorage.removeItem("supervisorrequest")
             history.push(`/supervisor/ViewSupervisor`)

@@ -30,7 +30,7 @@ function UpdateSupervisor(props) {
     //fetching user data
     useEffect(()=>{
         async function fetchUser(){
-            await axios.get(`http://localhost:8070/supervisor/${props.match.params.id}`).then((res)=>{
+            await axios.get(`https://af-research-tool.herokuapp.com/supervisor/${props.match.params.id}`).then((res)=>{
                 console.log(res)
                 setTitle(res.data.title)
                 setName(res.data.name)
@@ -94,7 +94,7 @@ function UpdateSupervisor(props) {
         };
 
         try {
-            await axios.put(`http://localhost:8070/supervisor/update/${props.match.params.id}`,updateSupervisor, config);
+            await axios.put(`https://af-research-tool.herokuapp.com/supervisor/update/${props.match.params.id}`,updateSupervisor, config);
                 alert("Updated Successfully")
         } catch (error) {
             if(error.response.status === 401){

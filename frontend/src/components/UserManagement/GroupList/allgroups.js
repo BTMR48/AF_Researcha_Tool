@@ -28,7 +28,7 @@ function AllStudents() {
           }
         
         async function getStudents() {
-            axios.post(`http://localhost:8070/student`).then((res) => {
+            axios.post(`https://af-research-tool.herokuapp.com/student`).then((res) => {
                 setStudents(res.data) 
             }).catch((error) => {
                 alert("Failed to fetch Students")
@@ -49,7 +49,7 @@ function AllStudents() {
           }
         };
 
-        await axios.delete(`http://localhost:8070/student/delete/${id}`, config).then(() => {
+        await axios.delete(`https://af-research-tool.herokuapp.com/student/delete/${id}`, config).then(() => {
         alert("Student deleted successfully")
         setStudents(students.filter(element => element._id !== id))
         }).catch((error) => {
@@ -67,7 +67,7 @@ function AllStudents() {
 
     function handleSearch(event){
       const searchTerm = event.currentTarget.value
-      axios.post(`http://localhost:8070/student`).then((res) => {
+      axios.post(`https://af-research-tool.herokuapp.com/student`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
       }).catch((error)=>{
           alert("Failed to Search")

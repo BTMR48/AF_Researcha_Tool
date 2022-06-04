@@ -36,7 +36,7 @@ function ViewSupervisor(){
 
       useEffect(() => {
           async function getViewSupervisor(){
-              axios.post('http://localhost:8070/supervisor').then((res) => {
+              axios.post('https://af-research-tool.herokuapp.com/supervisor').then((res) => {
                   setSupervisors(res.data)
               }).catch((error) => {
                   alert("Failed to fetch Supervisors")
@@ -55,7 +55,7 @@ function ViewSupervisor(){
 
       function handleSearch(event){
         const searchTerm = event.currentTarget.value
-        axios.post(`http://localhost:8070/supervisor`).then((res) => {
+        axios.post(`https://af-research-tool.herokuapp.com/supervisor`).then((res) => {
           filterContent(res.data, searchTerm.toLowerCase())
         }).catch((error) => {
           alert("Failed to fetch Supervisors")

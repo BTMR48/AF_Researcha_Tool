@@ -72,7 +72,7 @@ function Submit(props) {
             }
         };
 
-        axios.post("http://localhost:8070/submission/add", newSubmission , config).then((res)=>{
+        axios.post("https://af-research-tool.herokuapp.com/submission/add", newSubmission , config).then((res)=>{
             alert("Submission Added")
         }).catch((error)=>{         
             if(error.response.status === 409){

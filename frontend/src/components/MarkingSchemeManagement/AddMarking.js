@@ -65,7 +65,7 @@ function AddProgress() {
         const newMarking = {progress_name,submission_doc}
         
         try {
-            await axios.post("http://localhost:8070/marking/add", newMarking , config)
+            await axios.post("https://af-research-tool.herokuapp.com/marking/add", newMarking , config)
             alert("Marking Added Successfully")  
             event.target.reset(); 
         }catch (error) {         
